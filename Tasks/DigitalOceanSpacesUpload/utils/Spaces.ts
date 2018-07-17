@@ -1,10 +1,10 @@
 import { Endpoint, S3 } from 'aws-sdk'
-import prettyBytes from 'pretty-bytes'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as tl from 'vsts-task-lib/task'
 import { Parameters } from './Parameters'
 import { findFiles } from './utils'
+import prettyBytes = require('pretty-bytes')
 
 export class Spaces {
   public endpoint: Endpoint
