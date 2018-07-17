@@ -2,7 +2,6 @@ import * as tl from 'vsts-task-lib/task'
 import * as path from 'path'
 import { Spaces } from './utils/Spaces'
 import { Parameters } from './utils/Parameters'
-import { PutObjectRequest } from './node_modules/aws-sdk/clients/s3'
 
 /**
  * Set language loc file
