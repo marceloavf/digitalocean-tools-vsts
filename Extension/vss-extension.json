@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "digitalocean-tools",
-  "name": "DigitalOcean Tool",
+  "name": "DigitalOcean Tools",
   "version": "0.0.0",
   "publisher": "marcelo-formentao",
   "targets": [
@@ -9,7 +9,7 @@
       "id": "Microsoft.VisualStudio.Services"
     }
   ],
-  "description": "DigitalOcean Spaces storage with VSTS",
+  "description": "DigitalOcean Spaces management with VSTS",
   "categories": [
     "Build and release"
   ],
