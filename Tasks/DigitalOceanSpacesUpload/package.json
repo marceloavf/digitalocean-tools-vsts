@@ -1,0 +1,10 @@
+{
+    "name": "digitaloceanspacesupload",
+    "private": true,
+    "version": "0.0.0",
+    "dependencies": {
+        "aws-sdk": "^2.274.1",
+        "pretty-bytes": "^5.1.0",
+        "vsts-task-lib": "^2.6.0"
+    }
+}

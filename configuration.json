@@ -1,0 +1,25 @@
+{
+    "environments": [
+        {
+            "Name": "production",
+            "VssExtensionIdSuffix": "",
+            "VssExtensionGalleryFlags": [
+                "Public",
+                "Preview"
+            ],
+            "DisplayNamesSuffix": "",
+            "TaskIds": {
+                "DigitalOceanSpacesUpload": "1c33b552-39e4-4d45-8c4e-ea4f7ef7c9da"
+            }
+        },
+        {
+            "Name": "dev",
+            "VssExtensionIdSuffix": "-dev",
+            "VssExtensionGalleryFlags": [],
+            "DisplayNamesSuffix": " (Development)",
+            "TaskIds": {
+                "DigitalOceanSpacesUpload": "7ccd0fd9-2c5b-4463-8ee2-a0102ff0a774"
+            }
+        }
+    ]
+}

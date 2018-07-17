@@ -1,0 +1,126 @@
+{
+  "id": "2dffaab6-6842-4e1b-ad50-87c0e6d92acd",
+  "name": "DigitalOcean",
+  "friendlyName": "DigitalOcean Spaces Upload",
+  "instanceNameFormat": "DigitalOcean Spaces Upload $(Arguments)",
+  "description": "Upload to DigitalOcean Spaces",
+  "author": "Marcelo Formentão",
+  "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
+  "category": "Deploy",
+  "preview": true,
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "demands": [
+  ],
+  "minimumAgentVersion": "1.91.0",
+  "inputs": [
+    {
+      "name": "digitalCredentials",
+      "type": "connectedService:aws",
+      "label": "DigitalOcean Connection",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown":
+      "Select the service endpoint for your DigitalOcean connection. <br>To create one, click the Manage link and create a new service endpoint based on AWS configuration."
+    },
+    {
+      "name": "digitalRegion",
+      "type": "string",
+      "label": "DigitalOcean Region",
+      "required": true,
+      "helpMarkDown":
+      "The DigitalOcean datacenter region code (nyc3, ams3, sgp1, etc.) of the region containing the Spaces resource(s) the task will use or create."
+    },
+    {
+      "name": "digitalBucket",
+      "type": "string",
+      "label": "Bucket Name",
+      "required": true,
+      "helpMarkDown":
+      "The name of the bucket where the content will be uploaded."
+    },
+    {
+      "name": "digitalSourceFolder",
+      "type": "filePath",
+      "label": "Source Folder",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The source folder that the content pattern(s) will be run against. If not set the root of the work area is assumed. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988). Example: $(Agent.BuildDirectory)"
+    },
+    {
+      "name": "digitalGlobExpressions",
+      "type": "multiLine",
+      "label": "Filename Patterns",
+      "defaultValue": "**",
+      "required": true,
+      "helpMarkDown": "Glob patterns to select the file and folder content to be uploaded. Supports multiple lines of minimatch patterns and also exclude patterns."
+    },
+    {
+      "name": "digitalTargetFolder",
+      "type": "string",
+      "label": "Target Folder (Spaces key prefix)",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The target folder (referred to as a key prefix in Spaces) in the bucket to contain the uploaded content. If not set the root of the bucket is assumed. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988)."
+    },
+    {
+      "name": "digitalAcl",
+      "type": "pickList",
+      "label": "Access Control (ACL)",
+      "required": true,
+      "helpMarkDown": "The canned Access Control List (ACL) to apply to the uploaded content. Refer to [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl).",
+      "options": {
+        "private": "private",
+        "public-read": "public read",
+        "public-read-write": "public read write",
+        "authenticated-read": "authenticated read",
+        "aws-exec-read": "aws-exec-read",
+        "bucket-owner-read": "bucket-owner-read",
+        "bucket-owner-full-control": "bucket-owner-full-control"
+      }
+    },
+    {
+      "name": "digitalFlattenFolders",
+      "type": "boolean",
+      "label": "Flatten folders",
+      "defaultValue": "false",
+      "required": false,
+      "helpMarkDown": "Flatten the folder structure and copy all files into the specified target folder in the bucket."
+    }
+  ],
+  "dataSourceBindings": [
+  ],
+  "execution": {
+    "Node": {
+      "target": "digitalOceanSpacesUpload.js",
+      "argumentFormat": ""
+    }
+  },
+  "messages": {
+    "FoundNFiles": "found %d files",
+    "AllPaths": "All paths %s",
+    "MatchedPaths": "Matched paths %s",
+    "MatchedFiles": "Matched files list %s",
+    "CreateBucketFailure": "Failed to create bucket",
+    "BucketCreated": "Bucket created",
+    "UploadingFile": "Uploading matched file %s in %s",
+    "UploadingFiles": "Uploading files from %s to %s in bucket %s",
+    "FileUploadProgress": "Upload progress is %s of %s - %s percent",
+    "FileUploadCompleted": "Completed upload of %s to %s",
+    "FileUploadFailed": "File upload failed",
+    "TaskCompleted": "All uploads to Space completed",
+    "BucketNotExistNoAutocreate": "Bucket %s does not exist or you do not have access. Auto-create option not set, cannot continue.",
+    "BucketNotExistCreating": "Bucket %s does not appear to exist (or you do not have access). Attempting to create in region %s."
+  }
+}

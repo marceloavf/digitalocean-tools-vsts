@@ -1,0 +1,40 @@
+{
+  "name": "digitalocean-tools-vsts",
+  "version": "0.1.0",
+  "description": "DigitalOcean task for the Visual Studio Team Services system",
+  "author": "Marcelo Formentão <marceloavf3@hotmail.com>",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/marceloavf/digitalocean-tools-vsts",
+    "type": "git"
+  },
+  "scripts": {
+    "lint": "yarn run tslint -t codeFrame -p tsconfig.json -c tslint.json && yarn run prettier \"{Tasks,Tests}/**/*.ts\" --write",
+    "clean": "vsts-build-tools-clean",
+    "postinstall": "vsts-build-tools-install",
+    "prebuild": "vsts-build-tools-prebuild",
+    "build": "yarn run lint && yarn run tsc",
+    "package": "yarn run lint && yarn run vsts-build-tools-package",
+    "tslint-check": "tslint-config-prettier-check ./tslint.json",
+    "precommit": "lint-staged"
+  },
+  "devDependencies": {
+    "@types/node": "^10.5.2",
+    "@types/q": "^1.5.0",
+    "async": "^2.6.1",
+    "gl-vsts-tasks-build-scripts": "^0.4.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.7",
+    "tfx-cli": "^0.5.14",
+    "tslint": "^5.10.0",
+    "tslint-config-prettier": "^1.13.0",
+    "typescript": "^2.9.2"
+  },
+  "lint-staged": {
+    "{Tasks,Tests}/**/*.ts": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

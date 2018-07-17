@@ -1,0 +1,70 @@
+{
+  "manifestVersion": 1,
+  "id": "digitalocean-tools",
+  "name": "DigitalOcean Tool",
+  "version": "0.0.0",
+  "publisher": "marcelo-formentao",
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "description": "DigitalOcean Spaces storage with VSTS",
+  "categories": [
+    "Build and release"
+  ],
+  "icons": {
+    "default": "images/icon128.png",
+    "large": "images/icon512.png"
+  },
+  "tags": [
+    "digitalocean",
+    "publish",
+    "s3",
+    "spaces",
+    "node",
+    "npm",
+    "package",
+    "utility"
+  ],
+  "content": {
+    "details": {
+      "path": "OVERVIEW.md"
+    },
+    "license": {
+      "path": "LICENSE.txt"
+    }
+  },
+  "links": {
+    "getstarted": {
+      "uri": "https://github.com/marceloavf/digitalocean-tools-vsts/wiki"
+    },
+    "support": {
+      "uri": "https://github.com/marceloavf/digitalocean-tools-vsts/issues"
+    },
+    "repository": {
+      "uri": "https://github.com/marceloavf/digitalocean-tools-vsts"
+    },
+    "issues": {
+      "uri": "https://github.com/marceloavf/digitalocean-tools-vsts/issues"
+    }
+  },
+  "branding": {
+    "color": "#020E28",
+    "theme": "dark"
+  },
+  "files": [
+    {
+      "path": "Tasks"
+    },
+    {
+      "path": "images",
+      "addressable": true
+    }
+  ],
+  "repository" :{
+    "type": "git",
+    "uri": "https://github.com/marceloavf/digitalocean-tools-vsts"
+  },
+  "scopes": ["vso.build_execute", "vso.serviceendpoint_manage"]
+}
