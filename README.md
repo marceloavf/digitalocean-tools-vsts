@@ -16,14 +16,18 @@ DigitalOcean Tools
 
 </h4>
 
-## Install the extension to your account
+## 🗃 &nbsp; Tasks included
+
+- 🔹 [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/github-tools-vsts/wiki/DigitalOcean-Spaces-Upload) Upload file and folder content to DigitalOcean Spaces Bucket.
+
+## 📟 &nbsp; Install the extension to your account
 
 You can find the latest stable version of the VSTS Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).
 
-## Contribute
+## 🤝 &nbsp; Contribute
 
 Contributions, issues and feature requests are very welcome. Please make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
 
-## Known Issues
+## 🚧 &nbsp; Known Issues
 
 Please refer to our [wiki page](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/Known-Issues)
