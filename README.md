@@ -18,7 +18,7 @@ DigitalOcean Tools
 
 ## 🗃 &nbsp; Tasks included
 
-- 🔹 [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/github-tools-vsts/wiki/DigitalOcean-Spaces-Upload) Upload file and folder content to DigitalOcean Spaces Bucket.
+- 🔹 &nbsp; [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Upload) Upload file and folder content to DigitalOcean Spaces Bucket.
 
 ## 📟 &nbsp; Install the extension to your account
 
