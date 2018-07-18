@@ -255,6 +255,7 @@ Tasks/**/*.d.ts
 Tasks/*/common/**/*.*
 
 Common/**/*.js
+Common/**/*.d.ts
 
 .BuildOutput
 .DS_Store

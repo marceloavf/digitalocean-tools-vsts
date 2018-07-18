@@ -1,28 +1,18 @@
-import { Endpoint, S3 } from 'aws-sdk'
+import { Spaces } from '../common/Spaces'
+import { S3 } from 'aws-sdk'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as tl from 'vsts-task-lib/task'
+import * as tl from 'vsts-task-lib'
 import { Parameters } from './Parameters'
 import { findFiles } from './utils'
 import prettyBytes = require('pretty-bytes')
 
-export class Spaces {
-  public endpoint: Endpoint
-  public s3Connection: S3
-
-  constructor(private params: Parameters) {
-    this.endpoint = new Endpoint(
-      `${this.params.digitalRegion.toLowerCase()}.digitaloceanspaces.com`
-    )
-
-    this.s3Connection = new S3({
-      endpoint: this.endpoint.host,
-      accessKeyId: this.params.digitalEndpoint.parameters.username,
-      secretAccessKey: this.params.digitalEndpoint.parameters.password,
-    })
+export class Upload extends Spaces<Parameters> {
+  constructor(params: Parameters) {
+    super(params)
   }
 
-  public async upload(): Promise<void> {
+  public async send(): Promise<void> {
     console.log(
       tl.loc(
         'UploadingFiles',
