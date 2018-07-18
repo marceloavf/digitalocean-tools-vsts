@@ -16,6 +16,8 @@ DigitalOcean Tools
 
 </h4>
 
+![tasks-banner](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/images/tasks-banner.png)
+
 ## 🗃 &nbsp; Tasks included
 
 - 🔹 &nbsp; [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Upload) Upload file and folder content to DigitalOcean Spaces Bucket.

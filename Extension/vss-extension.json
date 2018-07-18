@@ -25,7 +25,9 @@
     "node",
     "npm",
     "package",
-    "utility"
+    "utility",
+    "deploy",
+    "storage"
   ],
   "content": {
     "details": {
