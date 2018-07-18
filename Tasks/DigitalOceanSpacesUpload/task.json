@@ -93,7 +93,7 @@
     {
       "name": "digitalFlattenFolders",
       "type": "boolean",
-      "label": "Flatten folders",
+      "label": "Flatten Folders",
       "defaultValue": "false",
       "required": false,
       "helpMarkDown": "Flatten the folder structure and copy all files into the specified target folder in the bucket."
