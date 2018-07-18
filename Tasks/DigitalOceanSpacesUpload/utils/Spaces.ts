@@ -9,11 +9,8 @@ import prettyBytes = require('pretty-bytes')
 export class Spaces {
   public endpoint: Endpoint
   public s3Connection: S3
-  private params: Parameters
 
-  constructor(params: Parameters) {
-    this.params = params
-
+  constructor(private params: Parameters) {
     this.endpoint = new Endpoint(
       `${this.params.digitalRegion.toLowerCase()}.digitaloceanspaces.com`
     )
