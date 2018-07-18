@@ -9,7 +9,7 @@
       "id": "Microsoft.VisualStudio.Services"
     }
   ],
-  "description": "DigitalOcean Spaces management with VSTS",
+  "description": "DigitalOcean Services Management with VSTS",
   "categories": [
     "Build and release"
   ],
