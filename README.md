@@ -5,7 +5,7 @@ DigitalOcean Tools
 <br>
 </h1>
 
-<h4 align="center">Manage your DigitalOcean Spaces. For VSTS Builds and Releases.</h4>
+<h4 align="center">Manage your DigitalOcean Services. For VSTS Builds and Releases.</h4>
 
 <p align="center">DigitalOcean Tools provide the ability to upload and delete objects from DigitalOcean Spaces in Visual Studio Team Services Build and Release Management. <a href="https://github.com/marceloavf/digitalocean-tools-vsts/wiki">Learn More</a></p>
 
