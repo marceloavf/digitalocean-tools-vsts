@@ -3,7 +3,7 @@
   "name": "DigitalOcean",
   "friendlyName": "DigitalOcean Spaces Upload",
   "instanceNameFormat": "DigitalOcean Spaces Upload $(Arguments)",
-  "description": "Upload to DigitalOcean Spaces",
+  "description": "Upload file and folder content to DigitalOcean Spaces Bucket",
   "author": "Marcelo Formentão",
   "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
   "category": "Deploy",
