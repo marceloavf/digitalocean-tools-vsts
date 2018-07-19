@@ -20,6 +20,8 @@
   "tags": [
     "digitalocean",
     "publish",
+    "upload",
+    "delete",
     "s3",
     "spaces",
     "node",
