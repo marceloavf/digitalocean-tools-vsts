@@ -112,15 +112,12 @@
     "AllPaths": "All paths %s",
     "MatchedPaths": "Matched paths %s",
     "MatchedFiles": "Matched files list %s",
-    "CreateBucketFailure": "Failed to create bucket",
-    "BucketCreated": "Bucket created",
     "UploadingFile": "Uploading matched file %s in %s",
     "UploadingFiles": "Uploading files from %s to %s in bucket %s",
     "FileUploadProgress": "Upload progress is %s of %s - %d%",
     "FileUploadCompleted": "Completed upload of %s to %s",
     "FileUploadFailed": "File upload failed",
-    "TaskCompleted": "All uploads to Space completed",
-    "BucketNotExistNoAutocreate": "Bucket %s does not exist or you do not have access. Auto-create option not set, cannot continue.",
-    "BucketNotExistCreating": "Bucket %s does not appear to exist (or you do not have access). Attempting to create in region %s."
+    "FileNotFound": "No files found at %s",
+    "TaskCompleted": "All uploads to Space completed"
   }
 }

@@ -131,7 +131,7 @@ atob@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.1.tgz#ae2d5a729477f289d60dd7f96a6314a22dd6c22a"
 
-aws-sdk@^2.274.1:
+aws-sdk@2.276.1:
   version "2.276.1"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.276.1.tgz#4f5cd52f4d1a13a412c8a8d75b276c556ad13947"
   dependencies:
@@ -2150,7 +2150,7 @@ vso-node-api@^5.0.0:
     tunnel "0.0.4"
     underscore "^1.8.3"
 
-vsts-task-lib@^2.6.0:
+vsts-task-lib@2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/vsts-task-lib/-/vsts-task-lib-2.6.0.tgz#c82007e66829a1cd3a24ce031f153410256bf0a8"
   dependencies:

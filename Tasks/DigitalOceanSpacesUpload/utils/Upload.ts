@@ -1,8 +1,9 @@
-import { Spaces } from '../common/Spaces'
 import { S3 } from 'aws-sdk'
 import * as fs from 'fs'
+import { isEmpty } from 'lodash'
 import * as path from 'path'
 import * as tl from 'vsts-task-lib'
+import { Spaces } from '../common/Spaces'
 import { Parameters } from './Parameters'
 import { findFiles } from './utils'
 import prettyBytes = require('pretty-bytes')
@@ -12,7 +13,7 @@ export class Upload extends Spaces<Parameters> {
     super(params)
   }
 
-  public async send(): Promise<void> {
+  public async init(): Promise<void> {
     console.log(
       tl.loc(
         'UploadingFiles',
@@ -25,6 +26,11 @@ export class Upload extends Spaces<Parameters> {
     )
 
     const files: string[] = findFiles(this.params)
+
+    if (isEmpty(files)) {
+      console.log(tl.loc('FileNotFound', this.params.digitalSourceFolder))
+      return
+    }
 
     for (const file of files) {
       const targetPath = this.normalizeKeyPath(file, this.params)
@@ -58,6 +64,8 @@ export class Upload extends Spaces<Parameters> {
         throw err
       }
     }
+
+    console.log(tl.loc('TaskCompleted'))
   }
 
   private normalizeKeyPath(file: string, params: Parameters): string {
