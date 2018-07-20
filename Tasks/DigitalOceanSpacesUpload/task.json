@@ -56,7 +56,7 @@
       "label": "Source Folder",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "The source folder that the content pattern(s) will be run against. If not set the root of the work area is assumed. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988). Example: $(Agent.BuildDirectory)"
+      "helpMarkDown": "The source folder that the content pattern(s) will be run against. <br>If not set the root of the work area is assumed. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988). Example: $(Agent.BuildDirectory)"
     },
     {
       "name": "digitalGlobExpressions",
@@ -64,7 +64,7 @@
       "label": "Filename Patterns",
       "defaultValue": "**",
       "required": true,
-      "helpMarkDown": "Glob patterns to select the file and folder content to be uploaded. Supports multiple lines of minimatch patterns and also exclude patterns."
+      "helpMarkDown": "Glob patterns to select the file and folder content to be uploaded. <br>Supports multiple lines of minimatch patterns and also exclude patterns."
     },
     {
       "name": "digitalTargetFolder",
@@ -72,14 +72,14 @@
       "label": "Target Folder (Spaces key prefix)",
       "defaultValue": "",
       "required": false,
-      "helpMarkDown": "The target folder (referred to as a key prefix in Spaces) in the bucket to contain the uploaded content. If not set the root of the bucket is assumed. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988)."
+      "helpMarkDown": "The target folder (referred to as a key prefix in Spaces) in the bucket to contain the uploaded content. <br>If not set the root of the bucket is assumed. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988)."
     },
     {
       "name": "digitalAcl",
       "type": "pickList",
       "label": "Access Control (ACL)",
       "required": true,
-      "helpMarkDown": "The canned Access Control List (ACL) to apply to the uploaded content. Refer to [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl).",
+      "helpMarkDown": "The canned Access Control List (ACL) to apply to the uploaded content. <br>Refer to [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl).",
       "options": {
         "private": "private",
         "public-read": "public read",
