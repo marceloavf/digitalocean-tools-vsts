@@ -1,0 +1,10 @@
+{
+    "name": "digitaloceanspacesdelete",
+    "private": true,
+    "version": "0.0.0",
+    "dependencies": {
+        "aws-sdk": "2.276.1",
+        "matcher": "^1.1.1",
+        "vsts-task-lib": "2.6.0"
+    }
+}

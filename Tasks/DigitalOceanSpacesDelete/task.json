@@ -1,0 +1,93 @@
+{
+  "id": "8ed04a99-be76-4918-9176-a44fb3749495",
+  "name": "DigitalOcean",
+  "friendlyName": "DigitalOcean Spaces Delete",
+  "instanceNameFormat": "DigitalOcean Spaces Delete $(Arguments)",
+  "description": "Delete file or folder content of DigitalOcean Spaces Bucket",
+  "author": "Marcelo Formentão",
+  "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
+  "category": "Utility",
+  "preview": true,
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "demands": [
+  ],
+  "minimumAgentVersion": "1.91.0",
+  "inputs": [
+    {
+      "name": "digitalCredentials",
+      "type": "connectedService:aws",
+      "label": "DigitalOcean Connection",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown":
+      "Select the service endpoint for your DigitalOcean connection. <br>To create one, click the Manage link and create a new service endpoint based on AWS configuration."
+    },
+    {
+      "name": "digitalRegion",
+      "type": "string",
+      "label": "DigitalOcean Region",
+      "required": true,
+      "helpMarkDown":
+      "The DigitalOcean datacenter region code (nyc3, ams3, sgp1, etc.) of the region containing the Spaces resource(s) the task will use."
+    },
+    {
+      "name": "digitalBucket",
+      "type": "string",
+      "label": "Bucket Name",
+      "required": true,
+      "helpMarkDown":
+      "The name of the bucket where the content will be deleted."
+    },
+    {
+      "name": "digitalGlobExpressions",
+      "type": "multiLine",
+      "label": "Filename Patterns",
+      "defaultValue": "**",
+      "required": true,
+      "helpMarkDown": "Glob patterns to select the file and folder content to be deleted. <br>Supports multiple lines of minimatch patterns and also exclude patterns."
+    },
+    {
+      "name": "digitalTargetFolder",
+      "type": "string",
+      "label": "Target Folder (Spaces key prefix)",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The target folder (referred to as a key prefix in Spaces) in the bucket that contains the files. <br>If not set the root of the bucket is assumed, <strong>BE CAREFUL!</strong>. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988)."
+    }
+  ],
+  "dataSourceBindings": [
+  ],
+  "execution": {
+    "Node": {
+      "target": "digitalOceanSpacesDelete.js",
+      "argumentFormat": ""
+    }
+  },
+  "messages": {
+    "FoundNFiles": "found %d files",
+    "AllFiles": "All files %s",
+    "MatchedFile": "Matched file %s",
+    "MatchedFiles": "Matched files list %s",
+    "CreateBucketFailure": "Failed to create bucket",
+    "BucketCreated": "Bucket created",
+    "SearchingFiles": "Searching '%s' prefix for files to delete",
+    "DeletingFile": "Deleting matched file %s in %s",
+    "DeletingFiles": "Deleting files from %s in bucket %s",
+    "DeletingFilesCompleted": "Completed deleting files from %s in bucket %s",
+    "DeletingFilesFailed": "Deleting files failed",
+    "FileNotFound": "No files found at %s",
+    "TaskCompleted": "All specified files deleted from Space completed"
+  }
+}
