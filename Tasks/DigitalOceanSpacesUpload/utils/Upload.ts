@@ -33,7 +33,8 @@ export class Upload extends Spaces<Parameters> {
     }
 
     for (const file of files) {
-      const targetPath = this.normalizeKeyPath(file, this.params)
+      const targetPath = this.normalizeKeyPath(file)
+
       try {
         console.log(tl.loc('UploadingFile', file, targetPath))
 
@@ -68,8 +69,8 @@ export class Upload extends Spaces<Parameters> {
     console.log(tl.loc('TaskCompleted'))
   }
 
-  private normalizeKeyPath(file: string, params: Parameters): string {
-    let relativePath = file.substring(params.digitalSourceFolder.length)
+  private normalizeKeyPath(file: string): string {
+    let relativePath = file.substring(this.params.digitalSourceFolder.length)
 
     if (relativePath.startsWith(path.sep)) {
       relativePath = relativePath.substr(1)
@@ -77,14 +78,14 @@ export class Upload extends Spaces<Parameters> {
 
     let targetPath = relativePath
 
-    if (params.digitalFlattenFolders) {
+    if (this.params.digitalFlattenFolders) {
       const flatFileName = path.basename(file)
-      targetPath = params.digitalTargetFolder
-        ? path.join(params.digitalTargetFolder, flatFileName)
+      targetPath = this.params.digitalTargetFolder
+        ? path.join(this.params.digitalTargetFolder, flatFileName)
         : flatFileName
     } else {
-      targetPath = params.digitalTargetFolder
-        ? path.join(params.digitalTargetFolder, relativePath)
+      targetPath = this.params.digitalTargetFolder
+        ? path.join(this.params.digitalTargetFolder, relativePath)
         : relativePath
     }
 
