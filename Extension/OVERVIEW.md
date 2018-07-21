@@ -6,7 +6,8 @@ DigitalOcean Tools provide the ability to upload and delete objects from Digital
 
 ## Tasks included
 
-- [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Upload) Upload file and folder content to DigitalOcean Spaces Bucket.
+- [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Upload) Upload file(s) and folder(s) content to DigitalOcean Spaces Bucket.
+- [**DigitalOcean Spaces Delete:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Delete) Delete file(s) from DigitalOcean Spaces Bucket.
 
 ## DigitalOcean Spaces Upload
 
@@ -18,6 +19,14 @@ DigitalOcean Tools provide the ability to upload and delete objects from Digital
 - **Target Folder:** The target folder (referred to as a key prefix in Spaces) in the bucket to contain the uploaded content. Root is assumed when empty.
 - **Access Control (ACL):** The canned Access Control List (ACL) to apply to the uploaded content.
 - **Flatten Folders:** Flatten the folder structure and copy all files into the specified target folder in the bucket.
+
+## DigitalOcean Spaces Delete
+
+- **DigitalOcean Connection:** Set the service endpoint for your connection. It's based on AWS configuration (only Access Key ID and Secret Key ID is required).
+- **DigitalOcean Region:** The DigitalOcean datacenter region code containing the Spaces resource(s), e.g. nyc3, ams3, sgp1, etc.
+- **Bucket Name:** The name of the bucket where the content will be deleted.
+- **Filename Patterns:** Glob patterns to select the file and folder content to be deleted.
+- **Target Folder:** The target folder (referred to as a key prefix in Spaces) in the bucket that contain the files. Root is assumed when empty, **be careful**.
 
 ## Install the extension to your account
 
