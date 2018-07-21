@@ -86,9 +86,10 @@
     "SearchingFiles": "Searching '%s' prefix for files to delete",
     "DeletingFile": "Deleting matched file %s in %s",
     "DeletingFiles": "Deleting files from '%s' in bucket %s",
-    "DeletingFilesCompleted": "Completed deleting files from %s in bucket %s",
+    "DeletingFilesCompleted": "Completed deleting files from '%s' in bucket %s",
     "DeletingFilesFailed": "Deleting files failed",
-    "FileNotFound": "No files found at %s",
+    "FilesNotFound": "No files found at '%s'",
+    "FilesNotMatched": "No files matched at '%s'",
     "TaskCompleted": "All specified files deleted from Space completed"
   }
 }

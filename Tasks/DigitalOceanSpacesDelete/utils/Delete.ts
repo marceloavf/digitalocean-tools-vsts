@@ -25,7 +25,7 @@ export class Delete extends Spaces<Parameters> {
       const listedObjects = await this.searchFiles()
 
       if (listedObjects.Contents.length === 0) {
-        console.log(tl.loc('FileNotFound', this.params.digitalTargetFolder))
+        console.log(tl.loc('FilesNotFound', this.params.digitalTargetFolder))
         return
       }
 
@@ -78,6 +78,16 @@ export class Delete extends Spaces<Parameters> {
       if (itMatch) console.log(tl.loc('MatchedFile', Key))
       return itMatch
     })
+
+    if (isEmpty(result))
+      console.log(
+        tl.loc(
+          'FilesNotMatched',
+          this.params.digitalTargetFolder
+            ? this.params.digitalTargetFolder
+            : 'root'
+        )
+      )
 
     return result
   }
