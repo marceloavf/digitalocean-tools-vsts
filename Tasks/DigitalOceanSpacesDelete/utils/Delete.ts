@@ -1,8 +1,8 @@
-import { Spaces } from '../common/Spaces'
 import { S3 } from 'aws-sdk'
-import * as fs from 'fs'
-import * as path from 'path'
+import { isEmpty } from 'lodash'
+import * as matcher from 'matcher'
 import * as tl from 'vsts-task-lib'
+import { Spaces } from '../common/Spaces'
 import { Parameters } from './Parameters'
 
 export class Delete extends Spaces<Parameters> {
@@ -40,6 +40,7 @@ export class Delete extends Spaces<Parameters> {
 
       await this.s3Connection.deleteObjects(deleteParams).promise()
 
+      // isTruncated means more objects to list
       if (listedObjects.IsTruncated) await this.init()
 
       console.log(
@@ -63,11 +64,19 @@ export class Delete extends Spaces<Parameters> {
   private filterFiles(
     listedObjects: S3.ListObjectsV2Output
   ): S3.ObjectIdentifier[] {
-    const result: S3.ObjectIdentifier[] = []
+    console.log(tl.loc('FilteringFiles', this.params.digitalGlobExpressions))
 
-    listedObjects.Contents.forEach(({ Key }) => {
-      console.log(tl.loc('MatchedFile', Key))
-      result.push({ Key })
+    const result: S3.ObjectIdentifier[] = listedObjects.Contents.map(
+      ({ Key }) => {
+        return { Key }
+      }
+    ).filter(({ Key }) => {
+      // If doesn't match, matcher will return an empty array that isEmpty will get it
+      const itMatch = !isEmpty(
+        matcher([Key], this.params.digitalGlobExpressions)
+      )
+      if (itMatch) console.log(tl.loc('MatchedFile', Key))
+      return itMatch
     })
 
     return result
@@ -77,7 +86,14 @@ export class Delete extends Spaces<Parameters> {
    * Get all files in the target folder and return
    */
   private async searchFiles(): Promise<S3.ListObjectsV2Output> {
-    console.log(tl.loc('SearchingFiles', this.params.digitalTargetFolder))
+    console.log(
+      tl.loc(
+        'SearchingFiles',
+        this.params.digitalTargetFolder
+          ? this.params.digitalTargetFolder
+          : 'root'
+      )
+    )
 
     const parameters: S3.ListObjectsV2Request = {
       Bucket: this.params.digitalBucket,
