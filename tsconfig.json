@@ -1,22 +1,22 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "target": "es6",
-        "sourceMap": false,
-        "inlineSourceMap": true,
-        "declaration": true
-    },
-    "include": [
-        "./Tasks/**/*.ts",
-        "./Tests/**/*.ts",
-        "./Commom/Node/**/*.ts"
-    ],
-    "exclude":[
-        "node_modules",
-        ".BuildOutput"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "target": "es6",
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "declaration": true
+  },
+  "include": [
+    "./Tasks/**/*.ts",
+    "./Tests/**/*.ts",
+    "./Commom/Node/**/*.ts"
+  ],
+  "exclude":[
+    "node_modules",
+    ".BuildOutput"
+  ]
 }

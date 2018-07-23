@@ -14,7 +14,7 @@
     "postinstall": "vsts-build-tools-install",
     "prebuild": "vsts-build-tools-prebuild",
     "build": "yarn run lint && yarn run tsc",
-    "package": "yarn run lint && yarn run vsts-build-tools-package",
+    "package": "yarn run build && yarn run vsts-build-tools-package",
     "tslint-check": "tslint-config-prettier-check ./tslint.json",
     "precommit": "lint-staged"
   },
