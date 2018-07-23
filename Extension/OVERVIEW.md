@@ -28,6 +28,11 @@ DigitalOcean Tools provide the ability to upload and delete objects from Digital
 - **Filename Patterns:** Glob patterns to select the file and folder content to be deleted.
 - **Target Folder:** The target folder (referred to as a key prefix in Spaces) in the bucket that contain the files. Root is assumed when empty, **be careful**.
 
+Semantic Version Filter Options:
+
+- **Enable:** Allow to filter based on [semantic version](https://semver.org/), avoiding newest versions from being deleted of the bucket prefix.
+- **How many versions to keep:** Specify how many versions to keep in the bucket, it will avoid deleting the newest ones.
+
 ## Install the extension to your account
 
 You can find the latest stable version of the VSTS Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).

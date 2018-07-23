@@ -3,6 +3,8 @@ import * as tl from 'vsts-task-lib/task'
 
 export class Parameters extends ParametersBase {
   public digitalGlobExpressions: string[]
+  public digitalEnableSemver: boolean
+  public digitalSemverKeepOnly: number
 
   constructor() {
     super()
@@ -11,6 +13,11 @@ export class Parameters extends ParametersBase {
         'digitalGlobExpressions',
         '\n',
         true
+      )
+      this.digitalEnableSemver = tl.getBoolInput('digitalEnableSemver')
+      this.digitalSemverKeepOnly = parseInt(
+        tl.getInput('digitalSemverKeepOnly'),
+        10
       )
     } catch (error) {
       throw new Error(error.message)

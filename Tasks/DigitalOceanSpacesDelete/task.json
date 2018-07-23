@@ -21,7 +21,13 @@
     "Agent",
     "DeploymentGroup"
   ],
-  "demands": [
+  "demands": [],
+  "groups": [
+    {
+      "name": "semver",
+      "displayName": "Semantic Version Filter",
+      "isExpanded": false
+    }
   ],
   "minimumAgentVersion": "1.91.0",
   "inputs": [
@@ -65,6 +71,24 @@
       "defaultValue": "",
       "required": false,
       "helpMarkDown": "The target folder (referred to as a key prefix in Spaces) in the bucket that contains the files. <br>If not set the root of the bucket is assumed, <strong>BE CAREFUL!</strong>. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988)."
+    },
+    {
+      "groupName": "semver",
+      "name": "digitalEnableSemver",
+      "type": "boolean",
+      "label": "Enable",
+      "defaultValue": "false",
+      "helpMarkDown": "Allow to filter based on semantic version, avoiding some newest versions from being deleted of the bucket prefix. Filename Patterns must match these files to be filtered."
+    },
+    {
+      "groupName": "semver",
+      "name": "digitalSemverKeepOnly",
+      "type": "string",
+      "label": "How many versions to keep",
+      "defaultValue": "2",
+      "required": true,
+      "visibleRule": "digitalEnableSemver = true",
+      "helpMarkDown": "Specify how many versions to keep in the bucket, it will keep the newest ones."
     }
   ],
   "dataSourceBindings": [
@@ -90,6 +114,9 @@
     "DeletingFilesFailed": "Deleting files failed",
     "FilesNotFound": "No files found at '%s'",
     "FilesNotMatched": "No files matched at '%s'",
+    "SemverActive": "Semantic version filter is enabled",
+    "SemverKeepAll": "Semantic version will keep all versions: %s",
+    "SemverDelete": "Semantic version will keep %d versions and will delete: %s",
     "TaskCompleted": "All specified files deleted from Space completed"
   }
 }
