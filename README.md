@@ -12,7 +12,7 @@ DigitalOcean Tools
 <h4 align="center">
 
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-![Visual Studio Team services](https://img.shields.io/vso/build/precisaosistemas/bdc79f70-6107-4e5b-9455-73bbd6bc0f22/115.svg) [![VS Marketplace Version](https://vsmarketplacebadge.apphb.com/version-short/marcelo-formentao.digitalocean-tools.svg)](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools) [![VS Marketplace Installs](https://vsmarketplacebadge.apphb.com/installs/marcelo-formentao.digitalocean-tools.svg)](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools)
+![Visual Studio Team services](https://img.shields.io/vso/build/precisaosistemas/bdc79f70-6107-4e5b-9455-73bbd6bc0f22/152.svg) [![VS Marketplace Version](https://vsmarketplacebadge.apphb.com/version-short/marcelo-formentao.digitalocean-tools.svg)](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools) [![VS Marketplace Installs](https://vsmarketplacebadge.apphb.com/installs/marcelo-formentao.digitalocean-tools.svg)](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools)
 
 </h4>
 
