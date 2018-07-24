@@ -259,3 +259,5 @@ Common/**/*.d.ts
 
 .BuildOutput
 .DS_Store
+
+coverage/
