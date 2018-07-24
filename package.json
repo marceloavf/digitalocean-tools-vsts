@@ -5,7 +5,7 @@
   "author": "Marcelo Formentão <marceloavf3@hotmail.com>",
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/marceloavf/digitalocean-tools-vsts",
+    "url": "https://github.com/marceloavf/digitalocean-tools-vsts.git",
     "type": "git"
   },
   "scripts": {
@@ -23,13 +23,17 @@
     "vsts-task-lib": "2.6.0"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^3.0.0",
+    "@semantic-release/git": "^7.0.1",
     "@types/node": "^10.5.2",
     "@types/q": "^1.5.0",
     "async": "^2.6.1",
+    "cross-env": "^5.2.0",
     "gl-vsts-tasks-build-scripts": "^0.4.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.2.0",
     "prettier": "^1.13.7",
+    "semantic-release": "^15.8.1",
     "tfx-cli": "^0.5.14",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
@@ -39,6 +43,38 @@
     "{Tasks,Tests}/**/*.ts": [
       "prettier --write",
       "git add"
+    ]
+  },
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/changelog",
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      },
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ],
+    "prepare": [
+      {
+        "path": "@semantic-release/changelog",
+        "changelogFile": "CHANGELOG.md"
+      },
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      },
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci] ***NO_CI***\n\n${nextRelease.notes}"
+      }
+    ],
+    "publish": [
+      "@semantic-release/github"
     ]
   }
 }
