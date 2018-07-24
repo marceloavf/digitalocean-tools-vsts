@@ -261,3 +261,5 @@ Common/**/*.d.ts
 .DS_Store
 
 coverage/
+
+.taskkey
