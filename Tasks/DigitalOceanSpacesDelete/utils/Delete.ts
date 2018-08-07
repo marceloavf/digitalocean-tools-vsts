@@ -5,6 +5,7 @@ import * as semver from 'semver'
 import * as tl from 'vsts-task-lib'
 import { Spaces } from '../common/Spaces'
 import { Parameters } from './Parameters'
+import { Sort } from './Enums'
 
 export class Delete extends Spaces<Parameters> {
   constructor(params: Parameters) {
@@ -140,12 +141,16 @@ export class Delete extends Spaces<Parameters> {
     const versionList: string[] = sortedUniq(
       listedObjects.Contents.map(obj => {
         return semver.valid(semver.coerce(obj.Key))
-      }).sort((a, b) => {
-        // Sort all version from oldest to newest one
-        if (semver.lt(a, b)) return -1
-        if (semver.gt(a, b)) return 1
-        return 0
       })
+        .filter(item => {
+          return typeof item === 'string'
+        })
+        .sort((a, b) => {
+          // Sort all version from oldest to newest one
+          if (semver.lt(a, b)) return Sort.aBiggerThanB
+          if (semver.gt(a, b)) return Sort.bBiggerThanA
+          return Sort.aEqualToB
+        })
     )
 
     // Will remove from right to left the number of versions to keep intact
