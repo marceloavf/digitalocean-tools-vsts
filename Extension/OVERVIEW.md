@@ -1,6 +1,6 @@
 # DigitalOcean Tools
 
-DigitalOcean Tools provide the ability to upload and delete objects from DigitalOcean Spaces in Visual Studio Team Services Build and Release Management.
+DigitalOcean Tools provide the ability to upload and delete objects from DigitalOcean Spaces in Azure DevOps Build and Release Management.
 
 ![tasks-banner](images/tasks-banner.png)
 
@@ -35,7 +35,7 @@ Semantic Version Filter Options:
 
 ## Install the extension to your account
 
-You can find the latest stable version of the VSTS Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).
+You can find the latest stable version of the Azure DevOps Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).
 
 ## Known Issues
 

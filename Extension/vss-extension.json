@@ -9,7 +9,7 @@
       "id": "Microsoft.VisualStudio.Services"
     }
   ],
-  "description": "DigitalOcean Services Management with VSTS",
+  "description": "DigitalOcean Services Management with Azure DevOps",
   "categories": [
     "Build and release"
   ],

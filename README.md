@@ -5,9 +5,9 @@ DigitalOcean Tools
 <br>
 </h1>
 
-<h4 align="center">Manage your DigitalOcean Services. For VSTS Builds and Releases.</h4>
+<h4 align="center">Manage your DigitalOcean Services. For Azure DevOps Builds and Releases.</h4>
 
-<p align="center">DigitalOcean Tools provide the ability to upload and delete objects from DigitalOcean Spaces in Visual Studio Team Services Build and Release Management. <a href="https://github.com/marceloavf/digitalocean-tools-vsts/wiki">Learn More</a></p>
+<p align="center">DigitalOcean Tools provide the ability to upload and delete objects from DigitalOcean Spaces in Azure DevOps Build and Release Management. <a href="https://github.com/marceloavf/digitalocean-tools-vsts/wiki">Learn More</a></p>
 
 <h4 align="center">
 
@@ -25,7 +25,7 @@ DigitalOcean Tools
 
 ## 📟 &nbsp; Install the extension to your account
 
-You can find the latest stable version of the VSTS Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).
+You can find the latest stable version of the Azure DevOps Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).
 
 ## 🤝 &nbsp; Contribute
 
