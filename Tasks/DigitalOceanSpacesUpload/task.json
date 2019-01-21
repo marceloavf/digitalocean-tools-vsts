@@ -97,6 +97,14 @@
       "defaultValue": "false",
       "required": false,
       "helpMarkDown": "Flatten the folder structure and copy all files into the specified target folder in the bucket."
+    },
+    {
+      "name": "digitalContentType",
+      "type": "string",
+      "label": "Content Type",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Sets a custom content type for the uploaded files. If a custom content type is not specified the task will apply built-in defaults for common file types (html, css, js, image files etc). This parameter can be used to override the built-in defaults.\n\n__Note:__ that any value is applied to __all__ files processed by the task."
     }
   ],
   "dataSourceBindings": [
