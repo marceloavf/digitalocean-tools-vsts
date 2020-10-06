@@ -1,5 +1,6 @@
 variables:
   GH_TOKEN: $(ghToken)
+  YARN_CACHE_FOLDER: $(Pipeline.Workspace)/.yarn
 
 trigger:
   batch: true
@@ -22,11 +23,12 @@ steps:
       versionSpec: '12.x'
     displayName: 'Install Node.js'
 
-  - task: RestoreAndSaveCache@1
+  - task: Cache@2
     inputs:
-      keyfile: '**/yarn.lock, !**/node_modules/**/yarn.lock, !**/.*/**/yarn.lock'
-      targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
-      vstsFeed: 'f53a47a0-c7d0-4506-af54-dcc005003ee8'
+      key: 'yarn | "$(Agent.OS)" | yarn.lock'
+      path: '$(YARN_CACHE_FOLDER)'
+      cacheHitVar: 'CacheRestored'
+      restoreKeys: 'yarn | "$(Agent.OS)"'
 
   - bash: yarn install --frozen-lockfile --ignore-scripts
     displayName: 'yarn install ignoring scripts'
