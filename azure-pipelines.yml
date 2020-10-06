@@ -30,6 +30,7 @@ steps:
       cacheHitVar: 'CacheRestored'
       restoreKeys: 'yarn | "$(Agent.OS)"'
 
+  # These tasks should be reworked after CRLF gs-vsts tasks be fixed
   - task: Bash@3
     inputs:
       targetType: 'inline'
@@ -38,10 +39,14 @@ steps:
     displayName: 'yarn install ignoring scripts'
     condition: ne(variables['CacheRestored'], 'true')
 
+  - script: |
+      sudo apt-get install dos2unix
+    displayName: 'install the dependency packages'
+
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: "sed -i.bak 's/.$//' $(System.DefaultWorkingDirectory)/node_modules/gl-vsts-tasks-build-scripts/run/vsts-build-tools-install"
+      script: "dos2unix $(System.DefaultWorkingDirectory)/node_modules/gl-vsts-tasks-build-scripts/run/vsts-build-tools-install"
       workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'change CRLF to LF'
     condition: ne(variables['CacheRestored'], 'true')
