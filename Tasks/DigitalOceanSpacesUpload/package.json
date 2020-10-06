@@ -6,9 +6,9 @@
         "@types/lodash": "^4.14.112"
     },
     "dependencies": {
-        "aws-sdk": "2.276.1",
+        "aws-sdk": "^2.768.0",
         "lodash": "^4.17.10",
         "pretty-bytes": "^5.1.0",
-        "vsts-task-lib": "2.6.0"
+        "vsts-task-lib": "^2.7.0"
     }
 }
