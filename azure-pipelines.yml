@@ -57,11 +57,11 @@ steps:
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
   - powershell: |
-    $package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
+      $package_version = (Get-Content -Raw -Path package.json | ConvertFrom-Json).version
 
-    Write-Output "Setting version '$package_version'."
+      Write-Output "Setting version '$package_version'."
 
-    Write-Host "##vso[build.updatebuildnumber]$package_version"
+      Write-Host "##vso[build.updatebuildnumber]$package_version"
     displayName: '(only master) Package version'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
