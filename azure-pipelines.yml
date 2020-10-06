@@ -30,15 +30,27 @@ steps:
       cacheHitVar: 'CacheRestored'
       restoreKeys: 'yarn | "$(Agent.OS)"'
 
-  - bash: yarn install --frozen-lockfile --ignore-scripts
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'yarn install --frozen-lockfile --ignore-scripts'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'yarn install ignoring scripts'
     condition: ne(variables['CacheRestored'], 'true')
 
-  - bash: sed -i.bak 's/\r$//' ./node_modules/gl-vsts-tasks-build-scripts/run/vsts-build-tools-install
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'sed -i.bak 's/\r$//' ./node_modules/gl-vsts-tasks-build-scripts/run/vsts-build-tools-install'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'change CRLF to LF'
     condition: ne(variables['CacheRestored'], 'true')
 
-  - bash: yarn install --frozen-lockfile
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'yarn install --frozen-lockfile'
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'yarn install normally'
     condition: ne(variables['CacheRestored'], 'true')
 
