@@ -41,7 +41,7 @@ steps:
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: 'sed -i.bak 's/\r$//' ./node_modules/gl-vsts-tasks-build-scripts/run/vsts-build-tools-install'
+      script: "sed -i.bak 's/\r$//' ./node_modules/gl-vsts-tasks-build-scripts/run/vsts-build-tools-install"
       workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'change CRLF to LF'
     condition: ne(variables['CacheRestored'], 'true')
