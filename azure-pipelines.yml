@@ -32,7 +32,7 @@ steps:
     displayName: 'yarn install ignoring scripts'
     condition: ne(variables['CacheRestored'], 'true')
 
-  - bash: sed -i.bak 's/\r$//' node_modules/.bin/vsts-build-tools-install
+  - bash: sed -i.bak 's/\r$//' ./node_modules/gl-vsts-tasks-build-scripts/run/vsts-build-tools-install
     displayName: 'change CRLF to LF'
     condition: ne(variables['CacheRestored'], 'true')
 
