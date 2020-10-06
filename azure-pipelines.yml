@@ -7,6 +7,9 @@ trigger:
     include:
       - master
 
+pr:
+  - master
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -25,8 +28,16 @@ steps:
       targetfolder: '**/node_modules, !**/node_modules/**/node_modules'
       vstsFeed: 'f53a47a0-c7d0-4506-af54-dcc005003ee8'
 
+  - bash: yarn install --frozen-lockfile --ignore-scripts
+    displayName: 'yarn install ignoring scripts'
+    condition: ne(variables['CacheRestored'], 'true')
+
+  - bash: sed -i.bak 's/\r$//' node_modules/.bin/vsts-build-tools-install
+    displayName: 'change CRLF to LF'
+    condition: ne(variables['CacheRestored'], 'true')
+
   - bash: yarn install --frozen-lockfile
-    displayName: 'yarn install'
+    displayName: 'yarn install normally'
     condition: ne(variables['CacheRestored'], 'true')
 
   - powershell: |
