@@ -46,7 +46,12 @@ steps:
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: "dos2unix --follow-symlink $(System.DefaultWorkingDirectory)/node_modules/.bin/vsts-build-tools-install"
+      script: |
+        dos2unix --follow-symlink $(System.DefaultWorkingDirectory)/node_modules/.bin/vsts-build-tools-install
+        dos2unix --follow-symlink $(System.DefaultWorkingDirectory)/node_modules/.bin/vsts-build-tools-clean
+        dos2unix --follow-symlink $(System.DefaultWorkingDirectory)/node_modules/.bin/vsts-build-tools-node-modclean
+        dos2unix --follow-symlink $(System.DefaultWorkingDirectory)/node_modules/.bin/vsts-build-tools-package
+        dos2unix --follow-symlink $(System.DefaultWorkingDirectory)/node_modules/.bin/vsts-build-tools-prebuild
       workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'change CRLF to LF'
     condition: ne(variables['CacheRestored'], 'true')
