@@ -7,7 +7,7 @@
     "object-literal-sort-keys": false,
     "no-console": false,
     "no-unused-expression": [true, "allow-fast-null-checks"],
-    "no-implicit-dependencies": [true, "dev"],
+    "no-implicit-dependencies": false,
     "no-duplicate-imports": false,
     "no-submodule-imports": false,
     "no-shadowed-variable": false,

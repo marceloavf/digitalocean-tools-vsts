@@ -8,14 +8,19 @@
     "target": "es6",
     "sourceMap": false,
     "inlineSourceMap": true,
-    "declaration": true
+    "declaration": true,
+    "baseUrl": ".",
+    "paths": {
+      "@DOSUpload/*": ["Tasks/DigitalOceanSpacesUpload/*"],
+      "@DOSDelete/*": ["Tasks/DigitalOceanSpacesDelete/*"]
+    }
   },
   "include": [
     "./Tasks/**/*.ts",
     "./Tests/**/*.ts",
     "./Commom/Node/**/*.ts"
   ],
-  "exclude":[
+  "exclude": [
     "node_modules",
     ".BuildOutput"
   ]
