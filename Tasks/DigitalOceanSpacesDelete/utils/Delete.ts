@@ -139,10 +139,10 @@ export class Delete extends Spaces<Parameters> {
 
     // Get version from Key and insert in a ordened list
     const versionList: string[] = sortedUniq(
-      listedObjects.Contents.map(obj => {
+      listedObjects.Contents.map((obj) => {
         return semver.valid(semver.coerce(obj.Key))
       })
-        .filter(item => {
+        .filter((item) => {
           return typeof item === 'string'
         })
         .sort((a, b) => {

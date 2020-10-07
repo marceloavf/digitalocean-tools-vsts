@@ -244,7 +244,7 @@ export class Upload extends Spaces<Parameters> {
 
         const request: S3.ManagedUpload = this.s3Connection.upload(params)
 
-        request.on('httpUploadProgress', progress => {
+        request.on('httpUploadProgress', (progress) => {
           console.log(
             tl.loc(
               'FileUploadProgress',

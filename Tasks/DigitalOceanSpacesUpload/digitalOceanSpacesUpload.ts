@@ -16,5 +16,5 @@ const digitalSpacesUpload = new Upload(digitalParameters)
 
 digitalSpacesUpload
   .init()
-  .then(result => tl.setResult(tl.TaskResult.Succeeded, ''))
-  .catch(error => tl.setResult(tl.TaskResult.Failed, error))
+  .then((result) => tl.setResult(tl.TaskResult.Succeeded, ''))
+  .catch((error) => tl.setResult(tl.TaskResult.Failed, error))

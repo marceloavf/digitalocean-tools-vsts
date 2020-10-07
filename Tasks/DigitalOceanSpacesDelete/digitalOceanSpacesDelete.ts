@@ -16,5 +16,5 @@ const digitalSpacesDelete = new Delete(digitalParameters)
 
 digitalSpacesDelete
   .init()
-  .then(result => tl.setResult(tl.TaskResult.Succeeded, ''))
-  .catch(error => tl.setResult(tl.TaskResult.Failed, error))
+  .then((result) => tl.setResult(tl.TaskResult.Succeeded, ''))
+  .catch((error) => tl.setResult(tl.TaskResult.Failed, error))

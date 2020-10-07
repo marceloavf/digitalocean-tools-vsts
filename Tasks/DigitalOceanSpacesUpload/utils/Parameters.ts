@@ -6,7 +6,7 @@ export class Parameters extends ParametersBase {
   public digitalGlobExpressions: string[]
   public digitalAcl: string
   public digitalFlattenFolders: boolean
-  public digitalContentType: string
+  public digitalContentType?: string
 
   constructor() {
     super()
@@ -19,7 +19,7 @@ export class Parameters extends ParametersBase {
       this.digitalAcl = tl.getInput('digitalAcl')
       this.digitalSourceFolder = tl.getPathInput('digitalSourceFolder')
       this.digitalFlattenFolders = tl.getBoolInput('digitalFlattenFolders')
-      this.digitalContentType = tl.getInput('digitalContentType', false)
+      this.digitalContentType = tl.getInput('digitalContentType')
     } catch (error) {
       throw new Error(error.message)
     }

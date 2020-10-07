@@ -1,8 +1,12 @@
-import { Parameters } from './Parameters'
 import * as tl from 'vsts-task-lib/task'
 import * as path from 'path'
 
-export const findFiles = (parameters: Parameters): string[] => {
+interface FilesParameters {
+  digitalSourceFolder?: string
+  digitalGlobExpressions: string[]
+}
+
+export const findFiles = (parameters: FilesParameters): string[] => {
   console.log(`Searching ${parameters.digitalSourceFolder} for files to upload`)
 
   parameters.digitalSourceFolder = path.normalize(
@@ -22,7 +26,7 @@ export const findFiles = (parameters: Parameters): string[] => {
   tl.debug(tl.loc('MatchedPaths', matchedPaths))
 
   const matchedFiles = matchedPaths.filter(
-    itemPath => !tl.stats(itemPath).isDirectory()
+    (itemPath) => !tl.stats(itemPath).isDirectory()
   ) // filter-out directories
 
   tl.debug(tl.loc('MatchedFiles', matchedFiles))
