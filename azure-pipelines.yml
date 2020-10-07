@@ -35,7 +35,6 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'yarn install --frozen-lockfile --ignore-scripts'
-      workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'yarn install ignoring scripts'
     condition: ne(variables['CacheRestored'], 'true')
 
@@ -60,10 +59,15 @@ steps:
     inputs:
       targetType: 'inline'
       script: 'yarn postinstall'
-      workingDirectory: '$(System.DefaultWorkingDirectory)'
     displayName: 'yarn postinstall'
     condition: ne(variables['CacheRestored'], 'true')
   # Finish tasks that should be reworked
+
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'yarn test'
+    displayName: 'yarn test'
 
   - powershell: |
       $git = git config --global core.safecrlf false
