@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "aws-sdk": "^2.767.0",
-    "vsts-task-lib": "^2.7.0"
+    "azure-pipelines-task-lib": "^2.11.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",

@@ -1142,7 +1142,7 @@ arrify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
 
-asap@^2.0.0:
+asap@^2.0.0, asap@~2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
@@ -1228,6 +1228,19 @@ azure-devops-node-api@^8.1.1:
     tunnel "0.0.4"
     typed-rest-client "1.2.0"
     underscore "1.8.3"
+
+azure-pipelines-task-lib@^2.11.2:
+  version "2.11.2"
+  resolved "https://registry.yarnpkg.com/azure-pipelines-task-lib/-/azure-pipelines-task-lib-2.11.2.tgz#348dcf766dfdcb61777c148f4122acd0fcda9439"
+  integrity sha512-v4rVaoeCggmoClyeVWwZs48yjUyfT9GHKJHNplA7nXUPsH6oODsUTuA1pnesxsM6RzMq4kD6UlIu9/KMd6MFKw==
+  dependencies:
+    minimatch "3.0.4"
+    mockery "^1.7.0"
+    q "^1.1.2"
+    semver "^5.1.0"
+    shelljs "^0.3.0"
+    sync-request "3.0.1"
+    uuid "^3.0.1"
 
 babel-jest@^26.5.2:
   version "26.5.2"
@@ -1585,6 +1598,11 @@ cardinal@^2.1.1:
     ansicolors "~0.3.2"
     redeyed "~2.1.0"
 
+caseless@~0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.11.0.tgz#715b96ea9841593cc33067923f5ec60ebda4f7d7"
+  integrity sha1-cVuW6phBWTzDMGeSP17GDr2k99c=
+
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -1900,7 +1918,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@^1.5.0:
+concat-stream@^1.4.6, concat-stream@^1.4.7, concat-stream@^1.5.0:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.2.tgz#904bdf194cd3122fc675c77fc4ac3d4ff0fd1a34"
   integrity sha512-27HBghJxjiZtIk3Ycvn/4kbJk/1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw==
@@ -3347,6 +3365,15 @@ html-escaper@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-escaper/-/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
 
+http-basic@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/http-basic/-/http-basic-2.5.1.tgz#8ce447bdb5b6c577f8a63e3fa78056ec4bb4dbfb"
+  integrity sha1-jORHvbW2xXf4pj4/p4BW7Eu02/s=
+  dependencies:
+    caseless "~0.11.0"
+    concat-stream "^1.4.6"
+    http-response-object "^1.0.0"
+
 http-cache-semantics@^3.8.1:
   version "3.8.1"
   resolved "https://registry.yarnpkg.com/http-cache-semantics/-/http-cache-semantics-3.8.1.tgz#39b0e16add9b605bf0a9ef3d9daaf4843b4cacd2"
@@ -3367,6 +3394,11 @@ http-proxy-agent@^4.0.0:
     "@tootallnate/once" "1"
     agent-base "6"
     debug "4"
+
+http-response-object@^1.0.0, http-response-object@^1.0.1, http-response-object@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/http-response-object/-/http-response-object-1.1.0.tgz#a7c4e75aae82f3bb4904e4f43f615673b4d518c3"
+  integrity sha1-p8TnWq6C87tJBOT0P2FWc7TVGMM=
 
 http-signature@~1.2.0:
   version "1.2.0"
@@ -5322,6 +5354,7 @@ mkdirp@^0.5.3, mkdirp@^0.5.5, mkdirp@~0.5.0:
 mockery@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/mockery/-/mockery-1.7.0.tgz#f4ede0d8750c1c9727c272ea2c60629e2c9a1c4f"
+  integrity sha1-9O3g2HUMHJcnwnLqLGBiniyaHE8=
 
 modclean-patterns-default@^1.0.0:
   version "1.1.2"
@@ -6311,6 +6344,13 @@ promise-retry@^1.1.1:
     err-code "^1.0.0"
     retry "^0.10.0"
 
+promise@^7.1.1:
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/promise/-/promise-7.3.1.tgz#064b72602b18f90f29192b8b1bc418ffd1ebd3bf"
+  integrity sha512-nolQXZ/4L+bP/UGlkfaIujX9BKxGwmQ9OT4mOt5yvy8iK1h3wqTEJCijzGANTCCl9nWjY41juyAn2K3Q1hLLTg==
+  dependencies:
+    asap "~2.0.3"
+
 prompt@^0.2.14:
   version "0.2.14"
   resolved "https://registry.yarnpkg.com/prompt/-/prompt-0.2.14.tgz#57754f64f543fd7b0845707c818ece618f05ffdc"
@@ -6411,6 +6451,11 @@ qrcode-terminal@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/qrcode-terminal/-/qrcode-terminal-0.12.0.tgz#bb5b699ef7f9f0505092a3748be4464fe71b5819"
   integrity sha512-EXtzRZmC+YGmGlDFbXKxQiMZNwCLEO6BANKXG4iCtSIM0yqc/pappSx3RIKr4r0uh5JsBckOXeKrB3Iz7mdQpQ==
+
+qs@^6.1.0:
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
+  integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
 
 qs@~6.5.2:
   version "6.5.2"
@@ -7046,6 +7091,7 @@ shebang-regex@^3.0.0:
 shelljs@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/shelljs/-/shelljs-0.3.0.tgz#3596e6307a781544f591f37da618360f31db57b1"
+  integrity sha1-NZbmMHp4FUT1kfN9phg2DzHbV7E=
 
 shelljs@^0.5.1:
   version "0.5.3"
@@ -7509,6 +7555,15 @@ symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
+sync-request@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/sync-request/-/sync-request-3.0.1.tgz#caa1235aaf889ba501076a1834c436830a82fb73"
+  integrity sha1-yqEjWq+Im6UBB2oYNMQ2gwqC+3M=
+  dependencies:
+    concat-stream "^1.4.7"
+    http-response-object "^1.0.1"
+    then-request "^2.0.1"
+
 tar-stream@^1.5.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/tar-stream/-/tar-stream-1.6.1.tgz#f84ef1696269d6223ca48f6e1eeede3f7e81f395"
@@ -7643,6 +7698,18 @@ tfx-cli@^0.8.3:
     validator "^3.43.0"
     winreg "0.0.12"
     xml2js "^0.4.16"
+
+then-request@^2.0.1:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/then-request/-/then-request-2.2.0.tgz#6678b32fa0ca218fe569981bbd8871b594060d81"
+  integrity sha1-ZnizL6DKIY/laZgbvYhxtZQGDYE=
+  dependencies:
+    caseless "~0.11.0"
+    concat-stream "^1.4.7"
+    http-basic "^2.5.1"
+    http-response-object "^1.1.0"
+    promise "^7.1.1"
+    qs "^6.1.0"
 
 throat@^5.0.0:
   version "5.0.0"
@@ -8217,18 +8284,6 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
-
-vsts-task-lib@^2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/vsts-task-lib/-/vsts-task-lib-2.7.0.tgz#742973d2e9d6ad2fc30b732061088cdb6c7d2709"
-  integrity sha512-zQqgneIZG3VY84RoIzkQr07r9fDH3lPpj6Qp07K89co/vyFznWJYpkjcdxubQm1YvgNu/P0yWYLdDruHyGGdtA==
-  dependencies:
-    minimatch "3.0.4"
-    mockery "^1.7.0"
-    q "^1.1.2"
-    semver "^5.1.0"
-    shelljs "^0.3.0"
-    uuid "^3.0.1"
 
 w3c-hr-time@^1.0.2:
   version "1.0.2"
