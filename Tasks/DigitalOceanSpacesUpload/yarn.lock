@@ -12,10 +12,10 @@ asap@~2.0.3:
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
 
-aws-sdk@^2.768.0:
-  version "2.768.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.768.0.tgz#1b3f2de6537add292b43f88ce348a0790ffea708"
-  integrity sha512-yIY1Fbj8kvyP3cEHOCvvw59IRqcYq84/aB0BGfuWPQzPVRjTYVxA8zP/iytM4Zo+NO8xkCq9Wc9OoMfwZZb+GQ==
+aws-sdk@^2.769.0:
+  version "2.769.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.769.0.tgz#492e94e28c5e6aa5378c09e61d33e3263f329b6d"
+  integrity sha512-FZZrxgchLE0VXrd/uhIw2Tmlf82xOYuPK6batUUYz7UoAOL7q1UYUdI8ISNfeCEoN2MuMWAgfTIQiLx/9+NiEw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"

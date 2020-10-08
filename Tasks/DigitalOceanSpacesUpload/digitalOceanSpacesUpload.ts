@@ -1,4 +1,4 @@
-import * as tl from 'azure-pipelines-task-lib/task'
+import tl from './utils/tl'
 import * as path from 'path'
 import { Upload } from './utils/Upload'
 import { Parameters } from './utils/Parameters'

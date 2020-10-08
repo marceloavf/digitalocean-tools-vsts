@@ -1,4 +1,4 @@
-import * as tl from 'azure-pipelines-task-lib/task'
+import tl from './tl'
 import * as path from 'path'
 
 interface FilesParameters {

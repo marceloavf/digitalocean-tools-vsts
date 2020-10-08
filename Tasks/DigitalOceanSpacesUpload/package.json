@@ -6,7 +6,7 @@
         "@types/lodash": "^4.14.112"
     },
     "dependencies": {
-        "aws-sdk": "^2.768.0",
+        "aws-sdk": "^2.769.0",
         "azure-pipelines-task-lib": "^2.11.2",
         "lodash": "^4.17.10",
         "pretty-bytes": "^5.1.0"

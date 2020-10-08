@@ -20,7 +20,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "aws-sdk": "^2.767.0",
+    "aws-sdk": "^2.769.0",
     "azure-pipelines-task-lib": "^2.11.2"
   },
   "devDependencies": {

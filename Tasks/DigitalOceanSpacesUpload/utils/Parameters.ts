@@ -1,5 +1,5 @@
 import { ParametersBase } from '../common/ParametersBase'
-import * as tl from 'azure-pipelines-task-lib/task'
+import tl from './tl'
 
 export class Parameters extends ParametersBase {
   public digitalSourceFolder?: string
