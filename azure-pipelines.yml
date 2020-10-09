@@ -73,7 +73,7 @@ steps:
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: 'CODECOV_TOKEN=$CODECOV_TOKEN yarn codecov'
+      script: 'CODECOV_TOKEN=$(CODECOV_TOKEN) yarn codecov'
     displayName: 'yarn codecov'
 
   - powershell: |
