@@ -24,6 +24,7 @@
     "azure-pipelines-task-lib": "^2.11.2"
   },
   "devDependencies": {
+    "@mapbox/aws-sdk-jest": "^0.0.1",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@types/jest": "^26.0.14",
@@ -43,7 +44,7 @@
     "typescript": "^4.0.3"
   },
   "lint-staged": {
-    "{Tasks,Tests}/**/*.ts": [
+    "{Tasks,Tests,Common}/**/*.ts": [
       "prettier --write",
       "git add"
     ]

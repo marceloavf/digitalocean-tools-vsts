@@ -1,4 +1,4 @@
-import { findFiles } from '@DOSUpload/utils/utils'
+import { findFiles } from '@DOSUpload/utils/utils.ts'
 
 describe('DOSUpload utils', () => {
   describe('FindFiles', () => {

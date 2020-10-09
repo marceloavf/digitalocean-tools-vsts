@@ -9,6 +9,9 @@
     "sourceMap": false,
     "inlineSourceMap": true,
     "declaration": true,
+    "newLine": "lf",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "@DOSUpload/*": ["Tasks/DigitalOceanSpacesUpload/*"],

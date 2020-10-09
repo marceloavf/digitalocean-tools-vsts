@@ -1,4 +1,4 @@
-import { S3 } from 'aws-sdk'
+import AWS from 'aws-sdk'
 import * as fs from 'fs'
 import { isEmpty } from 'lodash'
 import * as path from 'path'
@@ -234,7 +234,7 @@ export class Upload extends Spaces<Parameters> {
 
         console.log(tl.loc('UploadingFile', file, targetPath, contentType))
 
-        const params: S3.PutObjectRequest = {
+        const params: AWS.S3.PutObjectRequest = {
           Bucket: this.params.digitalBucket,
           ACL: this.params.digitalAcl,
           Key: targetPath,
@@ -242,20 +242,8 @@ export class Upload extends Spaces<Parameters> {
           ContentType: contentType,
         }
 
-        const request: S3.ManagedUpload = this.s3Connection.upload(params)
+        await this.uploadFiles(params)
 
-        request.on('httpUploadProgress', (progress) => {
-          console.log(
-            tl.loc(
-              'FileUploadProgress',
-              prettyBytes(progress.loaded),
-              prettyBytes(progress.total),
-              Math.floor((progress.loaded / progress.total) * 100).toFixed(1)
-            )
-          )
-        })
-
-        const response: S3.ManagedUpload.SendData = await request.promise()
         console.log(tl.loc('FileUploadCompleted', file, targetPath))
       } catch (err) {
         console.error(tl.loc('FileUploadFailed'), err)
@@ -266,7 +254,28 @@ export class Upload extends Spaces<Parameters> {
     console.log(tl.loc('TaskCompleted'))
   }
 
-  private normalizeKeyPath(file: string): string {
+  async uploadFiles(
+    objectRequest: AWS.S3.PutObjectRequest
+  ): Promise<AWS.S3.ManagedUpload.SendData> {
+    const request: AWS.S3.ManagedUpload = this.s3Connection.upload(
+      objectRequest
+    )
+
+    request.on('httpUploadProgress', (progress) => {
+      console.log(
+        tl.loc(
+          'FileUploadProgress',
+          prettyBytes(progress.loaded),
+          prettyBytes(progress.total),
+          Math.floor((progress.loaded / progress.total) * 100).toFixed(1)
+        )
+      )
+    })
+
+    return request.promise()
+  }
+
+  normalizeKeyPath(file: string): string {
     let relativePath = file.substring(this.params.digitalSourceFolder.length)
 
     if (relativePath.startsWith(path.sep)) {

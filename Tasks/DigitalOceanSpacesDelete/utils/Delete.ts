@@ -1,4 +1,4 @@
-import { S3 } from 'aws-sdk'
+import AWS from 'aws-sdk'
 import { isEmpty, sortedUniq, dropRight, includes } from 'lodash'
 import * as matcher from 'matcher'
 import * as semver from 'semver'
@@ -36,7 +36,7 @@ export class Delete extends Spaces<Parameters> {
       if (this.params.digitalEnableSemver)
         filtedObjects = this.filterSemanticVersion(listedObjects)
 
-      const deleteParams: S3.DeleteObjectsRequest = {
+      const deleteParams: AWS.S3.DeleteObjectsRequest = {
         Bucket: this.params.digitalBucket,
         Delete: {
           Objects: filtedObjects,
@@ -69,11 +69,11 @@ export class Delete extends Spaces<Parameters> {
    * Get all files that match the glob pattern filter and return
    */
   private filterFiles(
-    listedObjects: S3.ListObjectsV2Output
-  ): S3.ObjectIdentifier[] {
+    listedObjects: AWS.S3.ListObjectsV2Output
+  ): AWS.S3.ObjectIdentifier[] {
     console.log(tl.loc('FilteringFiles', this.params.digitalGlobExpressions))
 
-    const result: S3.ObjectIdentifier[] = listedObjects.Contents.map(
+    const result: AWS.S3.ObjectIdentifier[] = listedObjects.Contents.map(
       ({ Key }) => {
         return { Key }
       }
@@ -102,7 +102,7 @@ export class Delete extends Spaces<Parameters> {
   /**
    * Get all files in the target folder and return
    */
-  private async searchFiles(): Promise<S3.ListObjectsV2Output> {
+  private async searchFiles(): Promise<AWS.S3.ListObjectsV2Output> {
     console.log(
       tl.loc(
         'SearchingFiles',
@@ -112,7 +112,7 @@ export class Delete extends Spaces<Parameters> {
       )
     )
 
-    const parameters: S3.ListObjectsV2Request = {
+    const parameters: AWS.S3.ListObjectsV2Request = {
       Bucket: this.params.digitalBucket,
       Prefix: this.params.digitalTargetFolder,
     }
@@ -133,8 +133,8 @@ export class Delete extends Spaces<Parameters> {
    * Making sure that only 'v1.0.0.exe' was deleted from the bucket
    */
   private filterSemanticVersion(
-    listedObjects: S3.ListObjectsV2Output
-  ): S3.ObjectIdentifier[] {
+    listedObjects: AWS.S3.ListObjectsV2Output
+  ): AWS.S3.ObjectIdentifier[] {
     console.log(tl.loc('SemverActive'))
 
     // Get version from Key and insert in a ordened list
@@ -172,7 +172,7 @@ export class Delete extends Spaces<Parameters> {
     }
 
     // Compare to the list, if not present, remove it from listedObjects to prevent from being deleted
-    const filteredListObjects: S3.ObjectIdentifier[] = listedObjects.Contents.map(
+    const filteredListObjects: AWS.S3.ObjectIdentifier[] = listedObjects.Contents.map(
       ({ Key }) => {
         return { Key }
       }

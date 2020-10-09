@@ -5,7 +5,7 @@ export class ParametersBase {
   public digitalRegion: string
   public digitalBucket: string
   public digitalTargetFolder?: string
-  private digitalCredentials: string
+  public digitalCredentials: string
 
   constructor() {
     try {
