@@ -70,6 +70,12 @@ steps:
       script: 'yarn test'
     displayName: 'yarn test'
 
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: 'yarn codecov'
+    displayName: 'yarn codecov'
+
   - powershell: |
       $git = git config --global core.safecrlf false
       Write-Output $git
