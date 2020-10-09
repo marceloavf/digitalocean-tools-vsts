@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.2.0...v0.2.1) (2020-10-09)
+
+
+### Bug Fixes
+
+* rework upload implementation, add tests and new configurations ([ca69b14](https://github.com/marceloavf/digitalocean-tools-vsts/commit/ca69b14))
+
 # [0.2.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.1.1...v0.2.0) (2019-01-21)
 
 
