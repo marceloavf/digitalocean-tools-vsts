@@ -1,5 +1,4 @@
 import { Upload } from '@DOSUpload/utils/Upload.ts'
-import { ManagedUpload } from 'aws-sdk/lib/s3/managed_upload'
 import { EventEmitter } from 'events'
 // tslint:disable-next-line: no-var-requires
 const AWS = require('aws-sdk')
@@ -26,7 +25,6 @@ describe('DOSUpload utils', () => {
           self.emit('httpUploadProgress', { loaded: 1337, total: 2337 })
           self.emit('httpUploadProgress', { loaded: 2337, total: 2337 })
         }, 0)
-
         return self
       }
     )

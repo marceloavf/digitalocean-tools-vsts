@@ -12,6 +12,6 @@ module.exports = {
     prefix: '<rootDir>/',
   }),
   collectCoverage: true,
-  coverageDirectory: '<rootDir>/Tests/coverage',
+  coverageDirectory: './coverage/',
   collectCoverageFrom: ['./Tasks/**/*.ts', '!**/*.d.ts'],
 }
