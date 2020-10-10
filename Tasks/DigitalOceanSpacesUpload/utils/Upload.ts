@@ -8,6 +8,13 @@ import { Parameters } from './Parameters'
 import { findFiles } from './utils'
 import prettyBytes = require('pretty-bytes')
 
+interface NormalizePathParameters {
+  filePath: string
+  digitalSourceFolder?: string
+  digitalFlattenFolders: boolean
+  digitalTargetFolder?: string
+}
+
 export class Upload extends Spaces<Parameters> {
   // known mime types as recognized by the AWS SDK for .NET and
   // AWS Toolkit for Visual Studio
@@ -218,33 +225,33 @@ export class Upload extends Spaces<Parameters> {
       return
     }
 
-    for (const file of files) {
-      const targetPath = this.normalizeKeyPath(file)
+    for (const filePath of files) {
+      const targetPath = this.normalizeKeyPath({ ...this.params, filePath })
 
       try {
         let contentType: string
         if (this.params.digitalContentType) {
           contentType = this.params.digitalContentType
         } else {
-          contentType = Upload.knownMimeTypes.get(path.extname(file))
+          contentType = Upload.knownMimeTypes.get(path.extname(filePath))
           if (!contentType) {
             contentType = 'application/octet-stream'
           }
         }
 
-        console.log(tl.loc('UploadingFile', file, targetPath, contentType))
+        console.log(tl.loc('UploadingFile', filePath, targetPath, contentType))
 
         const params: AWS.S3.PutObjectRequest = {
           Bucket: this.params.digitalBucket,
           ACL: this.params.digitalAcl,
           Key: targetPath,
-          Body: fs.createReadStream(file),
+          Body: fs.createReadStream(filePath),
           ContentType: contentType,
         }
 
         await this.uploadFiles(params)
 
-        console.log(tl.loc('FileUploadCompleted', file, targetPath))
+        console.log(tl.loc('FileUploadCompleted', filePath, targetPath))
       } catch (err) {
         console.error(tl.loc('FileUploadFailed'), err)
         throw err
@@ -275,8 +282,10 @@ export class Upload extends Spaces<Parameters> {
     return request.promise()
   }
 
-  normalizeKeyPath(file: string): string {
-    let relativePath = file.substring(this.params.digitalSourceFolder.length)
+  normalizeKeyPath(parameters: NormalizePathParameters): string {
+    let relativePath = parameters.filePath.substring(
+      parameters.digitalSourceFolder.length
+    )
 
     if (relativePath.startsWith(path.sep)) {
       relativePath = relativePath.substr(1)
@@ -284,14 +293,14 @@ export class Upload extends Spaces<Parameters> {
 
     let targetPath = relativePath
 
-    if (this.params.digitalFlattenFolders) {
-      const flatFileName = path.basename(file)
-      targetPath = this.params.digitalTargetFolder
-        ? path.join(this.params.digitalTargetFolder, flatFileName)
+    if (parameters.digitalFlattenFolders) {
+      const flatFileName = path.basename(parameters.filePath)
+      targetPath = parameters.digitalTargetFolder
+        ? path.join(parameters.digitalTargetFolder, flatFileName)
         : flatFileName
     } else {
-      targetPath = this.params.digitalTargetFolder
-        ? path.join(this.params.digitalTargetFolder, relativePath)
+      targetPath = parameters.digitalTargetFolder
+        ? path.join(parameters.digitalTargetFolder, relativePath)
         : relativePath
     }
 

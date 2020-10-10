@@ -1,4 +1,8 @@
 {
     "editor.formatOnSave": true,
     "jest.autoEnable": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
 }

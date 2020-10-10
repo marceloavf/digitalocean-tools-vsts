@@ -9,13 +9,27 @@ interface MySelf extends EventEmitter {
 
 const spyLog = jest.spyOn(console, 'log')
 
-describe('DOSUpload utils', () => {
+describe('DOSUpload', () => {
+  const baseParameters = {
+    digitalSourceFolder: './Tests/fixtures/',
+    digitalFlattenFolders: false,
+    digitalGlobExpressions: ['**'],
+    digitalAcl: 'test',
+    digitalEndpoint: {
+      parameters: { username: 'test', password: 'test' },
+      scheme: 'test',
+    },
+    digitalRegion: 'test',
+    digitalBucket: 'test',
+    digitalCredentials: 'test',
+  }
+
   afterEach(() => {
-    spyLog.mockReset()
+    spyLog.mockClear()
     AWS.clearAllMocks()
   })
 
-  it('should upload file successfully', async () => {
+  test('should upload file successfully', async () => {
     const uploadFiles: jest.Mock = AWS.spyOn('S3', 'upload').mockImplementation(
       (params: any) => {
         const self: MySelf = new EventEmitter()
@@ -29,23 +43,11 @@ describe('DOSUpload utils', () => {
       }
     )
 
-    const test = new Upload({
-      digitalSourceFolder: './Tests/fixtures/',
-      digitalGlobExpressions: ['**'],
-      digitalAcl: 'test',
-      digitalFlattenFolders: false,
-      digitalEndpoint: {
-        parameters: { username: 'test', password: 'test' },
-        scheme: 'test',
-      },
-      digitalRegion: 'test',
-      digitalBucket: 'test',
-      digitalCredentials: 'test',
-    })
+    const upload = new Upload(baseParameters)
 
-    const normalizePaths = jest.spyOn(test, 'normalizeKeyPath')
+    const normalizePaths = jest.spyOn(upload, 'normalizeKeyPath')
 
-    await test.init()
+    await upload.init()
 
     expect(uploadFiles.mock.calls[0][0].ACL).toEqual('test')
     expect(uploadFiles.mock.calls[0][0].Bucket).toEqual('test')
@@ -65,18 +67,33 @@ describe('DOSUpload utils', () => {
     expect(uploadFiles.mock.calls[2][0].Key).toEqual('file2-v1.3.1.json')
 
     expect(normalizePaths).toHaveBeenCalledTimes(3)
-    expect(normalizePaths).toHaveBeenNthCalledWith(
-      1,
-      'Tests/fixtures/file-v1.0.1.txt'
-    )
-    expect(normalizePaths).toHaveBeenNthCalledWith(
-      2,
-      'Tests/fixtures/file1-v1.2.1.txt'
-    )
-    expect(normalizePaths).toHaveBeenNthCalledWith(
-      3,
-      'Tests/fixtures/file2-v1.3.1.json'
-    )
+
+    const baseNormalizePathsReturn = {
+      digitalAcl: 'test',
+      digitalBucket: 'test',
+      digitalCredentials: 'test',
+      digitalEndpoint: {
+        parameters: { password: 'test', username: 'test' },
+        scheme: 'test',
+      },
+      digitalFlattenFolders: false,
+      digitalGlobExpressions: ['**'],
+      digitalRegion: 'test',
+      digitalSourceFolder: 'Tests/fixtures/',
+    }
+
+    expect(normalizePaths).toHaveBeenNthCalledWith(1, {
+      ...baseNormalizePathsReturn,
+      filePath: 'Tests/fixtures/file-v1.0.1.txt',
+    })
+    expect(normalizePaths).toHaveBeenNthCalledWith(2, {
+      ...baseNormalizePathsReturn,
+      filePath: 'Tests/fixtures/file1-v1.2.1.txt',
+    })
+    expect(normalizePaths).toHaveBeenNthCalledWith(3, {
+      ...baseNormalizePathsReturn,
+      filePath: 'Tests/fixtures/file2-v1.3.1.json',
+    })
     expect(normalizePaths.mock.results).toEqual([
       { type: 'return', value: 'file-v1.0.1.txt' },
       { type: 'return', value: 'file1-v1.2.1.txt' },
@@ -87,5 +104,67 @@ describe('DOSUpload utils', () => {
       'Upload progress is 1.34 kB of 2.34 kB - 57%'
     )
     expect(spyLog).toHaveBeenCalledTimes(15)
+  })
+
+  test('should return "file not found" log and stop operation without error', async () => {
+    const upload = new Upload({
+      ...baseParameters,
+      digitalSourceFolder: './Tests/fixtures/nowhere',
+      digitalTargetFolder: '/pathDOS',
+    })
+    await upload.init()
+
+    expect(spyLog.mock.calls[2][0]).toEqual(
+      'No files found at Tests/fixtures/nowhere'
+    )
+  })
+
+  describe('normalizeKeyPath', () => {
+    test('should return normalized path with flatten folders', () => {
+      const upload = new Upload(baseParameters)
+
+      const normalizeKeyPathResult = upload.normalizeKeyPath({
+        filePath: './Tests/fixtures/file-v1.0.1.txt',
+        digitalSourceFolder: './Tests/',
+        digitalFlattenFolders: true,
+      })
+
+      expect(normalizeKeyPathResult).toEqual('file-v1.0.1.txt')
+    })
+    test('should return normalized path with flatten folders and remove extra path.sep', () => {
+      const upload = new Upload(baseParameters)
+
+      const normalizeKeyPathResult = upload.normalizeKeyPath({
+        filePath: './Tests/fixtures/file-v1.0.1.txt',
+        digitalSourceFolder: './Tests',
+        digitalFlattenFolders: true,
+      })
+
+      expect(normalizeKeyPathResult).toEqual('file-v1.0.1.txt')
+    })
+    test('should return normalized path with flatten folders and set correctly target folder', () => {
+      const upload = new Upload(baseParameters)
+
+      const normalizeKeyPathResult = upload.normalizeKeyPath({
+        filePath: './Tests/fixtures/file-v1.0.1.txt',
+        digitalSourceFolder: './Tests/',
+        digitalFlattenFolders: true,
+        digitalTargetFolder: 'pathDOS/',
+      })
+
+      expect(normalizeKeyPathResult).toEqual('pathDOS/file-v1.0.1.txt')
+    })
+    test('should return normalized path without flatten folders and set correctly target folder', () => {
+      const upload = new Upload(baseParameters)
+
+      const normalizeKeyPathResult = upload.normalizeKeyPath({
+        filePath: './Tests/fixtures/file-v1.0.1.txt',
+        digitalSourceFolder: './Tests/',
+        digitalFlattenFolders: false,
+        digitalTargetFolder: 'pathDOS/',
+      })
+
+      expect(normalizeKeyPathResult).toEqual('pathDOS/fixtures/file-v1.0.1.txt')
+    })
   })
 })
