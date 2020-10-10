@@ -11,7 +11,7 @@
   ],
   "description": "DigitalOcean Services Management with Azure DevOps",
   "categories": [
-    "Build and release"
+    "Azure Pipelines"
   ],
   "icons": {
     "default": "images/icon128.png",
