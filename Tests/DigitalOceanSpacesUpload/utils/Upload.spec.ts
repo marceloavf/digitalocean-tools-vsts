@@ -8,6 +8,7 @@ interface MySelf extends EventEmitter {
 }
 
 const spyLog = jest.spyOn(console, 'log')
+const spyError = jest.spyOn(console, 'error')
 
 describe('DOSUpload', () => {
   const baseParameters = {
@@ -26,6 +27,7 @@ describe('DOSUpload', () => {
 
   afterEach(() => {
     spyLog.mockClear()
+    spyError.mockClear()
     AWS.clearAllMocks()
   })
 
@@ -117,6 +119,25 @@ describe('DOSUpload', () => {
     expect(spyLog.mock.calls[2][0]).toEqual(
       'No files found at Tests/fixtures/nowhere'
     )
+  })
+
+  test('should throw an error when upload fails', async () => {
+    const uploadFiles: jest.Mock = AWS.spyOn('S3', 'upload').mockReturnValue({
+      promise: () => Promise.reject('returned error'),
+      on: () => true,
+    })
+
+    const upload = new Upload(baseParameters)
+
+    try {
+      await upload.init()
+    } catch (e) {
+      expect(e).toMatch('error')
+      expect(spyError.mock.calls[0]).toEqual([
+        'File upload failed',
+        'returned error',
+      ])
+    }
   })
 
   describe('normalizeKeyPath', () => {

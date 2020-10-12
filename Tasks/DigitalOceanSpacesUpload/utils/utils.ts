@@ -1,9 +1,15 @@
 import tl from './tl'
 import * as path from 'path'
+import knownMimeTypes from './knownMimeTypes'
 
 interface FilesParameters {
   digitalSourceFolder?: string
   digitalGlobExpressions: string[]
+}
+
+interface MimeTypesParameters {
+  filePath: string
+  digitalContentType?: string
 }
 
 export const findFiles = (parameters: FilesParameters): string[] => {
@@ -32,4 +38,14 @@ export const findFiles = (parameters: FilesParameters): string[] => {
   tl.debug(tl.loc('MatchedFiles', matchedFiles))
   tl.debug(tl.loc('FoundNFiles', matchedFiles.length))
   return matchedFiles
+}
+
+export const getMimeTypes = (parameters: MimeTypesParameters): string => {
+  if (parameters.digitalContentType) return parameters.digitalContentType
+
+  let contentType = knownMimeTypes.get(path.extname(parameters.filePath))
+  if (!contentType) {
+    contentType = 'application/octet-stream'
+  }
+  return contentType
 }
