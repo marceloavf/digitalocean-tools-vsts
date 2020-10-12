@@ -122,7 +122,7 @@ describe('DOSUpload', () => {
   })
 
   test('should throw an error when upload fails', async () => {
-    const uploadFiles: jest.Mock = AWS.spyOn('S3', 'upload').mockReturnValue({
+    AWS.spyOn('S3', 'upload').mockReturnValue({
       promise: () => Promise.reject('returned error'),
       on: () => true,
     })

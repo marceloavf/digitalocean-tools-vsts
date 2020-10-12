@@ -100,7 +100,7 @@ export class Upload extends Spaces<Parameters> {
       relativePath = relativePath.substr(1)
     }
 
-    let targetPath = relativePath
+    let targetPath
 
     if (parameters.digitalFlattenFolders) {
       const flatFileName = path.basename(parameters.filePath)
