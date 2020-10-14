@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "yarn run tslint -t codeFrame -p tsconfig.json -c tslint.json && yarn run prettier \"{Tasks,Tests}/**/*.ts\" --write",
     "clean": "vsts-build-tools-clean",
-    "postinstall": "vsts-build-tools-install",
+    "postinstall": "node crlf-to-lf.js && yarn vsts-build-tools-install",
     "prebuild": "vsts-build-tools-prebuild",
     "build": "yarn run lint && yarn run tsc",
     "package": "yarn run clean && yarn run build && yarn run vsts-build-tools-package",
@@ -20,24 +20,25 @@
     "test": "jest"
   },
   "dependencies": {
-    "aws-sdk": "^2.769.0",
-    "azure-pipelines-task-lib": "^2.11.2"
+    "aws-sdk": "^2.771.0",
+    "azure-pipelines-task-lib": "^2.11.3"
   },
   "devDependencies": {
     "@mapbox/aws-sdk-jest": "^0.0.1",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@types/jest": "^26.0.14",
-    "@types/node": "^14.11.5",
+    "@types/node": "^14.11.8",
     "@types/q": "^1.5.4",
     "codecov": "^3.8.0",
+    "crlf": "^1.1.1",
     "cross-env": "^7.0.2",
     "gl-vsts-tasks-build-scripts": "0.7.0-alpha.7",
     "husky": "^0.14.3",
-    "jest": "^26.5.2",
+    "jest": "^26.5.3",
     "lint-staged": "^7.2.0",
     "prettier": "^2.1.2",
-    "semantic-release": "^17.1.2",
+    "semantic-release": "^17.2.1",
     "tfx-cli": "^0.8.3",
     "ts-jest": "^26.4.1",
     "tslint": "^6.1.3",
