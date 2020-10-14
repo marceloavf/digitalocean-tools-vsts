@@ -1,12 +1,6 @@
 import tl from './utils/tl'
-import * as path from 'path'
 import { Delete } from './utils/Delete'
 import { Parameters } from './utils/Parameters'
-
-/**
- * Set language loc file
- */
-tl.setResourcePath(path.join(__dirname, 'task.json'))
 
 /**
  * Init Parameters and Spaces to run delete
