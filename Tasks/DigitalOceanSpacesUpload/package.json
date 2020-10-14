@@ -3,11 +3,11 @@
     "private": true,
     "version": "0.0.0",
     "devDependencies": {
-        "@types/lodash": "^4.14.112"
+        "@types/lodash": "^4.14.162"
     },
     "dependencies": {
-        "aws-sdk": "^2.769.0",
-        "azure-pipelines-task-lib": "^2.11.2",
+        "aws-sdk": "^2.771.0",
+        "azure-pipelines-task-lib": "^2.11.3",
         "lodash": "^4.17.10",
         "pretty-bytes": "^5.1.0"
     }

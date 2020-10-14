@@ -2,20 +2,20 @@
 # yarn lockfile v1
 
 
-"@types/lodash@^4.14.112":
-  version "4.14.161"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.161.tgz#a21ca0777dabc6e4f44f3d07f37b765f54188b18"
-  integrity sha512-EP6O3Jkr7bXvZZSZYlsgt5DIjiGr0dXP1/jVEwVLTFgg0d+3lWVQkRavYVQszV7dYUwvg0B8R0MBDpcmXg7XIA==
+"@types/lodash@^4.14.162":
+  version "4.14.162"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.162.tgz#65d78c397e0d883f44afbf1f7ba9867022411470"
+  integrity sha512-alvcho1kRUnnD1Gcl4J+hK0eencvzq9rmzvFPRmP5rPHx9VVsJj6bKLTATPVf9ktgv4ujzh7T+XWKp+jhuODig==
 
 asap@~2.0.3:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/asap/-/asap-2.0.6.tgz#e50347611d7e690943208bbdafebcbc2fb866d46"
   integrity sha1-5QNHYR1+aQlDIIu9r+vLwvuGbUY=
 
-aws-sdk@^2.769.0:
-  version "2.769.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.769.0.tgz#492e94e28c5e6aa5378c09e61d33e3263f329b6d"
-  integrity sha512-FZZrxgchLE0VXrd/uhIw2Tmlf82xOYuPK6batUUYz7UoAOL7q1UYUdI8ISNfeCEoN2MuMWAgfTIQiLx/9+NiEw==
+aws-sdk@^2.771.0:
+  version "2.771.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.771.0.tgz#ff4beb0a04d6ab1ae962c85dfb42e3e9bfe2b93b"
+  integrity sha512-fqNGusCwkdemx3yFqvQbU1+xq/PB2wGq7EQIrrTZx/zxfXUp+7+PnrHzXtViCRghN0tylLghBfWYD4VcVcqi7g==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -27,10 +27,10 @@ aws-sdk@^2.769.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-azure-pipelines-task-lib@^2.11.2:
-  version "2.11.2"
-  resolved "https://registry.yarnpkg.com/azure-pipelines-task-lib/-/azure-pipelines-task-lib-2.11.2.tgz#348dcf766dfdcb61777c148f4122acd0fcda9439"
-  integrity sha512-v4rVaoeCggmoClyeVWwZs48yjUyfT9GHKJHNplA7nXUPsH6oODsUTuA1pnesxsM6RzMq4kD6UlIu9/KMd6MFKw==
+azure-pipelines-task-lib@^2.11.3:
+  version "2.11.3"
+  resolved "https://registry.yarnpkg.com/azure-pipelines-task-lib/-/azure-pipelines-task-lib-2.11.3.tgz#18ced5755cba028a7275000f0083225cf0e9acf3"
+  integrity sha512-gXops6Npkloh7AKPIvptx0KY1kdf1yd+BFdp/ksnbyW7CS3uXzBQXU1Dermr7A895TrOd02PI6hmsL8cBlePNA==
   dependencies:
     minimatch "3.0.4"
     mockery "^1.7.0"
