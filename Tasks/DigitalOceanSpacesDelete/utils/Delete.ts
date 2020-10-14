@@ -61,6 +61,7 @@ export class Delete extends Spaces<Parameters> {
       // WARNING: this parameter can enter inifite loop if Semver always clean all
       // versions from being deleted!
       // FIX: Instead of executing all again, get the point where it can continue deleteing files in the next page
+      // FIX: Maybe fixable using .eachPage() on listObjectsV2, so it'll have all data
       if (listedObjects.IsTruncated) await this.init()
 
       console.log(

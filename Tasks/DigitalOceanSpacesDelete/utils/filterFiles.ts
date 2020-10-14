@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk'
 import { isEmpty } from 'lodash'
-import * as matcher from 'matcher'
+import matcher from 'matcher'
 import tl from './tl'
 
 interface FilterFilesOnList {
