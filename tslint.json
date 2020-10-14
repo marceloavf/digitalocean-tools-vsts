@@ -5,6 +5,7 @@
     "interface-name": [true, "never-prefix"],
     "ordered-imports": false,
     "object-literal-sort-keys": false,
+    "no-var-requires": false,
     "no-console": false,
     "no-unused-expression": [true, "allow-fast-null-checks"],
     "no-implicit-dependencies": false,

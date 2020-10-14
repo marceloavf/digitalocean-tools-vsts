@@ -1,6 +1,5 @@
 import { Upload } from '@DOSUpload/utils/Upload.ts'
 import { EventEmitter } from 'events'
-// tslint:disable-next-line: no-var-requires
 const AWS = require('aws-sdk')
 
 interface MySelf extends EventEmitter {
