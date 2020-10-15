@@ -17,10 +17,6 @@ interface DeletableSemanticVersionParameters {
 /**
  * Remove newest versions on the list based on how many
  * versions to keep, only deleting oldest ones
- *
- * Example: ['v1.0.0.exe', 'v1.0.1.exe', 'v1.0.2.exe']
- * If `keepOnly 2 version`, ['v1.0.1.exe', 'v1.0.2.exe'] will be removed from the list
- * Making sure that only 'v1.0.0.exe' was deleted from the bucket
  */
 
 export const getDeletableSemanticVersion = (
@@ -37,7 +33,6 @@ export const getDeletableSemanticVersion = (
         return typeof item === 'string'
       })
       .sort((a, b) => {
-        // Sort all version from oldest to newest one
         if (semver.lt(a, b)) return Sort.aBiggerThanB
         if (semver.gt(a, b)) return Sort.bBiggerThanA
         return Sort.aEqualToB
