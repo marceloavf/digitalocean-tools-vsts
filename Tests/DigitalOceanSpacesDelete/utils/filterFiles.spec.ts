@@ -86,36 +86,58 @@ describe('filterFilesOnList', () => {
 
 describe('searchFilesOnBucket', () => {
   test('should return list of objects from S3 repository', async () => {
-    const list = AWS.spyOn('S3', 'listObjectsV2').mockReturnValue({
-      promise: () => Promise.resolve(['test/path/1.txt', 'text/path/2.txt']),
-    })
-
-    const s3 = new AWS.S3({ region: 'testRegion' })
+    const list = AWS.spyOnEachPage('S3', 'listObjectsV2', [
+      { Contents: ['test/path/1.txt'] },
+      { Contents: ['text/path/2.txt'] },
+    ])
 
     const searchFiles = await searchFilesOnBucket({
       digitalTargetFolder: 'test',
-      s3Connection: s3,
+      s3Connection: new AWS.S3({ region: 'testRegion' }),
       digitalBucket: 'testBucket',
     })
 
     expect(list).toHaveBeenCalledWith({ Bucket: 'testBucket', Prefix: 'test' })
-    expect(searchFiles).toEqual(['test/path/1.txt', 'text/path/2.txt'])
+    expect(searchFiles).toEqual({
+      Contents: ['test/path/1.txt', 'text/path/2.txt'],
+    })
     expect(spyLog.mock.calls).toEqual([
       ["Searching 'test' prefix for files to delete"],
     ])
 
+    AWS.clearAllMocks()
+
+    AWS.spyOnEachPage('S3', 'listObjectsV2', [
+      { Contents: ['test/path/1.txt'] },
+      { Contents: ['text/path/2.txt'] },
+    ])
+
     const searchFilesWithoutTarget = await searchFilesOnBucket({
-      s3Connection: s3,
+      s3Connection: new AWS.S3({ region: 'testRegion' }),
       digitalBucket: 'testBucket',
     })
 
-    expect(searchFilesWithoutTarget).toEqual([
-      'test/path/1.txt',
-      'text/path/2.txt',
-    ])
+    expect(searchFilesWithoutTarget).toEqual({
+      Contents: ['test/path/1.txt', 'text/path/2.txt'],
+    })
     expect(spyLog.mock.calls).toEqual([
       ["Searching 'test' prefix for files to delete"],
       ["Searching 'root' prefix for files to delete"],
     ])
+
+    AWS.clearAllMocks()
+
+    AWS.spyOnEachPage('S3', 'listObjectsV2', [
+      { Contents: ['test/path/1.txt'] },
+      new Error('foos'),
+    ])
+    try {
+      await searchFilesOnBucket({
+        s3Connection: new AWS.S3({ region: 'testRegion' }),
+        digitalBucket: 'testBucket',
+      })
+    } catch (error) {
+      expect(error).toEqual(new Error('foos'))
+    }
   })
 })

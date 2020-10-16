@@ -62,10 +62,20 @@ export const searchFilesOnBucket = async (
     Bucket: parameters.digitalBucket,
     Prefix: parameters.digitalTargetFolder,
   }
+  const listObjects = new Promise((resolve, reject) => {
+    const items: AWS.S3.ListObjectsV2Output = { Contents: [] }
 
-  const listObjects = await parameters.s3Connection
-    .listObjectsV2(options)
-    .promise()
+    parameters.s3Connection
+      .listObjectsV2(options)
+      // TODO: Investigate deeply why its not well documented on aws-sdk part, specifically in V2
+      // @ts-ignore
+      .eachPage((err, data, done) => {
+        if (err) return reject(err)
+        if (!data) return resolve(items)
+        items.Contents.push(...data.Contents)
+        done()
+      })
+  })
 
   return listObjects
 }
