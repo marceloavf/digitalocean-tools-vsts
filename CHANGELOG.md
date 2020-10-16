@@ -1,3 +1,10 @@
+## [0.2.2](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.2.1...v0.2.2) (2020-10-16)
+
+
+### Bug Fixes
+
+* **DOSDelete:** remove isTruncated and use eachPage instead, add tests ([e2644f1](https://github.com/marceloavf/digitalocean-tools-vsts/commit/e2644f1))
+
 ## [0.2.1](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.2.0...v0.2.1) (2020-10-09)
 
 
