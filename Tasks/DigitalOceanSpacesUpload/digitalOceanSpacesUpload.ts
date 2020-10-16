@@ -2,9 +2,6 @@ import tl from './utils/tl'
 import { Upload } from './utils/Upload'
 import { Parameters } from './utils/Parameters'
 
-/**
- * Init Parameters and Spaces to run upload
- */
 const digitalParameters = new Parameters()
 const digitalSpacesUpload = new Upload(digitalParameters)
 
