@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.2.2...v0.3.0) (2020-10-19)
+
+
+### Features
+
+* **DOSUpload:** add upload queue concurrency ([4857f46](https://github.com/marceloavf/digitalocean-tools-vsts/commit/4857f46)), closes [#12](https://github.com/marceloavf/digitalocean-tools-vsts/issues/12)
+
 ## [0.2.2](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.2.1...v0.2.2) (2020-10-16)
 
 
