@@ -7,7 +7,7 @@
     "@types/semver": "^7.3.4"
   },
   "dependencies": {
-    "aws-sdk": "^2.771.0",
+    "aws-sdk": "^2.773.0",
     "azure-pipelines-task-lib": "^2.11.3",
     "lodash": "^4.17.10",
     "matcher": "^3.0.0",
