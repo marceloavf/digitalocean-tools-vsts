@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DOSUpload should upload file successfully 1`] = `
+Array [
+  Array [
+    "All uploads to Space completed",
+  ],
+  Array [
+    "Completed upload of Tests/fixtures/file-v1.0.1.txt to file-v1.0.1.txt",
+  ],
+  Array [
+    "Completed upload of Tests/fixtures/file1-v1.2.1.txt to file1-v1.2.1.txt",
+  ],
+  Array [
+    "Completed upload of Tests/fixtures/file2-v1.3.1.json to file2-v1.3.1.json",
+  ],
+  Array [
+    "Searching ./Tests/fixtures/ for files to upload",
+  ],
+  Array [
+    "Upload progress is 1.34 kB of 2.34 kB - 57%",
+  ],
+  Array [
+    "Upload progress is 1.34 kB of 2.34 kB - 57%",
+  ],
+  Array [
+    "Upload progress is 1.34 kB of 2.34 kB - 57%",
+  ],
+  Array [
+    "Upload progress is 2.34 kB of 2.34 kB - 100%",
+  ],
+  Array [
+    "Upload progress is 2.34 kB of 2.34 kB - 100%",
+  ],
+  Array [
+    "Upload progress is 2.34 kB of 2.34 kB - 100%",
+  ],
+  Array [
+    "Uploading files from ./Tests/fixtures/ to root in bucket test",
+  ],
+  Array [
+    "Uploading matched file Tests/fixtures/file-v1.0.1.txt in file-v1.0.1.txt text/plain",
+  ],
+  Array [
+    "Uploading matched file Tests/fixtures/file1-v1.2.1.txt in file1-v1.2.1.txt text/plain",
+  ],
+  Array [
+    "Uploading matched file Tests/fixtures/file2-v1.3.1.json in file2-v1.3.1.json application/octet-stream",
+  ],
+]
+`;

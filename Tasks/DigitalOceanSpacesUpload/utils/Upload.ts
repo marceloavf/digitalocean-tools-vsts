@@ -6,6 +6,7 @@ import tl from './tl'
 import { Spaces } from '../common/Spaces'
 import { Parameters } from './Parameters'
 import { findFiles, getMimeTypes } from './utils'
+const { default: PQueue } = require('p-queue')
 import prettyBytes = require('pretty-bytes')
 
 interface NormalizePathParameters {
@@ -13,6 +14,14 @@ interface NormalizePathParameters {
   digitalSourceFolder?: string
   digitalFlattenFolders: boolean
   digitalTargetFolder?: string
+}
+
+interface UploadFileParameters {
+  filePath: string
+  targetPath: string
+  digitalAcl: string
+  digitalBucket: string
+  contentType: string
 }
 
 export class Upload extends Spaces<Parameters> {
@@ -39,43 +48,52 @@ export class Upload extends Spaces<Parameters> {
       return
     }
 
+    const uploadQueue = new PQueue({ concurrency: 4 })
+
     for (const filePath of files) {
       const targetPath = this.normalizeKeyPath({ ...this.params, filePath })
 
-      try {
-        const contentType = getMimeTypes({
-          filePath,
-          digitalContentType: this.params.digitalContentType,
-        })
+      const contentType = getMimeTypes({
+        filePath,
+        digitalContentType: this.params.digitalContentType,
+      })
 
-        console.log(tl.loc('UploadingFile', filePath, targetPath, contentType))
+      console.log(tl.loc('UploadingFile', filePath, targetPath, contentType))
 
-        const params: AWS.S3.PutObjectRequest = {
-          Bucket: this.params.digitalBucket,
-          ACL: this.params.digitalAcl,
-          Key: targetPath,
-          Body: fs.createReadStream(filePath),
-          ContentType: contentType,
+      uploadQueue.add(async () => {
+        try {
+          await this.uploadFile({
+            filePath,
+            targetPath,
+            digitalAcl: this.params.digitalAcl,
+            digitalBucket: this.params.digitalBucket,
+            contentType,
+          })
+          console.log(tl.loc('FileUploadCompleted', filePath, targetPath))
+        } catch (error) {
+          console.error(tl.loc('FileUploadFailed'), error)
+          throw error
         }
-
-        await this.uploadFiles(params)
-
-        console.log(tl.loc('FileUploadCompleted', filePath, targetPath))
-      } catch (err) {
-        console.error(tl.loc('FileUploadFailed'), err)
-        throw err
-      }
+      })
     }
+
+    await uploadQueue.onIdle()
 
     console.log(tl.loc('TaskCompleted'))
   }
 
-  async uploadFiles(
-    objectRequest: AWS.S3.PutObjectRequest
+  async uploadFile(
+    params: UploadFileParameters
   ): Promise<AWS.S3.ManagedUpload.SendData> {
-    const request: AWS.S3.ManagedUpload = this.s3Connection.upload(
-      objectRequest
-    )
+    const sendParams: AWS.S3.PutObjectRequest = {
+      Bucket: params.digitalBucket,
+      ACL: params.digitalAcl,
+      Key: params.targetPath,
+      Body: fs.createReadStream(params.filePath),
+      ContentType: params.contentType,
+    }
+
+    const request: AWS.S3.ManagedUpload = this.s3Connection.upload(sendParams)
 
     request.on('httpUploadProgress', (progress) => {
       console.log(

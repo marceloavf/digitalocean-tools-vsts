@@ -101,9 +101,7 @@ describe('DOSUpload', () => {
       { type: 'return', value: 'file2-v1.3.1.json' },
     ])
 
-    expect(spyLog.mock.calls[3][0]).toEqual(
-      'Upload progress is 1.34 kB of 2.34 kB - 57%'
-    )
+    expect(spyLog.mock.calls.sort()).toMatchSnapshot()
     expect(spyLog).toHaveBeenCalledTimes(15)
   })
 
