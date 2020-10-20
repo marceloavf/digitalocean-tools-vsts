@@ -6,8 +6,9 @@ import tl from './tl'
 import { Spaces } from '../common/Spaces'
 import { Parameters } from './Parameters'
 import { findFiles, getMimeTypes } from './utils'
-const { default: PQueue } = require('p-queue')
 import prettyBytes = require('pretty-bytes')
+const { default: PQueue } = require('p-queue')
+const pRetry = require('p-retry')
 
 interface NormalizePathParameters {
   filePath: string
@@ -50,6 +51,8 @@ export class Upload extends Spaces<Parameters> {
 
     const uploadQueue = new PQueue({ concurrency: 4 })
 
+    const errors: Error[] = []
+
     for (const filePath of files) {
       const targetPath = this.normalizeKeyPath({ ...this.params, filePath })
 
@@ -62,22 +65,35 @@ export class Upload extends Spaces<Parameters> {
 
       uploadQueue.add(async () => {
         try {
-          await this.uploadFile({
-            filePath,
-            targetPath,
-            digitalAcl: this.params.digitalAcl,
-            digitalBucket: this.params.digitalBucket,
-            contentType,
-          })
+          await pRetry(
+            async () =>
+              this.uploadFile({
+                filePath,
+                targetPath,
+                digitalAcl: this.params.digitalAcl,
+                digitalBucket: this.params.digitalBucket,
+                contentType,
+              }),
+            {
+              onFailedAttempt: (error: any) => {
+                console.log(
+                  `Failed uploading ${filePath}: Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`
+                )
+              },
+              retries: 2,
+            }
+          )
           console.log(tl.loc('FileUploadCompleted', filePath, targetPath))
         } catch (error) {
+          errors.push(error.message)
           console.error(tl.loc('FileUploadFailed'), error)
-          throw error
         }
       })
     }
 
     await uploadQueue.onIdle()
+
+    if (!isEmpty(errors)) throw new Error(errors.toString())
 
     console.log(tl.loc('TaskCompleted'))
   }

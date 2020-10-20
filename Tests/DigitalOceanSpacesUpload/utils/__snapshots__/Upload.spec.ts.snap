@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DOSUpload should throw an error when upload fails 1`] = `[Error: returned error,returned error]`;
+
+exports[`DOSUpload should throw an error when upload fails 2`] = `
+Array [
+  Array [
+    "File upload failed",
+    [Error: returned error],
+  ],
+  Array [
+    "File upload failed",
+    [Error: returned error],
+  ],
+]
+`;
+
 exports[`DOSUpload should upload file successfully 1`] = `
 Array [
   Array [

@@ -119,21 +119,24 @@ describe('DOSUpload', () => {
   })
 
   test('should throw an error when upload fails', async () => {
-    AWS.spyOn('S3', 'upload').mockReturnValue({
-      promise: () => Promise.reject('returned error'),
+    expect.assertions(3)
+    const uploadFn = AWS.spyOn('S3', 'upload').mockReturnValue({
+      promise: () => Promise.reject(new Error('returned error')),
       on: () => true,
     })
 
-    const upload = new Upload(baseParameters)
+    const upload = new Upload({
+      ...baseParameters,
+      digitalGlobExpressions: ['*.txt'],
+    })
 
     try {
       await upload.init()
     } catch (e) {
-      expect(e).toMatch('error')
-      expect(spyError.mock.calls[0]).toEqual([
-        'File upload failed',
-        'returned error',
-      ])
+      expect(uploadFn).toHaveBeenCalledTimes(6)
+      expect(e).toMatchSnapshot()
+      console.log(spyError.mock.calls)
+      expect(spyError.mock.calls).toMatchSnapshot()
     }
   })
 
