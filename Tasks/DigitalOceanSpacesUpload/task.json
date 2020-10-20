@@ -111,7 +111,7 @@
   ],
   "execution": {
     "Node": {
-      "target": "digitalOceanSpacesUpload.js",
+      "target": "index.js",
       "argumentFormat": ""
     }
   },

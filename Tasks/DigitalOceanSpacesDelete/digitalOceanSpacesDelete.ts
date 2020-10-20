@@ -5,7 +5,10 @@ import { Parameters } from './utils/Parameters'
 const digitalParameters = new Parameters()
 const digitalSpacesDelete = new Delete(digitalParameters)
 
-digitalSpacesDelete
-  .init()
-  .then((result) => tl.setResult(tl.TaskResult.Succeeded, ''))
-  .catch((error) => tl.setResult(tl.TaskResult.Failed, error))
+let start
+
+export default start = () =>
+  digitalSpacesDelete
+    .init()
+    .then((result) => tl.setResult(tl.TaskResult.Succeeded, ''))
+    .catch((error) => tl.setResult(tl.TaskResult.Failed, error))
