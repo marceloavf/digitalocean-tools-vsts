@@ -1,3 +1,15 @@
+# [0.4.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.3.0...v0.4.0) (2020-10-20)
+
+
+### Bug Fixes
+
+* **DOSDelete:** disable filename patterns glob when enable semver ([964516c](https://github.com/marceloavf/digitalocean-tools-vsts/commit/964516c))
+
+
+### Features
+
+* **DOSUpload:** add retry failed upload ([f441ac0](https://github.com/marceloavf/digitalocean-tools-vsts/commit/f441ac0))
+
 # [0.3.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.2.2...v0.3.0) (2020-10-19)
 
 
