@@ -7,7 +7,6 @@
   "author": "Marcelo Formentão",
   "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
   "category": "Utility",
-  "preview": true,
   "visibility": [
     "Build",
     "Release"
