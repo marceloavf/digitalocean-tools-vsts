@@ -78,7 +78,7 @@
       "type": "boolean",
       "label": "Enable",
       "defaultValue": "false",
-      "helpMarkDown": "Allow to filter based on semantic version, avoiding some newest versions from being deleted of the bucket prefix. Filename Patterns must match these files to be filtered. <br>This option disable Filename patterns."
+      "helpMarkDown": "Allow to filter based on semantic version, avoiding some newest versions from being deleted of the bucket prefix. Filename Patterns must match these files to be filtered. <br>This option disables Filename patterns."
     },
     {
       "groupName": "semver",

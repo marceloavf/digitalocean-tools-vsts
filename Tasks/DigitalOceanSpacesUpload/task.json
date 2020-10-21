@@ -22,6 +22,13 @@
   ],
   "demands": [
   ],
+  "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
+  ],
   "minimumAgentVersion": "1.91.0",
   "inputs": [
     {
@@ -104,6 +111,24 @@
       "defaultValue": "",
       "required": false,
       "helpMarkDown": "Sets a custom content type for the uploaded files. If a custom content type is not specified the task will apply built-in defaults for common file types (html, css, js, image files etc). This parameter can be used to override the built-in defaults.\n\n__Note:__ that any value is applied to __all__ files processed by the task."
+    },
+    {
+      "groupName": "advanced",
+      "name": "digitalQueueConcurrency",
+      "type": "string",
+      "label": "Concurrency limit",
+      "defaultValue": "4",
+      "required": true,
+      "helpMarkDown": "Specify how many files to upload simultaneously."
+    },
+    {
+      "groupName": "advanced",
+      "name": "digitalRetryFailed",
+      "type": "string",
+      "label": "Retry failed limit",
+      "defaultValue": "2",
+      "required": true,
+      "helpMarkDown": "Specify how many times to retry a failed upload."
     }
   ],
   "dataSourceBindings": [

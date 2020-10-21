@@ -7,6 +7,8 @@ export class Parameters extends ParametersBase {
   public digitalAcl: string
   public digitalFlattenFolders: boolean
   public digitalContentType?: string
+  public digitalQueueConcurrency: string
+  public digitalRetryFailed: string
 
   constructor() {
     super()
@@ -20,6 +22,8 @@ export class Parameters extends ParametersBase {
       this.digitalSourceFolder = tl.getPathInput('digitalSourceFolder')
       this.digitalFlattenFolders = tl.getBoolInput('digitalFlattenFolders')
       this.digitalContentType = tl.getInput('digitalContentType')
+      this.digitalQueueConcurrency = tl.getInput('digitalQueueConcurrency')
+      this.digitalRetryFailed = tl.getInput('digitalRetryFailed')
     } catch (error) {
       throw new Error(error.message)
     }

@@ -22,6 +22,8 @@ describe('DOSUpload', () => {
     digitalRegion: 'test',
     digitalBucket: 'test',
     digitalCredentials: 'test',
+    digitalQueueConcurrency: '4',
+    digitalRetryFailed: '2',
   }
 
   afterEach(() => {
@@ -79,8 +81,11 @@ describe('DOSUpload', () => {
       },
       digitalFlattenFolders: false,
       digitalGlobExpressions: ['**'],
+      digitalQueueConcurrency: '4',
       digitalRegion: 'test',
+      digitalRetryFailed: '2',
       digitalSourceFolder: 'Tests/fixtures/',
+      filePath: 'Tests/fixtures/file1-v1.2.1.txt',
     }
 
     expect(normalizePaths).toHaveBeenNthCalledWith(1, {

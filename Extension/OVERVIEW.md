@@ -20,6 +20,11 @@ DigitalOcean Tools provide the ability to upload and delete objects from Digital
 - **Access Control (ACL):** The canned Access Control List (ACL) to apply to the uploaded content.
 - **Flatten Folders:** Flatten the folder structure and copy all files into the specified target folder in the bucket.
 
+Advanced Options:
+
+- **Concurrency limit:** Specify how many files to upload simultaneously.
+- **Retry failed limit:** Specify how many times to retry a failed upload.
+
 ## DigitalOcean Spaces Delete
 
 - **DigitalOcean Connection:** Set the service endpoint for your connection. It's based on AWS configuration (only Access Key ID and Secret Key ID is required).
@@ -31,7 +36,7 @@ DigitalOcean Tools provide the ability to upload and delete objects from Digital
 Semantic Version Filter Options:
 
 - **Enable:** Allow to filter based on [semantic version](https://semver.org/), avoiding newest versions from being deleted of the bucket prefix.
-- **How many versions to keep:** Specify how many versions to keep in the bucket, it will avoid deleting the newest ones.
+- **How many versions to keep:** Specify how many versions to keep in the bucket, it will avoid deleting the newest ones. *This option disables Filename patterns.*
 
 ## Install the extension to your account
 

@@ -49,7 +49,9 @@ export class Upload extends Spaces<Parameters> {
       return
     }
 
-    const uploadQueue = new PQueue({ concurrency: 4 })
+    const uploadQueue = new PQueue({
+      concurrency: parseInt(this.params.digitalQueueConcurrency, 10),
+    })
 
     const errors: Error[] = []
 
@@ -80,7 +82,7 @@ export class Upload extends Spaces<Parameters> {
                   `Failed uploading ${filePath}: Attempt ${error.attemptNumber} failed. There are ${error.retriesLeft} retries left.`
                 )
               },
-              retries: 2,
+              retries: parseInt(this.params.digitalRetryFailed, 10),
             }
           )
           console.log(tl.loc('FileUploadCompleted', filePath, targetPath))
