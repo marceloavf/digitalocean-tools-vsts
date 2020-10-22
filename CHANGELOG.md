@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.4.0...v0.5.0) (2020-10-22)
+
+
+### Features
+
+* **DOSUpload:** add advanced options to concurrency and retry limit ([b44872a](https://github.com/marceloavf/digitalocean-tools-vsts/commit/b44872a))
+
 # [0.4.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.3.0...v0.4.0) (2020-10-20)
 
 
