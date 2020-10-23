@@ -31,7 +31,7 @@ Advanced Options:
 - **DigitalOcean Region:** The DigitalOcean datacenter region code containing the Spaces resource(s), e.g. nyc3, ams3, sgp1, etc.
 - **Bucket Name:** The name of the bucket where the content will be deleted.
 - **Filename Patterns:** Glob patterns to select the file and folder content to be deleted.
-- **Target Folder:** The target folder (referred to as a key prefix in Spaces) in the bucket that contain the files. Root is assumed when empty, **be careful**.
+- **Target Folder:** The target folder (referred to as a key prefix in Spaces) in the bucket that contains the files. Root is assumed when empty, **be careful**.
 
 Semantic Version Filter Options:
 
