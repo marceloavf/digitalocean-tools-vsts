@@ -12,6 +12,7 @@ DigitalOcean Tools
 <h4 align="center">
 
  [![VS Marketplace Version](https://vsmarketplacebadge.apphb.com/version-short/marcelo-formentao.digitalocean-tools.svg?label=Production&color=0080ff)](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/marceloavf/digitalocean-tools-vsts?include_prerelease&label=Development&color=blueviolet) [![VS Marketplace Installs](https://vsmarketplacebadge.apphb.com/installs/marcelo-formentao.digitalocean-tools.svg)](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools) [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?color=success)](https://github.com/semantic-release/semantic-release) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com) [![Build Status](https://dev.azure.com/precisaosistemas/VSTSExtensions/_apis/build/status/marceloavf.digitalocean-tools-vsts?branchName=master)](https://dev.azure.com/precisaosistemas/VSTSExtensions/_build/latest?definitionId=264&branchName=master) [![codecov](https://codecov.io/gh/marceloavf/digitalocean-tools-vsts/branch/master/graph/badge.svg)](https://codecov.io/gh/marceloavf/digitalocean-tools-vsts) [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=marceloavf_digitalocean-tools-vsts&metric=alert_status)](https://sonarcloud.io/dashboard?id=marceloavf_digitalocean-tools-vsts) [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=marceloavf_digitalocean-tools-vsts&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=marceloavf_digitalocean-tools-vsts)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts?ref=badge_shield)
 
 </h4>
 
@@ -33,3 +34,7 @@ Contributions, issues and feature requests are very welcome. Please make sure to
 ## 🚧 &nbsp; Known Issues
 
 Please refer to our [wiki page](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/Known-Issues)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts?ref=badge_large)
