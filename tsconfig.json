@@ -15,13 +15,13 @@
     "baseUrl": ".",
     "paths": {
       "@DOSUpload/*": ["Tasks/DigitalOceanSpacesUpload/*"],
-      "@DOSDelete/*": ["Tasks/DigitalOceanSpacesDelete/*"]
+      "@DOSDelete/*": ["Tasks/DigitalOceanSpacesDelete/*"],
+      "@DOSDownload/*": ["Tasks/DigitalOceanSpacesDownload/*"]
     }
   },
   "include": [
     "./Tasks/**/*.ts",
-    "./Tests/**/*.ts",
-    "./Commom/Node/**/*.ts"
+    "./Tests/**/*.ts"
   ],
   "exclude": [
     "node_modules",

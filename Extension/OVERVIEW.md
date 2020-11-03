@@ -38,6 +38,22 @@ Semantic Version Filter Options:
 - **Enable:** Allow to filter based on [semantic version](https://semver.org/), avoiding newest versions from being deleted of the bucket prefix.
 - **How many versions to keep:** Specify how many versions to keep in the bucket, it will avoid deleting the newest ones. *This option disables Filename patterns.*
 
+## DigitalOcean Spaces Download
+
+- **DigitalOcean Connection:** Set the service endpoint for your connection. It's based on AWS configuration (only Access Key ID and Secret Key ID is required).
+- **DigitalOcean Region:** The DigitalOcean datacenter region code containing the Spaces resource(s), e.g. nyc3, ams3, sgp1, etc.
+- **Bucket Name:** The name of the bucket where the content will be downloaded.
+- **Source Folder:** The source folder (referred to as a key prefix in Spaces) that the content pattern(s) will be run against. If not set the root of the work area is assumed.
+- **Filename Patterns:** Glob patterns to select the file and folder content to be downloaded.
+- **Target Folder:** The target folder on your build host to contain the downloaded content.
+
+Advanced Options:
+
+- **Flatten Folders:** Flatten the folder structure and download all files into the specified target folder.
+- **Overwrite:** Enable to replace existing files in target folder. An error is thrown if it tries to replace existing files with overwrite disabled.
+- **Concurrency limit:** Specify how many files to download simultaneously.
+- **Retry failed limit:** Specify how many times to retry a failed download.
+
 ## Install the extension to your account
 
 You can find the latest stable version of the Azure DevOps Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).

@@ -22,6 +22,7 @@ DigitalOcean Tools
 
 - 🔹 &nbsp; [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-upload) Upload file(s) and folder(s) content to DigitalOcean Spaces Bucket.
 - 🔹 &nbsp; [**DigitalOcean Spaces Delete:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-delete) Delete file(s) from DigitalOcean Spaces Bucket.
+- 🔹 &nbsp; [**DigitalOcean Spaces Download:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-download) Download file(s) from DigitalOcean Spaces Bucket.
 
 ## 📟 &nbsp; Install the extension to your account
 
@@ -35,6 +36,6 @@ Contributions, issues and feature requests are very welcome. Please make sure to
 
 Please refer to our [wiki page](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/Known-Issues)
 
+## 📑 License
 
-## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts?ref=badge_large)
