@@ -35,6 +35,7 @@
     "husky": "^4.3.0",
     "jest": "^26.6.0",
     "lint-staged": "^10.4.2",
+    "mock-fs": "^4.13.0",
     "prettier": "^2.1.2",
     "semantic-release": "^17.2.1",
     "tfx-cli": "^0.8.3",
@@ -49,7 +50,7 @@
     ]
   },
   "engines": {
-    "node": "^12.0.0",
+    "node": "^14.0.0",
     "yarn": ">=1.0.0"
   },
   "release": {
