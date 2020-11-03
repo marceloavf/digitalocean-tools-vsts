@@ -1,7 +1,8 @@
 import {
   filterFilesOnList,
   searchFilesOnBucket,
-} from '@DOSDelete/utils/filterFiles'
+  normalizeKeyPathDestination,
+} from '@DOSDelete/common/utils/filterFiles'
 const AWS = require('aws-sdk')
 
 const contents = [
@@ -17,10 +18,14 @@ const contents = [
 ]
 
 const spyLog = jest.spyOn(console, 'log')
+const mockTlLoc = jest.fn()
 
 afterEach(() => {
   spyLog.mockClear()
   AWS.clearAllMocks()
+})
+beforeEach(() => {
+  mockTlLoc.mockClear()
 })
 
 describe('filterFilesOnList', () => {
@@ -30,6 +35,7 @@ describe('filterFilesOnList', () => {
       listedObjects: {
         Contents: contents,
       },
+      tlLoc: mockTlLoc,
     })
 
     expect(filterFiles).toEqual([
@@ -44,6 +50,7 @@ describe('filterFilesOnList', () => {
       listedObjects: {
         Contents: contents,
       },
+      tlLoc: mockTlLoc,
     })
 
     expect(filterFiles).toEqual([
@@ -58,12 +65,13 @@ describe('filterFilesOnList', () => {
       listedObjects: {
         Contents: contents,
       },
+      tlLoc: mockTlLoc,
     })
 
     expect(filterFiles).toEqual([])
-    expect(spyLog.mock.calls).toEqual([
-      ["Filtering files using '[ '**.exe' ]' pattern"],
-      ["No files matched at 'root'"],
+    expect(mockTlLoc.mock.calls).toEqual([
+      ['FilteringFiles', ['**.exe']],
+      ['FilesNotMatched', 'root'],
     ])
   })
 
@@ -74,12 +82,13 @@ describe('filterFilesOnList', () => {
         Contents: contents,
       },
       digitalTargetFolder: 'testFolder',
+      tlLoc: mockTlLoc,
     })
 
     expect(filterFiles).toEqual([])
-    expect(spyLog.mock.calls).toEqual([
-      ["Filtering files using '[ '**.exe' ]' pattern"],
-      ["No files matched at 'testFolder'"],
+    expect(mockTlLoc.mock.calls).toEqual([
+      ['FilteringFiles', ['**.exe']],
+      ['FilesNotMatched', 'testFolder'],
     ])
   })
 })
@@ -95,18 +104,19 @@ describe('searchFilesOnBucket', () => {
       digitalTargetFolder: 'test',
       s3Connection: new AWS.S3({ region: 'testRegion' }),
       digitalBucket: 'testBucket',
+      tlLoc: mockTlLoc,
     })
 
     expect(list).toHaveBeenCalledWith({ Bucket: 'testBucket', Prefix: 'test' })
     expect(searchFiles).toEqual({
       Contents: ['test/path/1.txt', 'text/path/2.txt'],
     })
-    expect(spyLog.mock.calls).toEqual([
-      ["Searching 'test' prefix for files to delete"],
-    ])
+    expect(mockTlLoc.mock.calls).toEqual([['SearchingFiles', 'test']])
 
     AWS.clearAllMocks()
+  })
 
+  test('should return data for paginated objects', async () => {
     AWS.spyOnEachPage('S3', 'listObjectsV2', [
       { Contents: ['test/path/1.txt'] },
       { Contents: ['text/path/2.txt'] },
@@ -115,18 +125,18 @@ describe('searchFilesOnBucket', () => {
     const searchFilesWithoutTarget = await searchFilesOnBucket({
       s3Connection: new AWS.S3({ region: 'testRegion' }),
       digitalBucket: 'testBucket',
+      tlLoc: mockTlLoc,
     })
 
     expect(searchFilesWithoutTarget).toEqual({
       Contents: ['test/path/1.txt', 'text/path/2.txt'],
     })
-    expect(spyLog.mock.calls).toEqual([
-      ["Searching 'test' prefix for files to delete"],
-      ["Searching 'root' prefix for files to delete"],
-    ])
+    expect(mockTlLoc.mock.calls).toEqual([['SearchingFiles', 'root']])
 
     AWS.clearAllMocks()
+  })
 
+  test('should show error on paginated list objects', async () => {
     AWS.spyOnEachPage('S3', 'listObjectsV2', [
       { Contents: ['test/path/1.txt'] },
       new Error('foos'),
@@ -135,9 +145,61 @@ describe('searchFilesOnBucket', () => {
       await searchFilesOnBucket({
         s3Connection: new AWS.S3({ region: 'testRegion' }),
         digitalBucket: 'testBucket',
+        tlLoc: mockTlLoc,
       })
     } catch (error) {
       expect(error).toEqual(new Error('foos'))
     }
+  })
+})
+
+describe('normalizeKeyPath', () => {
+  test('should return normalized path with flatten folders', () => {
+    const normalizeKeyPathResult = normalizeKeyPathDestination({
+      filePath: './Tests/fixtures/file-v1.0.1.txt',
+      digitalSourceFolder: './Tests/',
+      digitalFlattenFolders: true,
+    })
+
+    expect(normalizeKeyPathResult).toEqual('file-v1.0.1.txt')
+  })
+  test('should return normalized path with flatten folders and remove extra path.sep', () => {
+    const normalizeKeyPathResult = normalizeKeyPathDestination({
+      filePath: './Tests/fixtures/file-v1.0.1.txt',
+      digitalSourceFolder: './Tests',
+      digitalFlattenFolders: true,
+    })
+
+    expect(normalizeKeyPathResult).toEqual('file-v1.0.1.txt')
+  })
+  test('should return normalized path with flatten folders and set correctly target folder', () => {
+    const normalizeKeyPathResult = normalizeKeyPathDestination({
+      filePath: './Tests/fixtures/file-v1.0.1.txt',
+      digitalSourceFolder: './Tests/',
+      digitalFlattenFolders: true,
+      digitalTargetFolder: 'pathDOS/',
+    })
+
+    expect(normalizeKeyPathResult).toEqual('pathDOS/file-v1.0.1.txt')
+  })
+  test('should return normalized path without flatten folders and set correctly target folder', () => {
+    const normalizeKeyPathResult = normalizeKeyPathDestination({
+      filePath: './Tests/fixtures/file-v1.0.1.txt',
+      digitalSourceFolder: './Tests/',
+      digitalFlattenFolders: false,
+      digitalTargetFolder: 'pathDOS/',
+    })
+
+    expect(normalizeKeyPathResult).toEqual('pathDOS/fixtures/file-v1.0.1.txt')
+  })
+
+  test('should return normalized path without flatten folders and dont join target folder', () => {
+    const normalizeKeyPathResult = normalizeKeyPathDestination({
+      filePath: './Tests/fixtures/file-v1.0.1.txt',
+      digitalSourceFolder: './Tests/',
+      digitalFlattenFolders: false,
+    })
+
+    expect(normalizeKeyPathResult).toEqual('fixtures/file-v1.0.1.txt')
   })
 })
