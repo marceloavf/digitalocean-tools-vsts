@@ -1,21 +1,14 @@
 import AWS from 'aws-sdk'
 import * as fs from 'fs'
 import { isEmpty } from 'lodash'
-import * as path from 'path'
 import tl from './tl'
 import { Spaces } from '../common/Spaces'
 import { Parameters } from './Parameters'
 import { findFiles, getMimeTypes } from './utils'
+import { normalizeKeyPathDestination } from '../common/utils/filterFiles'
 import prettyBytes = require('pretty-bytes')
 const { default: PQueue } = require('p-queue')
 const pRetry = require('p-retry')
-
-interface NormalizePathParameters {
-  filePath: string
-  digitalSourceFolder?: string
-  digitalFlattenFolders: boolean
-  digitalTargetFolder?: string
-}
 
 interface UploadFileParameters {
   filePath: string
@@ -56,7 +49,10 @@ export class Upload extends Spaces<Parameters> {
     const errors: Error[] = []
 
     for (const filePath of files) {
-      const targetPath = this.normalizeKeyPath({ ...this.params, filePath })
+      const targetPath = normalizeKeyPathDestination({
+        ...this.params,
+        filePath,
+      })
 
       const contentType = getMimeTypes({
         filePath,
@@ -125,30 +121,5 @@ export class Upload extends Spaces<Parameters> {
     })
 
     return request.promise()
-  }
-
-  normalizeKeyPath(parameters: NormalizePathParameters): string {
-    let relativePath = parameters.filePath.substring(
-      parameters.digitalSourceFolder.length
-    )
-
-    if (relativePath.startsWith(path.sep)) {
-      relativePath = relativePath.substr(1)
-    }
-
-    let targetPath
-
-    if (parameters.digitalFlattenFolders) {
-      const flatFileName = path.basename(parameters.filePath)
-      targetPath = parameters.digitalTargetFolder
-        ? path.join(parameters.digitalTargetFolder, flatFileName)
-        : flatFileName
-    } else {
-      targetPath = parameters.digitalTargetFolder
-        ? path.join(parameters.digitalTargetFolder, relativePath)
-        : relativePath
-    }
-
-    return targetPath.replace(/\\/g, '/')
   }
 }
