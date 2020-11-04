@@ -1,11 +1,11 @@
 import { Download } from '@DOSDownload/utils/Download.ts'
-import { Readable as ReadableStream } from 'stream'
+import { PassThrough } from 'stream'
 import { EventEmitter } from 'events'
 const AWS = require('aws-sdk')
 const mockFs = require('mock-fs')
 
 interface MySelf extends EventEmitter {
-  createReadStream?: () => ReadableStream
+  createReadStream?: () => PassThrough
 }
 
 const spyLog = jest.spyOn(console, 'log')
@@ -25,10 +25,10 @@ describe('DOSDelete', () => {
     digitalRetryFailed: '2',
   }
 
-  const baseGetImplementation = (params: any) => {
+  const baseGetImplementation = () => {
     const self: MySelf = new EventEmitter()
     self.createReadStream = () => {
-      const dataStream = new ReadableStream()
+      const dataStream = new PassThrough()
       dataStream.push('data')
       dataStream.push(null)
       return dataStream
@@ -81,6 +81,41 @@ describe('DOSDelete', () => {
       [{ Bucket: 'test', Key: 'virtualpath/fixtures/file-v1.0.1.txt' }],
       [{ Bucket: 'test', Key: 'virtualpath/fixtures/file2-v1.3.1.json' }],
     ])
+  })
+
+  test('should fail on read stream error', async () => {
+    expect.assertions(4)
+    const listFiles = AWS.spyOnEachPage('S3', 'listObjectsV2', [
+      { Contents: [{ Key: 'virtualpath/fixtures/file-v1.0.1.txt' }] },
+      { Contents: [{ Key: 'virtualpath/fixtures/file2-v1.3.1.json' }] },
+    ])
+
+    mockFs({
+      'virtualpath/fixtures': {
+        'file-v1.0.1.txt': '',
+        'file2-v1.3.1.json': '',
+      },
+    })
+
+    const get = AWS.spyOn('S3', 'getObject').mockImplementation(() => {
+      throw new Error('returned error')
+    })
+
+    const downloadFiles = new Download({
+      ...baseParameters,
+      digitalOverwrite: true,
+      digitalFlattenFolders: false,
+      digitalTargetFolder: 'virtualpath/fixtures/output',
+    })
+
+    try {
+      await downloadFiles.init()
+    } catch (e) {
+      expect(listFiles).toHaveBeenCalledTimes(1)
+      expect(get).toHaveBeenCalledTimes(6)
+      expect(e).toMatchSnapshot()
+      expect(spyError.mock.calls).toMatchSnapshot()
+    }
   })
 
   test('should log "files not found" when nothing in bucket and stop without error', async () => {
