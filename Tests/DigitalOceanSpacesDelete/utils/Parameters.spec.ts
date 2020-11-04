@@ -1,3 +1,4 @@
+import { sharedParameters } from '../../dry/utils/parametersTest'
 import { Parameters } from '@DOSDelete/utils/Parameters.ts'
 import tl from '@DOSDelete/utils/tl'
 
@@ -21,21 +22,5 @@ describe('Parameters', () => {
     spy.mockRestore()
   })
 
-  test('should throw error in ParametersBase if endpoint is not set', () => {
-    const spy = jest
-      .spyOn(tl, 'getEndpointAuthorization')
-      .mockImplementation(() => {
-        throw new Error('test')
-      })
-
-    expect(() => new Parameters()).toThrowError('test')
-
-    spy.mockRestore()
-  })
-
-  test('should throw error in Parameters if nothing is set', () => {
-    expect(() => new Parameters()).toThrowError(
-      'Input required: digitalGlobExpressions'
-    )
-  })
+  sharedParameters({ tl, Parameters })
 })
