@@ -146,11 +146,12 @@ export class Download extends Spaces<Parameters> {
       const fileWriteStream = createWriteStream(targetPath)
       const objectStream = request.createReadStream()
 
-      objectStream.on('error', (error) => reject(error))
-      fileWriteStream.on('error', (error) => reject(error))
-      fileWriteStream.on('close', resolve)
-
-      objectStream.pipe(fileWriteStream)
+      // info: https://dev.to/cdanielsen/testing-streams-a-primer-3n6e
+      objectStream
+        .on('error', reject)
+        .pipe(fileWriteStream)
+        .on('finish', resolve)
+        .on('error', reject)
     })
   }
 
