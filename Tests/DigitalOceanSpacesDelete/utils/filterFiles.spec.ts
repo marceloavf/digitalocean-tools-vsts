@@ -5,6 +5,9 @@ import {
 } from '@DOSDelete/common/utils/filterFiles'
 const AWS = require('aws-sdk')
 
+const spyLog = jest.spyOn(console, 'log')
+const mockTlLoc = jest.fn()
+
 const contents = [
   {
     Key: 'Tests/fixtures/file-v1.0.1.txt',
@@ -17,8 +20,12 @@ const contents = [
   },
 ]
 
-const spyLog = jest.spyOn(console, 'log')
-const mockTlLoc = jest.fn()
+const baseFilterFilesOnList = {
+  listedObjects: {
+    Contents: contents,
+  },
+  tlLoc: mockTlLoc,
+}
 
 afterEach(() => {
   spyLog.mockClear()
@@ -32,25 +39,15 @@ describe('filterFilesOnList', () => {
   test('should return all files based on glob expressions', () => {
     const filterFiles = filterFilesOnList({
       digitalGlobExpressions: ['**'],
-      listedObjects: {
-        Contents: contents,
-      },
-      tlLoc: mockTlLoc,
+      ...baseFilterFilesOnList,
     })
 
-    expect(filterFiles).toEqual([
-      { Key: 'Tests/fixtures/file-v1.0.1.txt' },
-      { Key: 'Tests/fixtures/file-v1.2.1.txt' },
-      { Key: 'Tests/fixtures/file-v1.3.1.json' },
-    ])
+    expect(filterFiles).toEqual(contents)
   })
   test('should return only .txt files based on glob expressions', () => {
     const filterFiles = filterFilesOnList({
       digitalGlobExpressions: ['**.txt'],
-      listedObjects: {
-        Contents: contents,
-      },
-      tlLoc: mockTlLoc,
+      ...baseFilterFilesOnList,
     })
 
     expect(filterFiles).toEqual([

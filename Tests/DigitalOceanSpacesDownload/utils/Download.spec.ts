@@ -8,6 +8,20 @@ interface MySelf extends EventEmitter {
   createReadStream?: () => PassThrough
 }
 
+const baseListFiles = () =>
+  AWS.spyOnEachPage('S3', 'listObjectsV2', [
+    { Contents: [{ Key: 'virtualpath/fixtures/file-v1.0.1.txt' }] },
+    { Contents: [{ Key: 'virtualpath/fixtures/file2-v1.3.1.json' }] },
+  ])
+
+const baseMockFs = () =>
+  mockFs({
+    'virtualpath/fixtures': {
+      'file-v1.0.1.txt': '',
+      'file2-v1.3.1.json': '',
+    },
+  })
+
 const spyLog = jest.spyOn(console, 'log')
 const spyError = jest.spyOn(console, 'error')
 
@@ -40,6 +54,9 @@ describe('DOSDelete', () => {
     return self
   }
 
+  const baseGet = () =>
+    AWS.spyOn('S3', 'getObject').mockImplementation(baseGetImplementation)
+
   afterEach(() => {
     spyLog.mockClear()
     spyError.mockClear()
@@ -49,21 +66,11 @@ describe('DOSDelete', () => {
 
   test('should download files successfully', async () => {
     expect.assertions(2)
-    const listFiles = AWS.spyOnEachPage('S3', 'listObjectsV2', [
-      { Contents: [{ Key: 'virtualpath/fixtures/file-v1.0.1.txt' }] },
-      { Contents: [{ Key: 'virtualpath/fixtures/file2-v1.3.1.json' }] },
-    ])
+    const listFiles = baseListFiles()
 
-    mockFs({
-      'virtualpath/fixtures': {
-        'file-v1.0.1.txt': '',
-        'file2-v1.3.1.json': '',
-      },
-    })
+    baseMockFs()
 
-    const get = AWS.spyOn('S3', 'getObject').mockImplementation(
-      baseGetImplementation
-    )
+    const get = baseGet()
 
     const downloadFiles = new Download({
       ...baseParameters,
@@ -85,17 +92,9 @@ describe('DOSDelete', () => {
 
   test('should fail on read stream error', async () => {
     expect.assertions(4)
-    const listFiles = AWS.spyOnEachPage('S3', 'listObjectsV2', [
-      { Contents: [{ Key: 'virtualpath/fixtures/file-v1.0.1.txt' }] },
-      { Contents: [{ Key: 'virtualpath/fixtures/file2-v1.3.1.json' }] },
-    ])
+    const listFiles = baseListFiles()
 
-    mockFs({
-      'virtualpath/fixtures': {
-        'file-v1.0.1.txt': '',
-        'file2-v1.3.1.json': '',
-      },
-    })
+    baseMockFs()
 
     const get = AWS.spyOn('S3', 'getObject').mockImplementation(() => {
       throw new Error('returned error')
@@ -146,10 +145,7 @@ describe('DOSDelete', () => {
 
   test('should log "files not found" when nothing matches in glob filter and stop without error', async () => {
     expect.assertions(2)
-    const listFiles = AWS.spyOnEachPage('S3', 'listObjectsV2', [
-      { Contents: [{ Key: 'virtualpath/fixtures/file-v1.0.1.txt' }] },
-      { Contents: [{ Key: 'virtualpath/fixtures/file2-v1.3.1.json' }] },
-    ])
+    const listFiles = baseListFiles()
 
     const downloadFiles = new Download({
       ...baseParameters,
@@ -175,21 +171,11 @@ describe('DOSDelete', () => {
 
   test('should log overwrite when enabled and continue', async () => {
     expect.assertions(2)
-    const listFiles = AWS.spyOnEachPage('S3', 'listObjectsV2', [
-      { Contents: [{ Key: 'virtualpath/fixtures/file-v1.0.1.txt' }] },
-      { Contents: [{ Key: 'virtualpath/fixtures/file2-v1.3.1.json' }] },
-    ])
+    const listFiles = baseListFiles()
 
-    mockFs({
-      'virtualpath/fixtures': {
-        'file-v1.0.1.txt': '',
-        'file2-v1.3.1.json': '',
-      },
-    })
+    baseMockFs()
 
-    const get = AWS.spyOn('S3', 'getObject').mockImplementation(
-      baseGetImplementation
-    )
+    const get = baseGet()
 
     const downloadFiles = new Download({
       ...baseParameters,
@@ -211,17 +197,9 @@ describe('DOSDelete', () => {
 
   test('should log overwrite error when disabled and stop', async () => {
     expect.assertions(2)
-    const listFiles = AWS.spyOnEachPage('S3', 'listObjectsV2', [
-      { Contents: [{ Key: 'virtualpath/fixtures/file-v1.0.1.txt' }] },
-      { Contents: [{ Key: 'virtualpath/fixtures/file2-v1.3.1.json' }] },
-    ])
+    baseListFiles()
 
-    mockFs({
-      'virtualpath/fixtures': {
-        'file-v1.0.1.txt': '',
-        'file2-v1.3.1.json': '',
-      },
-    })
+    baseMockFs()
 
     const downloadFiles = new Download({
       ...baseParameters,
