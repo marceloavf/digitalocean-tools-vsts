@@ -11,6 +11,7 @@
         "lodash": "^4.17.10",
         "p-queue": "^6.6.2",
         "p-retry": "^4.2.0",
-        "pretty-bytes": "^5.1.0"
+        "pretty-bytes": "^5.1.0",
+        "matcher": "^3.0.0"
     }
 }
