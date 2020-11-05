@@ -69,3 +69,7 @@ The [source](https://github.com/marceloavf/digitalocean-tools-vsts) for this ext
 ## Release Notes
 
 Please refer to our [release page on Github](https://github.com/marceloavf/digitalocean-tools-vsts/releases)
+
+## Tips & Tweaks
+
+- [**Performance Tips for DigitalOcean Spaces**](https://www.digitalocean.com/docs/spaces/resources/performance-tips/)

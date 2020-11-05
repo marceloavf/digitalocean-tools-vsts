@@ -28,6 +28,10 @@ DigitalOcean Tools
 
 You can find the latest stable version of the Azure DevOps Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).
 
+## 🔮 &nbsp; Tips & Tweaks
+
+- [**Performance Tips for DigitalOcean Spaces**](https://www.digitalocean.com/docs/spaces/resources/performance-tips/)
+
 ## 🤝 &nbsp; Contribute
 
 Contributions, issues and feature requests are very welcome. Please make sure to read the [Contributing Guide](/CONTRIBUTING.md) before making a pull request.
@@ -36,6 +40,6 @@ Contributions, issues and feature requests are very welcome. Please make sure to
 
 Please refer to our [wiki page](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/Known-Issues)
 
-## 📑 License
+## 📑 &nbsp; License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts?ref=badge_large)
