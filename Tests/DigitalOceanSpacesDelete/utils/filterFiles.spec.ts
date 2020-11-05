@@ -2,7 +2,7 @@ import {
   filterFilesOnList,
   searchFilesOnBucket,
   normalizeKeyPathDestination,
-} from '@DOSDelete/common/utils/filterFiles'
+} from '@Common/utils/filterFiles'
 const AWS = require('aws-sdk')
 
 const spyLog = jest.spyOn(console, 'log')

@@ -2,11 +2,11 @@ import AWS from 'aws-sdk'
 import { existsSync, createWriteStream } from 'fs'
 import { isEmpty } from 'lodash'
 import tl from './tl'
-import { Spaces } from '../common/Spaces'
+import { Spaces } from '@Common/Spaces'
 import {
   filterFilesOnList,
   searchFilesOnBucket,
-} from '../common/utils/filterFiles'
+} from '@Common/utils/filterFiles'
 import { Parameters } from './Parameters'
 import prettyBytes = require('pretty-bytes')
 import path = require('path')

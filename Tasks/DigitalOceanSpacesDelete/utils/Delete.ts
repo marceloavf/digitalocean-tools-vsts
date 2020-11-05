@@ -1,10 +1,10 @@
 import AWS from 'aws-sdk'
 import tl from './tl'
-import { Spaces } from '../common/Spaces'
+import { Spaces } from '@Common/Spaces'
 import {
   filterFilesOnList,
   searchFilesOnBucket,
-} from '../common/utils/filterFiles'
+} from '@Common/utils/filterFiles'
 import { Parameters } from './Parameters'
 import { getDeletableSemanticVersion } from './filterSemanticVersion'
 

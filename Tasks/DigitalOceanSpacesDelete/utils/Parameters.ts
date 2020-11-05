@@ -1,4 +1,4 @@
-import { ParametersBase } from '../common/ParametersBase'
+import { ParametersBase } from '@Common/ParametersBase'
 import tl from './tl'
 
 export class Parameters extends ParametersBase {

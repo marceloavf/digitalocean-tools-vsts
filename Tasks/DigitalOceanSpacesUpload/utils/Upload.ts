@@ -2,10 +2,10 @@ import AWS from 'aws-sdk'
 import * as fs from 'fs'
 import { isEmpty } from 'lodash'
 import tl from './tl'
-import { Spaces } from '../common/Spaces'
+import { Spaces } from '@Common/Spaces'
 import { Parameters } from './Parameters'
 import { findFiles, getMimeTypes } from './utils'
-import { normalizeKeyPathDestination } from '../common/utils/filterFiles'
+import { normalizeKeyPathDestination } from '@Common/utils/filterFiles'
 import prettyBytes = require('pretty-bytes')
 const { default: PQueue } = require('p-queue')
 const pRetry = require('p-retry')
