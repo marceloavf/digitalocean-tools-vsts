@@ -1,9 +1,12 @@
 import AWS from 'aws-sdk'
-import tl from './tl'
-import { Spaces } from '../common/Spaces'
+import tl from '../tl'
+import { Spaces } from '@Common/Spaces'
+import {
+  filterFilesOnList,
+  searchFilesOnBucket,
+} from '@Common/utils/filterFiles'
 import { Parameters } from './Parameters'
 import { getDeletableSemanticVersion } from './filterSemanticVersion'
-import { filterFilesOnList, searchFilesOnBucket } from './filterFiles'
 
 export class Delete extends Spaces<Parameters> {
   constructor(params: Parameters) {
@@ -11,32 +14,28 @@ export class Delete extends Spaces<Parameters> {
   }
 
   public async init(): Promise<void> {
-    console.log(
-      tl.loc(
-        'DeletingFiles',
-        this.params.digitalTargetFolder
-          ? this.params.digitalTargetFolder
-          : 'root',
-        this.params.digitalBucket
-      )
-    )
-
     try {
+      const baseTargetFolderMessage = this.params.digitalTargetFolder
+        ? this.params.digitalTargetFolder
+        : 'root'
+
+      console.log(
+        tl.loc(
+          'DeletingFiles',
+          baseTargetFolderMessage,
+          this.params.digitalBucket
+        )
+      )
+
       const listedObjects = await searchFilesOnBucket({
         digitalBucket: this.params.digitalBucket,
         s3Connection: this.s3Connection,
         digitalTargetFolder: this.params.digitalTargetFolder,
+        tlLoc: tl.loc,
       })
 
       if (listedObjects.Contents.length === 0) {
-        console.log(
-          tl.loc(
-            'FilesNotFound',
-            this.params.digitalTargetFolder
-              ? this.params.digitalTargetFolder
-              : 'root'
-          )
-        )
+        console.log(tl.loc('FilesNotFound', baseTargetFolderMessage))
         return
       }
 
@@ -52,6 +51,7 @@ export class Delete extends Spaces<Parameters> {
           digitalGlobExpressions: this.params.digitalGlobExpressions,
           listedObjects,
           digitalTargetFolder: this.params.digitalTargetFolder,
+          tlLoc: tl.loc,
         })
       }
 
@@ -67,9 +67,7 @@ export class Delete extends Spaces<Parameters> {
       console.log(
         tl.loc(
           'DeletingFilesCompleted',
-          this.params.digitalTargetFolder
-            ? this.params.digitalTargetFolder
-            : 'root',
+          baseTargetFolderMessage,
           this.params.digitalBucket
         )
       )

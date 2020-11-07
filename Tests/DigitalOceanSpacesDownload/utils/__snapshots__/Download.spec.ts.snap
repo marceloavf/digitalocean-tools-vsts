@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DOSDelete should fail on read stream error 1`] = `[Error: returned error,returned error]`;
+
+exports[`DOSDelete should fail on read stream error 2`] = `
+Array [
+  Array [
+    "File download failed",
+    [Error: returned error],
+  ],
+  Array [
+    "File download failed",
+    [Error: returned error],
+  ],
+  Array [
+    "File download failed",
+    [Error: returned error,returned error],
+  ],
+]
+`;
+
+exports[`DOSDelete should log overwrite error when disabled and stop 1`] = `[Error: File virtualpath/fixtures/file-v1.0.1.txt already exists for key virtualpath/fixtures/file-v1.0.1.txt, overwrite option is setted to not allow]`;
+
+exports[`DOSDelete should log overwrite error when disabled and stop 2`] = `
+Array [
+  Array [
+    "File download failed",
+    [Error: File virtualpath/fixtures/file-v1.0.1.txt already exists for key virtualpath/fixtures/file-v1.0.1.txt, overwrite option is setted to not allow],
+  ],
+]
+`;

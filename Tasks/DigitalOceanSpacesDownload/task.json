@@ -1,0 +1,141 @@
+{
+  "id": "212808fd-b857-4200-b310-b0932d0646de",
+  "name": "DigitalOcean",
+  "friendlyName": "DigitalOcean Spaces Download",
+  "instanceNameFormat": "DigitalOcean Spaces Download $(Arguments)",
+  "description": "Download file or folder content of DigitalOcean Spaces Bucket",
+  "author": "Marcelo Formentão",
+  "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "demands": [],
+  "groups": [
+    {
+      "name": "advanced",
+      "displayName": "Advanced",
+      "isExpanded": false
+    }
+  ],
+  "minimumAgentVersion": "1.91.0",
+  "inputs": [
+    {
+      "name": "digitalCredentials",
+      "type": "connectedService:aws",
+      "label": "DigitalOcean Connection",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown":
+      "Select the service endpoint for your DigitalOcean connection. <br>To create one, click the Manage link and create a new service endpoint based on AWS configuration."
+    },
+    {
+      "name": "digitalRegion",
+      "type": "string",
+      "label": "DigitalOcean Region",
+      "required": true,
+      "helpMarkDown":
+      "The DigitalOcean datacenter region code (nyc3, ams3, sgp1, etc.) of the region containing the Spaces resource(s) the task will use."
+    },
+    {
+      "name": "digitalBucket",
+      "type": "string",
+      "label": "Bucket Name",
+      "required": true,
+      "helpMarkDown":
+      "The name of the bucket where the content will be downloaded."
+    },
+    {
+      "name": "digitalGlobExpressions",
+      "type": "multiLine",
+      "label": "Filename Patterns",
+      "defaultValue": "**",
+      "required": true,
+      "helpMarkDown": "Glob patterns to select the file and folder content to be downloaded. <br>Supports multiple lines of minimatch patterns and also exclude patterns."
+    },
+    {
+      "name": "digitalSourceFolder",
+      "type": "string",
+      "label": "Source Folder",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "The source folder (referred to as a key prefix in Spaces) that the content pattern(s) will be run against. <br>If not set the root of the work area is assumed"
+    },
+    {
+      "name": "digitalTargetFolder",
+      "type": "filePath",
+      "label": "Target Folder",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "The target folder on your build host to contain the downloaded content. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988)."
+    },
+    {
+      "groupName": "advanced",
+      "name": "digitalFlattenFolders",
+      "type": "boolean",
+      "label": "Flatten Folders",
+      "defaultValue": "false",
+      "required": false,
+      "helpMarkDown": "Flatten the folder structure and download all files into the specified target folder."
+    },
+    {
+      "groupName": "advanced",
+      "name": "digitalOverwrite",
+      "type": "boolean",
+      "label": "Overwrite",
+      "defaultValue": "true",
+      "required": false,
+      "helpMarkDown": "Enable to replace existing files in target folder. An error is thrown if it tries to replace existing files with overwrite disabled."
+    },
+    {
+      "groupName": "advanced",
+      "name": "digitalQueueConcurrency",
+      "type": "string",
+      "label": "Concurrency limit",
+      "defaultValue": "4",
+      "required": true,
+      "helpMarkDown": "Specify how many files to download simultaneously."
+    },
+    {
+      "groupName": "advanced",
+      "name": "digitalRetryFailed",
+      "type": "string",
+      "label": "Retry failed limit",
+      "defaultValue": "2",
+      "required": true,
+      "helpMarkDown": "Specify how many times to retry a failed download."
+    }
+  ],
+  "dataSourceBindings": [
+  ],
+  "execution": {
+    "Node10": {
+      "target": "index.js",
+      "argumentFormat": ""
+    }
+  },
+  "messages": {
+    "StartDownloadFiles": "Downloading files from %s to %s in bucket %s",
+    "FilesNotFound": "No files found at '%s'",
+    "FileOverwriteAlert": "File %s already exists for key %s, it will be overwriten",
+    "FileOverwriteError": "File %s already exists for key %s, overwrite option is setted to not allow",
+    "FileDownloadCompleted": "Completed download of %s to %s",
+    "FileDownloadFailed": "File download failed",
+    "FileDownloadProgress": "Download progress is %s of %s - %d%",
+    "TaskCompleted": "All downloads completed",
+    "SearchingFiles": "Searching '%s' prefix for files to delete",
+    "FilesNotMatched": "No files matched at '%s'",
+    "FilteringFiles": "Filtering files using '%s' pattern",
+    "MatchedFile": "Matched file %s"
+  }
+}

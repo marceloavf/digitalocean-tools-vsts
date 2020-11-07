@@ -1,17 +1,26 @@
 import AWS from 'aws-sdk'
 import { isEmpty } from 'lodash'
+import * as path from 'path'
 import matcher from 'matcher'
-import tl from './tl'
 
 interface FilterFilesOnList {
   digitalGlobExpressions: string[]
   listedObjects: AWS.S3.ListObjectsV2Output
   digitalTargetFolder?: string
+  tlLoc: (key: string, ...param: any[]) => void
 }
 
 interface SearchFilesOnBucket {
   digitalBucket: string
   s3Connection: AWS.S3
+  digitalTargetFolder?: string
+  tlLoc: (key: string, ...param: any[]) => void
+}
+
+interface NormalizePathParameters {
+  filePath: string
+  digitalSourceFolder?: string
+  digitalFlattenFolders: boolean
   digitalTargetFolder?: string
 }
 
@@ -21,7 +30,9 @@ interface SearchFilesOnBucket {
 export const filterFilesOnList = (
   parameters: FilterFilesOnList
 ): AWS.S3.ObjectIdentifier[] => {
-  console.log(tl.loc('FilteringFiles', parameters.digitalGlobExpressions))
+  console.log(
+    parameters.tlLoc('FilteringFiles', parameters.digitalGlobExpressions)
+  )
 
   const result: AWS.S3.ObjectIdentifier[] = parameters.listedObjects.Contents.map(
     ({ Key }) => {
@@ -30,13 +41,13 @@ export const filterFilesOnList = (
   ).filter(({ Key }) => {
     // If doesn't match, matcher will return an empty array that isEmpty will get it
     const itMatch = !isEmpty(matcher([Key], parameters.digitalGlobExpressions))
-    if (itMatch) console.log(tl.loc('MatchedFile', Key))
+    if (itMatch) console.log(parameters.tlLoc('MatchedFile', Key))
     return itMatch
   })
 
   if (isEmpty(result))
     console.log(
-      tl.loc(
+      parameters.tlLoc(
         'FilesNotMatched',
         parameters.digitalTargetFolder ? parameters.digitalTargetFolder : 'root'
       )
@@ -52,7 +63,7 @@ export const searchFilesOnBucket = async (
   parameters: SearchFilesOnBucket
 ): Promise<AWS.S3.ListObjectsV2Output> => {
   console.log(
-    tl.loc(
+    parameters.tlLoc(
       'SearchingFiles',
       parameters.digitalTargetFolder ? parameters.digitalTargetFolder : 'root'
     )
@@ -78,4 +89,31 @@ export const searchFilesOnBucket = async (
   })
 
   return listObjects
+}
+
+export const normalizeKeyPathDestination = (
+  parameters: NormalizePathParameters
+): string => {
+  let relativePath = parameters.filePath.substring(
+    parameters.digitalSourceFolder.length
+  )
+
+  if (relativePath.startsWith(path.sep)) {
+    relativePath = relativePath.substr(1)
+  }
+
+  let targetPath
+
+  if (parameters.digitalFlattenFolders) {
+    const flatFileName = path.basename(parameters.filePath)
+    targetPath = parameters.digitalTargetFolder
+      ? path.join(parameters.digitalTargetFolder, flatFileName)
+      : flatFileName
+  } else {
+    targetPath = parameters.digitalTargetFolder
+      ? path.join(parameters.digitalTargetFolder, relativePath)
+      : relativePath
+  }
+
+  return targetPath.replace(/\\/g, '/')
 }

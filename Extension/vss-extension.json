@@ -22,6 +22,7 @@
     "publish",
     "upload",
     "delete",
+    "download",
     "s3",
     "spaces",
     "node",

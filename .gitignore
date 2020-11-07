@@ -263,3 +263,13 @@ Common/**/*.d.ts
 coverage/
 
 .taskkey
+
+# Related to azure tasks
+dist
+Tasks/**/dependencies/
+
+*.LICENSE.txt
+Tasks/**/LICENSE.txt
+
+Tasks/**/lib.json
+Tasks/**/resources.resjson/**

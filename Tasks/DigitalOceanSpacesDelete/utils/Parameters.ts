@@ -1,5 +1,5 @@
-import { ParametersBase } from '../common/ParametersBase'
-import tl from './tl'
+import { ParametersBase } from '@Common/ParametersBase'
+import tl from '../tl'
 
 export class Parameters extends ParametersBase {
   public digitalGlobExpressions: string[]

@@ -20,12 +20,17 @@ DigitalOcean Tools
 
 ## 🗃 &nbsp; Tasks included
 
-- 🔹 &nbsp; [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Upload) Upload file(s) and folder(s) content to DigitalOcean Spaces Bucket.
-- 🔹 &nbsp; [**DigitalOcean Spaces Delete:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Delete) Delete file(s) from DigitalOcean Spaces Bucket.
+- 🔹 &nbsp; [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-upload) Upload file(s) and folder(s) content to DigitalOcean Spaces Bucket.
+- 🔹 &nbsp; [**DigitalOcean Spaces Delete:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-delete) Delete file(s) from DigitalOcean Spaces Bucket.
+- 🔹 &nbsp; [**DigitalOcean Spaces Download:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-download) Download file(s) from DigitalOcean Spaces Bucket.
 
 ## 📟 &nbsp; Install the extension to your account
 
 You can find the latest stable version of the Azure DevOps Extension tasks on the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=marcelo-formentao.digitalocean-tools).
+
+## 🔮 &nbsp; Tips & Tweaks
+
+- [**Performance Tips for DigitalOcean Spaces**](https://www.digitalocean.com/docs/spaces/resources/performance-tips/)
 
 ## 🤝 &nbsp; Contribute
 
@@ -35,6 +40,6 @@ Contributions, issues and feature requests are very welcome. Please make sure to
 
 Please refer to our [wiki page](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/Known-Issues)
 
+## 📑 &nbsp; License
 
-## License
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmarceloavf%2Fdigitalocean-tools-vsts?ref=badge_large)

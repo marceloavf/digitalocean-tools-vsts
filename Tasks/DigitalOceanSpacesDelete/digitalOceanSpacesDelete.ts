@@ -1,4 +1,4 @@
-import tl from './utils/tl'
+import tl from './tl'
 import { Delete } from './utils/Delete'
 import { Parameters } from './utils/Parameters'
 

@@ -3,10 +3,10 @@ import tl from '../tl'
 
 export class Parameters extends ParametersBase {
   public digitalSourceFolder?: string
+  public digitalTargetFolder: string
   public digitalGlobExpressions: string[]
-  public digitalAcl: string
   public digitalFlattenFolders: boolean
-  public digitalContentType?: string
+  public digitalOverwrite: boolean
   public digitalQueueConcurrency: string
   public digitalRetryFailed: string
 
@@ -18,10 +18,10 @@ export class Parameters extends ParametersBase {
         '\n',
         true
       )
-      this.digitalAcl = tl.getInput('digitalAcl')
-      this.digitalSourceFolder = tl.getPathInput('digitalSourceFolder')
+      this.digitalTargetFolder = tl.getPathInput('digitalTargetFolder')
+      this.digitalSourceFolder = tl.getInput('digitalSourceFolder')
       this.digitalFlattenFolders = tl.getBoolInput('digitalFlattenFolders')
-      this.digitalContentType = tl.getInput('digitalContentType')
+      this.digitalOverwrite = tl.getBoolInput('digitalOverwrite')
       this.digitalQueueConcurrency = tl.getInput('digitalQueueConcurrency')
       this.digitalRetryFailed = tl.getInput('digitalRetryFailed')
     } catch (error) {

@@ -1,4 +1,4 @@
-import tl from './tl'
+import tl from '../tl'
 import * as path from 'path'
 import knownMimeTypes from './knownMimeTypes'
 

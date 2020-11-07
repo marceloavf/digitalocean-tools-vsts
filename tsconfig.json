@@ -5,26 +5,28 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "target": "es6",
-    "sourceMap": false,
-    "inlineSourceMap": true,
+    "target": "ES6",
+    "sourceMap": true,
     "declaration": true,
     "newLine": "lf",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "importsNotUsedAsValues": "preserve",
     "baseUrl": ".",
     "paths": {
       "@DOSUpload/*": ["Tasks/DigitalOceanSpacesUpload/*"],
-      "@DOSDelete/*": ["Tasks/DigitalOceanSpacesDelete/*"]
+      "@DOSDelete/*": ["Tasks/DigitalOceanSpacesDelete/*"],
+      "@DOSDownload/*": ["Tasks/DigitalOceanSpacesDownload/*"],
+      "@Common/*": ["Common/Node/*"]
     }
   },
   "include": [
     "./Tasks/**/*.ts",
-    "./Tests/**/*.ts",
-    "./Commom/Node/**/*.ts"
+    "./Tests/**/*.ts"
   ],
   "exclude": [
     "node_modules",
+    "dist",
     ".BuildOutput"
   ]
 }

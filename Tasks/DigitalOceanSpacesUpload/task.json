@@ -134,7 +134,7 @@
   "dataSourceBindings": [
   ],
   "execution": {
-    "Node": {
+    "Node10": {
       "target": "index.js",
       "argumentFormat": ""
     }

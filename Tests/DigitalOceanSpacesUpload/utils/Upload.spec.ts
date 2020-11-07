@@ -48,8 +48,6 @@ describe('DOSUpload', () => {
 
     const upload = new Upload(baseParameters)
 
-    const normalizePaths = jest.spyOn(upload, 'normalizeKeyPath')
-
     await upload.init()
 
     expect(uploadFiles.mock.calls[0][0].ACL).toEqual('test')
@@ -68,43 +66,6 @@ describe('DOSUpload', () => {
       'application/octet-stream'
     )
     expect(uploadFiles.mock.calls[2][0].Key).toEqual('file2-v1.3.1.json')
-
-    expect(normalizePaths).toHaveBeenCalledTimes(3)
-
-    const baseNormalizePathsReturn = {
-      digitalAcl: 'test',
-      digitalBucket: 'test',
-      digitalCredentials: 'test',
-      digitalEndpoint: {
-        parameters: { password: 'test', username: 'test' },
-        scheme: 'test',
-      },
-      digitalFlattenFolders: false,
-      digitalGlobExpressions: ['**'],
-      digitalQueueConcurrency: '4',
-      digitalRegion: 'test',
-      digitalRetryFailed: '2',
-      digitalSourceFolder: 'Tests/fixtures/',
-      filePath: 'Tests/fixtures/file1-v1.2.1.txt',
-    }
-
-    expect(normalizePaths).toHaveBeenNthCalledWith(1, {
-      ...baseNormalizePathsReturn,
-      filePath: 'Tests/fixtures/file-v1.0.1.txt',
-    })
-    expect(normalizePaths).toHaveBeenNthCalledWith(2, {
-      ...baseNormalizePathsReturn,
-      filePath: 'Tests/fixtures/file1-v1.2.1.txt',
-    })
-    expect(normalizePaths).toHaveBeenNthCalledWith(3, {
-      ...baseNormalizePathsReturn,
-      filePath: 'Tests/fixtures/file2-v1.3.1.json',
-    })
-    expect(normalizePaths.mock.results).toEqual([
-      { type: 'return', value: 'file-v1.0.1.txt' },
-      { type: 'return', value: 'file1-v1.2.1.txt' },
-      { type: 'return', value: 'file2-v1.3.1.json' },
-    ])
 
     expect(spyLog.mock.calls.sort()).toMatchSnapshot()
     expect(spyLog).toHaveBeenCalledTimes(15)
@@ -140,57 +101,7 @@ describe('DOSUpload', () => {
     } catch (e) {
       expect(uploadFn).toHaveBeenCalledTimes(6)
       expect(e).toMatchSnapshot()
-      console.log(spyError.mock.calls)
       expect(spyError.mock.calls).toMatchSnapshot()
     }
-  })
-
-  describe('normalizeKeyPath', () => {
-    test('should return normalized path with flatten folders', () => {
-      const upload = new Upload(baseParameters)
-
-      const normalizeKeyPathResult = upload.normalizeKeyPath({
-        filePath: './Tests/fixtures/file-v1.0.1.txt',
-        digitalSourceFolder: './Tests/',
-        digitalFlattenFolders: true,
-      })
-
-      expect(normalizeKeyPathResult).toEqual('file-v1.0.1.txt')
-    })
-    test('should return normalized path with flatten folders and remove extra path.sep', () => {
-      const upload = new Upload(baseParameters)
-
-      const normalizeKeyPathResult = upload.normalizeKeyPath({
-        filePath: './Tests/fixtures/file-v1.0.1.txt',
-        digitalSourceFolder: './Tests',
-        digitalFlattenFolders: true,
-      })
-
-      expect(normalizeKeyPathResult).toEqual('file-v1.0.1.txt')
-    })
-    test('should return normalized path with flatten folders and set correctly target folder', () => {
-      const upload = new Upload(baseParameters)
-
-      const normalizeKeyPathResult = upload.normalizeKeyPath({
-        filePath: './Tests/fixtures/file-v1.0.1.txt',
-        digitalSourceFolder: './Tests/',
-        digitalFlattenFolders: true,
-        digitalTargetFolder: 'pathDOS/',
-      })
-
-      expect(normalizeKeyPathResult).toEqual('pathDOS/file-v1.0.1.txt')
-    })
-    test('should return normalized path without flatten folders and set correctly target folder', () => {
-      const upload = new Upload(baseParameters)
-
-      const normalizeKeyPathResult = upload.normalizeKeyPath({
-        filePath: './Tests/fixtures/file-v1.0.1.txt',
-        digitalSourceFolder: './Tests/',
-        digitalFlattenFolders: false,
-        digitalTargetFolder: 'pathDOS/',
-      })
-
-      expect(normalizeKeyPathResult).toEqual('pathDOS/fixtures/file-v1.0.1.txt')
-    })
   })
 })

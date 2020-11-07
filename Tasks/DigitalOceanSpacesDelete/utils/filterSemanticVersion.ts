@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk'
 import { isEmpty, sortedUniq, dropRight, includes } from 'lodash'
 import * as semver from 'semver'
-import tl from './tl'
+import tl from '../tl'
 
 enum Sort {
   aBiggerThanB = -1,

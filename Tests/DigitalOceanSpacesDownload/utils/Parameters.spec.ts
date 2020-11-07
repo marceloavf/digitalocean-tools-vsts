@@ -1,6 +1,6 @@
 import { sharedParameters } from '../../dry/utils/parametersTest'
-import { Parameters } from '@DOSDelete/utils/Parameters.ts'
-import tl from '@DOSDelete/tl.ts'
+import { Parameters } from '@DOSDownload/utils/Parameters.ts'
+import tl from '@DOSDownload/tl.ts'
 
 describe('Parameters', () => {
   test('should set and return correctly', () => {
@@ -11,11 +11,14 @@ describe('Parameters', () => {
     expect(digitalParameters).toEqual({
       digitalBucket: undefined,
       digitalCredentials: undefined,
-      digitalEnableSemver: false,
       digitalEndpoint: undefined,
+      digitalFlattenFolders: false,
       digitalGlobExpressions: ['test'],
+      digitalOverwrite: false,
+      digitalQueueConcurrency: undefined,
       digitalRegion: undefined,
-      digitalSemverKeepOnly: NaN,
+      digitalRetryFailed: undefined,
+      digitalSourceFolder: undefined,
       digitalTargetFolder: undefined,
     })
 
