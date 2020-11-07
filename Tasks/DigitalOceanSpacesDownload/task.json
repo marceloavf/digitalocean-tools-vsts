@@ -65,7 +65,7 @@
     },
     {
       "name": "digitalSourceFolder",
-      "type": "filePath",
+      "type": "string",
       "label": "Source Folder",
       "defaultValue": "",
       "required": false,
@@ -73,9 +73,9 @@
     },
     {
       "name": "digitalTargetFolder",
-      "type": "string",
+      "type": "filePath",
       "label": "Target Folder",
-      "defaultValue": "$(Agent.BuildDirectory)",
+      "defaultValue": "",
       "required": true,
       "helpMarkDown": "The target folder on your build host to contain the downloaded content. You can use [variables](https://go.microsoft.com/fwlink/?LinkID=550988)."
     },

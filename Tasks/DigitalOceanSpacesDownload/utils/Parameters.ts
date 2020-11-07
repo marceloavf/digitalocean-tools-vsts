@@ -19,7 +19,7 @@ export class Parameters extends ParametersBase {
         true
       )
       this.digitalTargetFolder = tl.getPathInput('digitalTargetFolder')
-      this.digitalSourceFolder = tl.getPathInput('digitalSourceFolder')
+      this.digitalSourceFolder = tl.getInput('digitalSourceFolder')
       this.digitalFlattenFolders = tl.getBoolInput('digitalFlattenFolders')
       this.digitalOverwrite = tl.getBoolInput('digitalOverwrite')
       this.digitalQueueConcurrency = tl.getInput('digitalQueueConcurrency')
