@@ -1,10 +1,10 @@
 import start from '@DOSUpload/digitalOceanSpacesUpload.ts'
 import { Upload } from '@DOSUpload/utils/Upload.ts'
 import { Parameters } from '@DOSUpload/utils/Parameters.ts'
-import tl from '@DOSUpload/utils/tl'
+import tl from '@DOSUpload/tl.ts'
 
 jest.mock('@DOSUpload/utils/Parameters.ts')
-jest.mock('@DOSUpload/utils/tl')
+jest.mock('@DOSUpload/tl.ts')
 jest.mock('@DOSUpload/utils/Upload.ts')
 
 describe('DOSUpload start', () => {

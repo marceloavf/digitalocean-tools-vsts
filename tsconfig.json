@@ -5,13 +5,13 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "target": "es6",
-    "sourceMap": false,
-    "inlineSourceMap": true,
+    "target": "ES6",
+    "sourceMap": true,
     "declaration": true,
     "newLine": "lf",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "importsNotUsedAsValues": "preserve",
     "baseUrl": ".",
     "paths": {
       "@DOSUpload/*": ["Tasks/DigitalOceanSpacesUpload/*"],
@@ -26,6 +26,7 @@
   ],
   "exclude": [
     "node_modules",
+    "dist",
     ".BuildOutput"
   ]
 }

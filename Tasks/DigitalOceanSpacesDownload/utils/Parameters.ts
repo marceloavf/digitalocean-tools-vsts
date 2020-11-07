@@ -1,5 +1,5 @@
 import { ParametersBase } from '@Common/ParametersBase'
-import tl from './tl'
+import tl from '../tl'
 
 export class Parameters extends ParametersBase {
   public digitalSourceFolder?: string

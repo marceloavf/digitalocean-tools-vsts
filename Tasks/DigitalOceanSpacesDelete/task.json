@@ -61,8 +61,7 @@
       "label": "Filename Patterns",
       "defaultValue": "**",
       "required": true,
-      "visibleRule": "digitalEnableSemver = false",
-      "helpMarkDown": "Glob patterns to select the file and folder content to be deleted. <br>Supports multiple lines of minimatch patterns and also exclude patterns."
+      "helpMarkDown": "Glob patterns to select the file and folder content to be deleted. <br>Supports multiple lines of minimatch patterns and also exclude patterns. <strong>NOTE:</strong> Filename Patterns has no effect when Semantic Version Filter is enabled."
     },
     {
       "name": "digitalTargetFolder",
@@ -94,7 +93,7 @@
   "dataSourceBindings": [
   ],
   "execution": {
-    "Node": {
+    "Node10": {
       "target": "index.js",
       "argumentFormat": ""
     }

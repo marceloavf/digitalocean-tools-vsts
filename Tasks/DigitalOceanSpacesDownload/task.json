@@ -61,7 +61,6 @@
       "label": "Filename Patterns",
       "defaultValue": "**",
       "required": true,
-      "visibleRule": "digitalEnableSemver = false",
       "helpMarkDown": "Glob patterns to select the file and folder content to be downloaded. <br>Supports multiple lines of minimatch patterns and also exclude patterns."
     },
     {
@@ -120,7 +119,7 @@
   "dataSourceBindings": [
   ],
   "execution": {
-    "Node": {
+    "Node10": {
       "target": "index.js",
       "argumentFormat": ""
     }

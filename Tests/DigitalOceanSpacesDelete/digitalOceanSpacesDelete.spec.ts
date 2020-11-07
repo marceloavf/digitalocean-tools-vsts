@@ -1,10 +1,10 @@
 import start from '@DOSDelete/digitalOceanSpacesDelete.ts'
-import tl from '@DOSDelete/utils/tl'
+import tl from '@DOSDelete/tl.ts'
 import { Delete } from '@DOSDelete/utils/Delete.ts'
 import { Parameters } from '@DOSDelete/utils/Parameters.ts'
 
 jest.mock('@DOSDelete/utils/Parameters.ts')
-jest.mock('@DOSDelete/utils/tl')
+jest.mock('@DOSDelete/tl.ts')
 jest.mock('@DOSDelete/utils/Delete.ts')
 
 describe('DOSDelete start', () => {

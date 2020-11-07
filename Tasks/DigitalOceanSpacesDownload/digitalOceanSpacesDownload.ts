@@ -1,4 +1,4 @@
-import tl from './utils/tl'
+import tl from './tl'
 import { Download } from './utils/Download'
 import { Parameters } from './utils/Parameters'
 

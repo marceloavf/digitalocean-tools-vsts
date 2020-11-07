@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk'
 import { existsSync, createWriteStream } from 'fs'
 import { isEmpty } from 'lodash'
-import tl from './tl'
+import tl from '../tl'
 import { Spaces } from '@Common/Spaces'
 import {
   filterFilesOnList,

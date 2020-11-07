@@ -1,4 +1,4 @@
-import tl from './utils/tl'
+import tl from './tl'
 import { Upload } from './utils/Upload'
 import { Parameters } from './utils/Parameters'
 
