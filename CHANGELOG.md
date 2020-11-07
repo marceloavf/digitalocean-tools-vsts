@@ -1,3 +1,32 @@
+# [1.0.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.5.0...v1.0.0) (2020-11-07)
+
+
+### Features
+
+* **DOSDownload:** add digitalocean spaces download task ([#15](https://github.com/marceloavf/digitalocean-tools-vsts/issues/15)) ([c886ab3](https://github.com/marceloavf/digitalocean-tools-vsts/commit/c886ab3d93b61f8684da83ac421120ffc332bd39))
+
+
+### BREAKING CHANGES
+
+* **DOSDownload:** This release change and improve a lot of things in multiple tasks (Delete & Upload).
+
+* docs: update links to use repository instead of wiki
+* chore: upgrade packages and node to v14
+* fix(DOSDelete): refactor filter files
+* refactor(DOSUpload): use common filter files
+* feat: add task to download from space
+* fix(DOSDownload): get stream errors on pipe and before
+* test(DOSDownload): add error tests
+* chore: reduce code duplication on tests
+* test: refactor parameters tests
+* docs(readme): add tips and tweaks links
+* chore: remove unused package
+* chore(DOSUpload): add matcher package
+* chore: remove inner packages to allow webpack implementation
+* chore: add webpack
+* fix(DOSUpload): remove unused resource path
+* fix(DOSDownload): source & target path, icon, getInput instead of path
+
 # [0.5.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.4.0...v0.5.0) (2020-10-22)
 
 
