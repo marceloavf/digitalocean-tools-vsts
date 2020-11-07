@@ -6,8 +6,5 @@ import * as path from 'path'
  */
 const taskManifestPath = path.join(__dirname, './task.json')
 tl.setResourcePath(taskManifestPath)
-tl.setResourcePath(
-  path.join(__dirname, 'node_modules/azure-arm-rest-v2/module.json')
-)
 
 export default tl
