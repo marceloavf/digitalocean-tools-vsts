@@ -17,7 +17,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "aws-sdk": "^2.787.0",
+    "aws-sdk": "^2.814.0",
     "azure-pipelines-task-lib": "^3.0.6-preview.0",
     "lodash": "^4.17.21",
     "matcher": "^3.0.0",
