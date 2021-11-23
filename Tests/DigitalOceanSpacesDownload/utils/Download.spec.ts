@@ -1,4 +1,4 @@
-import { Download } from '@DOSDownload/utils/Download.ts'
+import { Download } from '@DOSDownload/utils/Download'
 import { PassThrough } from 'stream'
 import { EventEmitter } from 'events'
 const AWS = require('aws-sdk')

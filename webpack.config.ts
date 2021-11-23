@@ -11,8 +11,10 @@ const config: webpack.Configuration = {
   mode: 'production',
   context: __dirname,
   target: 'node',
+  externals: {
+    'azure-pipelines-tool-lib/tool': 'commonjs2 azure-pipelines-tool-lib/tool'
+  },
   devtool: 'inline-source-map',
-  node: { __dirname: false },
   entry: {
     DigitalOceanSpacesDelete: './Tasks/DigitalOceanSpacesDelete/index.ts',
     DigitalOceanSpacesDownload: './Tasks/DigitalOceanSpacesDownload/index.ts',
@@ -115,6 +117,11 @@ const config: webpack.Configuration = {
         {
           from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
           to: path.resolve('./Tasks/DigitalOceanDoctlInstaller/'),
+          force: true,
+        },
+        {
+          from: path.resolve('./node_modules/azure-pipelines-tool-lib'),
+          to: path.resolve('./Tasks/DigitalOceanDoctlInstaller/node_modules/azure-pipelines-tool-lib/'),
           force: true,
         },
       ],

@@ -1,4 +1,4 @@
-import { Upload } from '@DOSUpload/utils/Upload.ts'
+import { Upload } from '@DOSUpload/utils/Upload'
 import { EventEmitter } from 'events'
 const AWS = require('aws-sdk')
 

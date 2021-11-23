@@ -1,7 +1,7 @@
-import start from '@DOSDownload/digitalOceanSpacesDownload.ts'
-import { Download } from '@DOSDownload/utils/Download.ts'
-import { Parameters } from '@DOSDownload/utils/Parameters.ts'
-import tl from '@DOSDownload/tl.ts'
+import start from '@DOSDownload/digitalOceanSpacesDownload'
+import { Download } from '@DOSDownload/utils/Download'
+import { Parameters } from '@DOSDownload/utils/Parameters'
+import tl from '@DOSDownload/tl'
 
 jest.mock('@DOSDownload/utils/Parameters.ts')
 jest.mock('@DOSDownload/tl.ts')
