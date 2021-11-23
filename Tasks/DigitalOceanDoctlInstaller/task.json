@@ -1,0 +1,55 @@
+{
+  "id": "5b2f1913-1281-4cfc-85ae-67fb5fac4b27",
+  "name": "DigitalOcean",
+  "friendlyName": "DigitalOcean Doctl Installer",
+  "instanceNameFormat": "DigitalOcean Doctl Installer",
+  "description": "Description",
+  "author": "Marcelo Formentão",
+  "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "demands": [],
+  "minimumAgentVersion": "1.91.0",
+  "inputs": [
+  ],
+  "dataSourceBindings": [
+  ],
+  "execution": {
+    "Node10": {
+      "target": "index.js",
+      "argumentFormat": ""
+    }
+  },
+  "messages": {
+    "FoundNFiles": "found %d files",
+    "AllFiles": "All files %s",
+    "FilteringFiles": "Filtering files using '%s' pattern",
+    "MatchedFile": "Matched file %s",
+    "MatchedFiles": "Matched files list %s",
+    "CreateBucketFailure": "Failed to create bucket",
+    "BucketCreated": "Bucket created",
+    "SearchingFiles": "Searching '%s' prefix for files to delete",
+    "DeletingFile": "Deleting matched file %s in %s",
+    "DeletingFiles": "Deleting files from '%s' in bucket %s",
+    "DeletingFilesCompleted": "Completed deleting files from '%s' in bucket %s",
+    "DeletingFilesFailed": "Deleting files failed",
+    "FilesNotFound": "No files found at '%s'",
+    "FilesNotMatched": "No files matched at '%s'",
+    "SemverActive": "Semantic version filter is enabled",
+    "SemverKeepAll": "Semantic version will keep all versions: %s",
+    "SemverDelete": "Semantic version will keep %d versions and will delete: %s",
+    "TaskCompleted": "All specified files deleted from Space completed"
+  }
+}

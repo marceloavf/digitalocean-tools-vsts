@@ -17,6 +17,7 @@
       "@DOSUpload/*": ["Tasks/DigitalOceanSpacesUpload/*"],
       "@DOSDelete/*": ["Tasks/DigitalOceanSpacesDelete/*"],
       "@DOSDownload/*": ["Tasks/DigitalOceanSpacesDownload/*"],
+      "@DOSDoctlInstaller/*": ["Tasks/DigitalOceanDoctlInstaller/*"],
       "@Common/*": ["Common/Node/*"]
     }
   },

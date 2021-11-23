@@ -17,6 +17,7 @@ const config: webpack.Configuration = {
     DigitalOceanSpacesDelete: './Tasks/DigitalOceanSpacesDelete/index.ts',
     DigitalOceanSpacesDownload: './Tasks/DigitalOceanSpacesDownload/index.ts',
     DigitalOceanSpacesUpload: './Tasks/DigitalOceanSpacesUpload/index.ts',
+    DigitalOceanDoctlInstaller: './Tasks/DigitalOceanDoctlInstaller/index.ts',
   },
   resolve: {
     extensions: ['.ts', '.js', '.json', '.resjson'],
@@ -102,6 +103,18 @@ const config: webpack.Configuration = {
         {
           from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
           to: path.resolve('./Tasks/DigitalOceanSpacesUpload/'),
+          force: true,
+        },
+        {
+          from: path.resolve(
+            './node_modules/azure-pipelines-task-lib/lib.json'
+          ),
+          to: path.resolve('./Tasks/DigitalOceanDoctlInstaller/'),
+          force: true,
+        },
+        {
+          from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
+          to: path.resolve('./Tasks/DigitalOceanDoctlInstaller/'),
           force: true,
         },
       ],
