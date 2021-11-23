@@ -20,12 +20,7 @@
     "Agent",
     "DeploymentGroup"
   ],
-  "demands": [],
   "minimumAgentVersion": "1.91.0",
-  "inputs": [
-  ],
-  "dataSourceBindings": [
-  ],
   "execution": {
     "Node10": {
       "target": "index.js",
