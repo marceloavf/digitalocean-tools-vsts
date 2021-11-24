@@ -7,8 +7,8 @@ import { Parameters } from './Parameters'
 import { findFiles, getMimeTypes } from './utils'
 import { normalizeKeyPathDestination } from '@Common/utils/filterFiles'
 import prettyBytes = require('pretty-bytes')
-const { default: PQueue } = require('p-queue')
-const pRetry = require('p-retry')
+import PQueue from 'p-queue'
+import pRetry from 'p-retry'
 
 interface UploadFileParameters {
   filePath: string
