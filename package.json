@@ -10,16 +10,18 @@
   },
   "scripts": {
     "lint": "eslint \"{Tasks,Tests,Common}/**/*.ts\" --fix",
-    "clean": "node crlf-to-lf.js && yarn run vsts-build-tools-clean && lerna clean -y",
+    "clean": "node crlf-to-lf.js && yarn run vsts-build-tools-clean && yarn run lerna:clean",
     "build": "yarn run lint && yarn run webpack",
-    "package": "yarn run clean && yarn run bootstrap && yarn run build && yarn run vsts-build-tools-package",
-    "test": "jest",
-    "bootstrap": "lerna bootstrap"
+    "package": "yarn run clean && yarn run bootstrap && yarn run build && yarn run vsts-build-tools-package && yarn run lerna:clean",
+    "test": "yarn run lerna:clean && jest",
+    "bootstrap": "lerna bootstrap",
+    "lerna:clean": "lerna clean -y"
   },
   "dependencies": {
     "aws-sdk": "2.814.0",
     "node-fetch": "2.6.6",
     "azure-pipelines-task-lib": "3.1.10",
+    "azure-pipelines-tool-lib": "0.13.3",
     "lodash": "4.17.21",
     "matcher": "3.0.0",
     "p-queue": "6.6.2",

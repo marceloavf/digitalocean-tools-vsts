@@ -1,6 +1,5 @@
 import tl from '../tl'
 import fetch from 'node-fetch'
-import * as path from 'path'
 import toolLib = require('azure-pipelines-tool-lib/tool')
 import trm = require('azure-pipelines-task-lib/toolrunner')
 
