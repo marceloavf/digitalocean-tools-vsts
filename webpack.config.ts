@@ -4,9 +4,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin')
-const nodeExternals = require('webpack-node-externals');
 
 const config: webpack.Configuration = {
   mode: 'production',
@@ -15,10 +13,13 @@ const config: webpack.Configuration = {
     '__dirname': false
   },
   target: 'node',
-  externalsPresets: { node: true },
-  externals: [
-    nodeExternals()
-  ],
+  externals: {
+    'azure-pipelines-task-lib': 'commonjs2 azure-pipelines-task-lib',
+    'azure-pipelines-task-lib/task': 'commonjs2 azure-pipelines-task-lib/task',
+    'azure-pipelines-task-lib/toolrunner': 'commonjs2 azure-pipelines-task-lib/toolrunner',
+    'azure-pipelines-tool-lib': 'commonjs2 azure-pipelines-tool-lib',
+    'azure-pipelines-tool-lib/tool': 'commonjs2 azure-pipelines-tool-lib/tool',
+  },
   devtool: 'inline-source-map',
   entry: {
     DigitalOceanSpacesDelete: path.resolve(__dirname, './Tasks/DigitalOceanSpacesDelete/index.ts'),
@@ -68,61 +69,6 @@ const config: webpack.Configuration = {
     new ForkTsCheckerWebpackPlugin(),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['*.js'],
-    }),
-    /**
-     * Solves problem related to "RangeError: Maximum call stack size exceeded" with node_modules/azure-pipelines-task-lib/internal.js
-     */
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(
-            './node_modules/azure-pipelines-task-lib/lib.json'
-          ),
-          to: path.resolve('./Tasks/DigitalOceanSpacesDelete/'),
-          force: true,
-        },
-        {
-          from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
-          to: path.resolve('./Tasks/DigitalOceanSpacesDelete/'),
-          force: true,
-        },
-        {
-          from: path.resolve(
-            './node_modules/azure-pipelines-task-lib/lib.json'
-          ),
-          to: path.resolve('./Tasks/DigitalOceanSpacesDownload/'),
-          force: true,
-        },
-        {
-          from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
-          to: path.resolve('./Tasks/DigitalOceanSpacesDownload/'),
-          force: true,
-        },
-        {
-          from: path.resolve(
-            './node_modules/azure-pipelines-task-lib/lib.json'
-          ),
-          to: path.resolve('./Tasks/DigitalOceanSpacesUpload/'),
-          force: true,
-        },
-        {
-          from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
-          to: path.resolve('./Tasks/DigitalOceanSpacesUpload/'),
-          force: true,
-        },
-        {
-          from: path.resolve(
-            './node_modules/azure-pipelines-task-lib/lib.json'
-          ),
-          to: path.resolve('./Tasks/DigitalOceanDoctlInstaller/'),
-          force: true,
-        },
-        {
-          from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
-          to: path.resolve('./Tasks/DigitalOceanDoctlInstaller/'),
-          force: true,
-        },
-      ],
     }),
     new ReplaceInFileWebpackPlugin([
       {

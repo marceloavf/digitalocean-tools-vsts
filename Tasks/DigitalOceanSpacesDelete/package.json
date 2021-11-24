@@ -4,10 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "2.814.0",
-    "azure-pipelines-task-lib": "3.1.10",
-    "lodash": "4.17.21",
-    "matcher": "3.0.0",
-    "semver": "7.3.4"
+    "azure-pipelines-task-lib": "3.1.10"
   }
 }

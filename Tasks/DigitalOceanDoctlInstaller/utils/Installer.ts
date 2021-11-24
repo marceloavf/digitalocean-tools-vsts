@@ -1,5 +1,6 @@
 import tl from '../tl'
 import fetch from 'node-fetch'
+import * as path from 'path'
 import toolLib = require('azure-pipelines-tool-lib/tool')
 import trm = require('azure-pipelines-task-lib/toolrunner')
 
@@ -8,15 +9,15 @@ export class Installer {
     try {
       const latestVersion = await this.getLatestVersion()
 
-      const fileName = `doctl-${latestVersion.substring(1)}-linux-amd64.tar.gz`
+      const urlFileName = `doctl-${latestVersion.substring(1)}-linux-amd64.tar.gz`
 
-      const urlFileName = fileName.substr(0, fileName.length - 7)
+      const fileName = urlFileName.substr(0, urlFileName.length - 7)
 
       const downloadUrl = `https://github.com/digitalocean/doctl/releases/download/${latestVersion}/${urlFileName}`
 
       const downloadPath: string = await toolLib.downloadTool(downloadUrl)
 
-      const extractedPath = await toolLib.extractTar(downloadPath)
+      const extractedPath = await toolLib.extractTar(downloadPath, fileName)
 
       const cleanVersion = toolLib.cleanVersion(latestVersion)
 
