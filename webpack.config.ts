@@ -6,20 +6,25 @@ const TerserPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin')
+const nodeExternals = require('webpack-node-externals');
 
 const config: webpack.Configuration = {
   mode: 'production',
   context: __dirname,
-  target: 'node',
-  externals: {
-    'azure-pipelines-tool-lib/tool': 'commonjs2 azure-pipelines-tool-lib/tool'
+  node: {
+    '__dirname': false
   },
+  target: 'node',
+  externalsPresets: { node: true },
+  externals: [
+    nodeExternals()
+  ],
   devtool: 'inline-source-map',
   entry: {
-    DigitalOceanSpacesDelete: './Tasks/DigitalOceanSpacesDelete/index.ts',
-    DigitalOceanSpacesDownload: './Tasks/DigitalOceanSpacesDownload/index.ts',
-    DigitalOceanSpacesUpload: './Tasks/DigitalOceanSpacesUpload/index.ts',
-    DigitalOceanDoctlInstaller: './Tasks/DigitalOceanDoctlInstaller/index.ts',
+    DigitalOceanSpacesDelete: path.resolve(__dirname, './Tasks/DigitalOceanSpacesDelete/index.ts'),
+    DigitalOceanSpacesDownload: path.resolve(__dirname, './Tasks/DigitalOceanSpacesDownload/index.ts'),
+    DigitalOceanSpacesUpload: path.resolve(__dirname, './Tasks/DigitalOceanSpacesUpload/index.ts'),
+    DigitalOceanDoctlInstaller: path.resolve(__dirname, './Tasks/DigitalOceanDoctlInstaller/index.ts'),
   },
   resolve: {
     extensions: ['.ts', '.js', '.json', '.resjson'],
@@ -31,8 +36,6 @@ const config: webpack.Configuration = {
       {
         test: /\.ts?$/,
         loader: 'ts-loader',
-        enforce: 'pre',
-        exclude: /node_modules/,
         options: {
           transpileOnly: true,
           configFile: 'tsconfig.json',
@@ -117,11 +120,6 @@ const config: webpack.Configuration = {
         {
           from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
           to: path.resolve('./Tasks/DigitalOceanDoctlInstaller/'),
-          force: true,
-        },
-        {
-          from: path.resolve('./node_modules/azure-pipelines-tool-lib'),
-          to: path.resolve('./Tasks/DigitalOceanDoctlInstaller/node_modules/azure-pipelines-tool-lib/'),
           force: true,
         },
       ],

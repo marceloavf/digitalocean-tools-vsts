@@ -13,19 +13,8 @@
     "clean": "node crlf-to-lf.js && yarn run vsts-build-tools-clean",
     "build": "yarn run lint && yarn run webpack",
     "package": "yarn run clean && yarn run build && yarn run vsts-build-tools-package",
-    "test": "jest"
-  },
-  "dependencies": {
-    "aws-sdk": "^2.814.0",
-    "azure-pipelines-task-lib": "^3.1.10",
-    "azure-pipelines-tool-lib": "^0.13.3",
-    "lodash": "^4.17.21",
-    "matcher": "^3.0.0",
-    "node-fetch": "2.6.6",
-    "p-queue": "^6.6.2",
-    "p-retry": "^4.2.0",
-    "pretty-bytes": "^5.4.1",
-    "semver": "^7.3.2"
+    "test": "jest",
+    "bootstrap": "lerna bootstrap"
   },
   "devDependencies": {
     "@mapbox/aws-sdk-jest": "^0.0.1",
@@ -53,6 +42,7 @@
     "gl-vsts-tasks-build-scripts": "0.7.0-alpha.7",
     "husky": "^4.3.0",
     "jest": "^26.6.3",
+    "lerna": "^4.0.0",
     "lint-staged": "^10.5.1",
     "mock-fs": "^4.13.0",
     "prettier": "^2.4.1",
@@ -66,8 +56,9 @@
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.5.2",
-    "webpack": "5.4.0",
-    "webpack-cli": "4.2.0"
+    "webpack": "5.64.2",
+    "webpack-cli": "4.9.1",
+    "webpack-node-externals": "^3.0.0"
   },
   "lint-staged": {
     "{Tasks,Tests,Common}/**/*.ts": [
