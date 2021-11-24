@@ -21,4 +21,9 @@ module.exports = {
     '!./Tasks/DigitalOceanSpacesUpload/common/utils/filterFiles.ts',
     '!./Tasks/DigitalOceanSpacesDownload/common/utils/filterFiles.ts',
   ],
+  globals: {
+    'ts-jest': {
+      isolatedModules: true
+    }
+  }
 }
