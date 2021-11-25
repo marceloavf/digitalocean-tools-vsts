@@ -15,7 +15,8 @@
     "package": "yarn run clean && yarn run bootstrap && yarn run build && yarn run vsts-build-tools-package",
     "test": "yarn run lerna:clean && node --expose-gc ./node_modules/.bin/jest --logHeapUsage",
     "bootstrap": "lerna bootstrap",
-    "lerna:clean": "lerna clean -y"
+    "lerna:clean": "lerna clean -y",
+    "prepare": "husky install"
   },
   "dependencies": {
     "aws-sdk": "^2.1036.0",
@@ -51,10 +52,9 @@
     "eslint-plugin-prettier": "^4.0.0",
     "fork-ts-checker-webpack-plugin": "^6.0.0",
     "gl-vsts-tasks-build-scripts": "0.7.0-alpha.7",
-    "husky": "^4.3.0",
+    "husky": "^7.0.0",
     "jest": "^27.3.1",
     "lerna": "^4.0.0",
-    "lint-staged": "^10.5.1",
     "mock-fs": "^5.0.0",
     "prettier": "^2.4.1",
     "replace-in-file-webpack-plugin": "^1.0.6",
@@ -110,10 +110,5 @@
     "publish": [
       "@semantic-release/github"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
