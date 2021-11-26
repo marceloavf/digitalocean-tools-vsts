@@ -14,7 +14,7 @@ export class Installer {
 
       const downloadUrl = `https://github.com/digitalocean/doctl/releases/download/${latestVersion}/${urlFileName}`
 
-      const downloadPath: string = await toolLib.downloadTool(downloadUrl)
+      const downloadPath = await toolLib.downloadTool(downloadUrl)
 
       const extractedPath = await toolLib.extractTar(downloadPath, fileName)
 

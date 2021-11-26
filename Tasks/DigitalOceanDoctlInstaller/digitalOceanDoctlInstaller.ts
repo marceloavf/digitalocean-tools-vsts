@@ -3,9 +3,7 @@ import { Installer } from './utils/Installer'
 
 const digitalOceanDoctlInstaller = new Installer()
 
-let start
-
-export default start = () =>
+export default () =>
   digitalOceanDoctlInstaller
     .init()
     .then((result) => tl.setResult(tl.TaskResult.Succeeded, ''))
