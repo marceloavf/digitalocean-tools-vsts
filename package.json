@@ -14,6 +14,7 @@
     "build": "yarn run lint && yarn run webpack",
     "package": "yarn run clean && yarn run bootstrap && yarn run build && yarn run vsts-build-tools-package",
     "test": "yarn run lerna:clean && node --expose-gc ./node_modules/.bin/jest --logHeapUsage",
+    "test:watch": "yarn test --watchAll",
     "bootstrap": "lerna bootstrap",
     "lerna:clean": "lerna clean -y --loglevel=silent",
     "prepare": "husky install"

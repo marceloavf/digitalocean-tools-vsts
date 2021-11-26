@@ -133,21 +133,21 @@ export class Download extends Spaces<Parameters> {
 
       const request = this.s3Connection.getObject(baseParameters)
 
-      request.on('httpDownloadProgress', (progress) => {
-        console.log(
-          tl.loc(
-            'FileDownloadProgress',
-            prettyBytes(progress.loaded),
-            prettyBytes(progress.total),
-            Math.floor((progress.loaded / progress.total) * 100).toFixed(1)
-          )
-        )
-      })
       const fileWriteStream = createWriteStream(targetPath)
       const objectStream = request.createReadStream()
 
       // info: https://dev.to/cdanielsen/testing-streams-a-primer-3n6e
       objectStream
+        .on('httpDownloadProgress', (progress) => {
+          console.log(
+            tl.loc(
+              'FileDownloadProgress',
+              prettyBytes(progress.loaded),
+              prettyBytes(progress.total),
+              Math.floor((progress.loaded / progress.total) * 100).toFixed(1)
+            )
+          )
+        })
         .on('error', reject)
         .pipe(fileWriteStream)
         .on('finish', resolve)
