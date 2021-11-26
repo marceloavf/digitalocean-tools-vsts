@@ -34,7 +34,7 @@ describe('DOSUpload', () => {
 
   test('should upload file successfully', async () => {
     const uploadFiles: jest.Mock = AWS.spyOn('S3', 'upload').mockImplementation(
-      (params: any) => {
+      () => {
         const self: MySelf = new EventEmitter()
         self.promise = (data: string) =>
           new Promise((resolve) => setTimeout(() => resolve(data), 0))
