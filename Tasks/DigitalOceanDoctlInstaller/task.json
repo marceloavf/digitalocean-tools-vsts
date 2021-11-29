@@ -20,6 +20,7 @@
     "Agent",
     "DeploymentGroup"
   ],
+  "satisfies": ["doctl"],
   "minimumAgentVersion": "1.91.0",
   "execution": {
     "Node10": {

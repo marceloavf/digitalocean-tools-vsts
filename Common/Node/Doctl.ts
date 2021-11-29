@@ -1,11 +1,15 @@
 import * as tl from 'azure-pipelines-task-lib/task'
 
-export class ParametersBase {
-  public digitalToken: string
+export class Doctl {
+  public accessToken: string
+  public arguments: string
+  public pathToRun: string
 
   constructor() {
     try {
-      this.digitalToken = tl.getVariable('doctl.token')
+      this.accessToken = tl.getVariable('doctl.token')
+      this.arguments = tl.getInput('arguments')
+      this.pathToRun = tl.getPathInput("pathToRun") || process.cwd();
     } catch (error) {
       throw new Error(error.message)
     }
