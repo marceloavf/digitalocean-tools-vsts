@@ -157,6 +157,7 @@ export class Download extends Spaces<Parameters> {
       // info: https://dev.to/cdanielsen/testing-streams-a-primer-3n6e
       objectStream
         .on('error', reject)
+        // TODO: Maybe use write instead of pipe for memory efficiency https://gist.github.com/J-Cake/78ce059972595823243526e022e327e4
         .pipe(fileWriteStream)
         .on('finish', resolve)
         .on('error', reject)

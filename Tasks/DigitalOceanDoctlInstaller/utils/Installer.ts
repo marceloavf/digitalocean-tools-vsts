@@ -1,46 +1,21 @@
 import tl from '../tl'
 import fetch from 'node-fetch'
 import toolLib = require('azure-pipelines-tool-lib/tool')
-import trm = require('azure-pipelines-task-lib/toolrunner')
 
 export class Installer {
   public async init(): Promise<void> {
     try {
-      const latestVersion = await this.getLatestVersion()
-
-      const urlFileName = `doctl-${latestVersion.substring(1)}-linux-amd64.tar.gz`
-
-      const fileName = urlFileName.substr(0, urlFileName.length - 7)
-
-      const downloadUrl = `https://github.com/digitalocean/doctl/releases/download/${latestVersion}/${urlFileName}`
-
-      const downloadPath = await toolLib.downloadTool(downloadUrl)
-
-      const extractedPath = await toolLib.extractTar(downloadPath, fileName)
-
-      const cleanVersion = toolLib.cleanVersion(latestVersion)
-
-      const toolPath = await toolLib.cacheDir(
-        extractedPath,
-        'doctl',
-        cleanVersion
-      )
-
+      const latestVersionTag = await this.getLatestVersion()
+      const toolPath = await this.getToolPath(latestVersionTag)
       toolLib.prependPath(toolPath)
-
-      const bash: trm.ToolRunner = tl.tool(tl.which('doctl', true))
-
-      bash.arg('--help')
-
-      const test = await bash.exec()
-      return console.log(test)
+      console.log(tl.loc('TaskCompleted'))
     } catch (err) {
       console.error(tl.loc('InstallerFailed'), err)
       throw err
     }
   }
 
-  async getLatestVersion(): Promise<string> {
+  async getLatestVersion() {
     type responseType = {
       tag_name: string
     }
@@ -51,5 +26,31 @@ export class Installer {
       .json()
       .then((data) => data as responseType)
     return tag_name
+  }
+
+  async getToolPath(versionTag: string) {
+    const cleanVersion = toolLib.cleanVersion(versionTag)
+
+    const toolPathAvaiable = toolLib.findLocalTool('doctl', cleanVersion)
+    if (toolPathAvaiable) return toolPathAvaiable
+
+    const filenameExtension = `doctl-${cleanVersion}-linux-amd64.tar.gz`
+    const fileName = filenameExtension.substr(0, filenameExtension.length - 7)
+
+    const downloadPath = await this.download(versionTag, filenameExtension)
+    const extractedPath = await toolLib.extractTar(downloadPath, fileName)
+    const newToolPathCached = await toolLib.cacheDir(
+      extractedPath,
+      'doctl',
+      cleanVersion
+    )
+
+    return newToolPathCached
+  }
+
+  async download(versionTag: string, filenameExtension: string) {
+    const downloadUrl = `https://github.com/digitalocean/doctl/releases/download/${versionTag}/${filenameExtension}`
+    const downloadPath = await toolLib.downloadTool(downloadUrl)
+    return downloadPath
   }
 }

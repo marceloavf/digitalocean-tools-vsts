@@ -3,7 +3,7 @@
   "name": "DigitalOcean",
   "friendlyName": "DigitalOcean Doctl Installer",
   "instanceNameFormat": "DigitalOcean Doctl Installer",
-  "description": "Description",
+  "description": "Installs latest version of Doctl",
   "author": "Marcelo Formentão",
   "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
   "category": "Utility",
@@ -28,23 +28,7 @@
     }
   },
   "messages": {
-    "FoundNFiles": "found %d files",
-    "AllFiles": "All files %s",
-    "FilteringFiles": "Filtering files using '%s' pattern",
-    "MatchedFile": "Matched file %s",
-    "MatchedFiles": "Matched files list %s",
-    "CreateBucketFailure": "Failed to create bucket",
-    "BucketCreated": "Bucket created",
-    "SearchingFiles": "Searching '%s' prefix for files to delete",
-    "DeletingFile": "Deleting matched file %s in %s",
-    "DeletingFiles": "Deleting files from '%s' in bucket %s",
-    "DeletingFilesCompleted": "Completed deleting files from '%s' in bucket %s",
-    "DeletingFilesFailed": "Deleting files failed",
-    "FilesNotFound": "No files found at '%s'",
-    "FilesNotMatched": "No files matched at '%s'",
-    "SemverActive": "Semantic version filter is enabled",
-    "SemverKeepAll": "Semantic version will keep all versions: %s",
-    "SemverDelete": "Semantic version will keep %d versions and will delete: %s",
-    "TaskCompleted": "All specified files deleted from Space completed"
+    "InstallerFailed": "Installer failed",
+    "TaskCompleted": "Doctl successfully installed"
   }
 }
