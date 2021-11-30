@@ -60,7 +60,6 @@
     "lerna": "^4.0.0",
     "mock-fs": "^5.0.0",
     "prettier": "^2.5.0",
-    "replace-in-file-webpack-plugin": "^1.0.6",
     "semantic-release": "^18.0.1",
     "tfx-cli": "^0.9.3",
     "ts-jest": "^27.0.7",

@@ -1,10 +1,10 @@
 import * as path from 'path'
+import * as fs from 'fs'
 import * as webpack from 'webpack'
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin')
 
 const config: webpack.Configuration = {
   mode: 'production',
@@ -21,11 +21,12 @@ const config: webpack.Configuration = {
     'azure-pipelines-tool-lib/tool': 'commonjs2 azure-pipelines-tool-lib/tool',
   },
   devtool: 'inline-source-map',
-  entry: {
-    DigitalOceanSpacesDelete: path.resolve(__dirname, './Tasks/DigitalOceanSpacesDelete/index.ts'),
-    DigitalOceanSpacesDownload: path.resolve(__dirname, './Tasks/DigitalOceanSpacesDownload/index.ts'),
-    DigitalOceanSpacesUpload: path.resolve(__dirname, './Tasks/DigitalOceanSpacesUpload/index.ts'),
-    DigitalOceanDoctlInstaller: path.resolve(__dirname, './Tasks/DigitalOceanDoctlInstaller/index.ts'),
+  entry: () => {
+    const source = path.resolve(__dirname, './Tasks')
+    return fs.readdirSync(source, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => ({ [dirent.name]: path.resolve(__dirname, './Tasks', dirent.name, 'index.ts') }))
+      .reduce((acc, curr) => ({ ...curr, ...acc }), {})
   },
   resolve: {
     extensions: ['.ts', '.js', '.json', '.resjson'],
@@ -69,19 +70,7 @@ const config: webpack.Configuration = {
     new ForkTsCheckerWebpackPlugin(),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['*.js'],
-    }),
-    new ReplaceInFileWebpackPlugin([
-      {
-        dir: path.join(__dirname, 'Tasks'),
-        test: /\index.js$/,
-        rules: [
-          {
-            search: /__webpack_require__\(.*\)\(resourceFile\)/,
-            replace: 'require(resourceFile)',
-          },
-        ],
-      },
-    ]),
+    })
   ],
 }
 
