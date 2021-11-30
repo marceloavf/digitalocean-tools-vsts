@@ -1,6 +1,6 @@
-import tl from '../tl'
 import fetch from 'node-fetch'
 import toolLib = require('azure-pipelines-tool-lib/tool')
+import tl from '../tl'
 
 export class Installer {
   public async init(): Promise<void> {
@@ -35,10 +35,9 @@ export class Installer {
     if (toolPathAvaiable) return toolPathAvaiable
 
     const filenameExtension = `doctl-${cleanVersion}-linux-amd64.tar.gz`
-    const fileName = filenameExtension.substr(0, filenameExtension.length - 7)
 
     const downloadPath = await this.download(versionTag, filenameExtension)
-    const extractedPath = await toolLib.extractTar(downloadPath, fileName)
+    const extractedPath = await toolLib.extractTar(downloadPath)
     const newToolPathCached = await toolLib.cacheDir(
       extractedPath,
       'doctl',

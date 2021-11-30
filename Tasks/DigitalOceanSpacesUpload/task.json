@@ -1,6 +1,6 @@
 {
   "id": "2dffaab6-6842-4e1b-ad50-87c0e6d92acd",
-  "name": "DigitalOcean",
+  "name": "DigitalOceanSpacesUpload",
   "friendlyName": "DigitalOcean Spaces Upload",
   "instanceNameFormat": "DigitalOcean Spaces Upload $(Arguments)",
   "description": "Upload file and folder content to DigitalOcean Spaces Bucket",

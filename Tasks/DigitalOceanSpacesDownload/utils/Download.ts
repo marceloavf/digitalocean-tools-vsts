@@ -1,17 +1,17 @@
-import AWS from 'aws-sdk'
 import { existsSync, createWriteStream } from 'fs'
+import path = require('path')
 import { isEmpty } from 'lodash'
-import tl from '../tl'
 import { Spaces } from '@Common/Spaces'
 import {
   filterFilesOnList,
   searchFilesOnBucket,
 } from '@Common/utils/filterFiles'
-import { Parameters } from './Parameters'
+import AWS from 'aws-sdk'
 import prettyBytes = require('pretty-bytes')
-import path = require('path')
 import PQueue from 'p-queue'
 import pRetry from 'p-retry'
+import tl from '../tl'
+import { Parameters } from './Parameters'
 
 export class Download extends Spaces<Parameters> {
   constructor(params: Parameters) {
@@ -129,21 +129,21 @@ export class Download extends Spaces<Parameters> {
     targetPath: string
   ): Promise<AWS.S3.GetObjectOutput> {
     return new Promise((resolve, reject) => {
-      let totalBytes = 0;
-      let bytesLoaded = 0;
+      let totalBytes = 0
+      let bytesLoaded = 0
       this.validateAndCreateFolderPath(targetPath)
 
       const request = this.s3Connection.getObject(baseParameters)
 
       request.on('httpHeaders', function (status, headers) {
-        totalBytes = parseInt(headers['content-length']);
-      });
+        totalBytes = parseInt(headers['content-length'])
+      })
 
       const fileWriteStream = createWriteStream(targetPath)
       const objectStream = request.createReadStream()
 
       objectStream.on('data', function (chunk) {
-        bytesLoaded += chunk.length;
+        bytesLoaded += chunk.length
         console.log(
           tl.loc(
             'FileDownloadProgress',
@@ -152,7 +152,7 @@ export class Download extends Spaces<Parameters> {
             Math.floor((bytesLoaded / totalBytes) * 100).toFixed(1)
           )
         )
-      });
+      })
 
       // info: https://dev.to/cdanielsen/testing-streams-a-primer-3n6e
       objectStream

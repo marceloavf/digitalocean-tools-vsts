@@ -1,5 +1,5 @@
-import { Upload } from '@DOSUpload/utils/Upload'
 import { EventEmitter } from 'events'
+import { Upload } from '@DOSUpload/utils/Upload'
 const AWS = require('aws-sdk')
 
 interface MySelf extends EventEmitter {

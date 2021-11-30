@@ -1,6 +1,6 @@
 {
   "id": "8ed04a99-be76-4918-9176-a44fb3749495",
-  "name": "DigitalOcean",
+  "name": "DigitalOceanSpacesDelete",
   "friendlyName": "DigitalOcean Spaces Delete",
   "instanceNameFormat": "DigitalOcean Spaces Delete $(Arguments)",
   "description": "Delete file or folder content of DigitalOcean Spaces Bucket",

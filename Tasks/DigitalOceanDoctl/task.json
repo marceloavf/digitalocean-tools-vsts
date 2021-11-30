@@ -1,8 +1,8 @@
 {
   "id": "06f78d7e-c262-47fa-9422-3d4f2d50875e",
-  "name": "DigitalOcean",
+  "name": "DigitalOceanDoctl",
   "friendlyName": "DigitalOcean Doctl",
-  "instanceNameFormat": "Doctl $(Arguments)",
+  "instanceNameFormat": "DigitalOcean Doctl $(Arguments)",
   "description": "Executes Doctl",
   "author": "Marcelo Formentão",
   "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
@@ -45,7 +45,9 @@
     }
   },
   "messages": {
+    "NotFound": "Couldn't locate Doctl",
     "ExecutionFailed": "Doctl failed with exit code %d",
+    "DoctlFailed": "Doctl failed with error %s",
     "TaskCompleted": "All specified files deleted from Space completed"
   }
 }

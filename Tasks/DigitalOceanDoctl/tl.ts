@@ -1,5 +1,5 @@
-import * as tl from 'azure-pipelines-task-lib/task'
 import * as path from 'path'
+import * as tl from 'azure-pipelines-task-lib/task'
 
 /**
  * Set language loc file

@@ -9,7 +9,7 @@ export class Doctl {
     try {
       this.accessToken = tl.getVariable('doctl.token')
       this.arguments = tl.getInput('arguments')
-      this.pathToRun = tl.getPathInput("pathToRun") || process.cwd();
+      this.pathToRun = tl.getPathInput("pathToRun") || process.cwd()
     } catch (error) {
       throw new Error(error.message)
     }

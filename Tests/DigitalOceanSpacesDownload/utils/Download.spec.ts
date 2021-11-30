@@ -1,6 +1,6 @@
-import { Download } from '@DOSDownload/utils/Download'
 import { PassThrough } from 'stream'
 import { EventEmitter } from 'events'
+import { Download } from '@DOSDownload/utils/Download'
 const AWS = require('aws-sdk')
 const mockFs = require('mock-fs')
 

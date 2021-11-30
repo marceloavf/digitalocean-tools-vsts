@@ -1,6 +1,6 @@
 {
   "id": "212808fd-b857-4200-b310-b0932d0646de",
-  "name": "DigitalOcean",
+  "name": "DigitalOceanSpacesDownload",
   "friendlyName": "DigitalOcean Spaces Download",
   "instanceNameFormat": "DigitalOcean Spaces Download $(Arguments)",
   "description": "Download file or folder content of DigitalOcean Spaces Bucket",

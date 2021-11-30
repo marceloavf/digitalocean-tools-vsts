@@ -1,10 +1,10 @@
 import tl from './tl'
 import { Runner } from './utils/Doctl'
 
-const digitalOceanDoctlInstaller = new Runner()
+const digitalOceanDoctl = new Runner()
 
 export default () =>
-  digitalOceanDoctlInstaller
+  digitalOceanDoctl
     .init()
     .then((result) => tl.setResult(tl.TaskResult.Succeeded, ''))
     .catch((error) => tl.setResult(tl.TaskResult.Failed, error))
