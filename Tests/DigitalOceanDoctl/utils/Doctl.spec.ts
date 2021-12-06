@@ -1,7 +1,6 @@
-import trm = require('azure-pipelines-task-lib/toolrunner')
 import * as tl from 'azure-pipelines-task-lib/task'
-import { mocked } from 'ts-jest/utils'
 import { Runner } from '@DOSDoctl/utils/Doctl'
+const process = require('process')
 
 describe('DODoctl', () => {
   let spyLog: jest.SpyInstance, spyError: jest.SpyInstance
@@ -23,7 +22,7 @@ describe('DODoctl', () => {
       line,
       exec
     }
-
+    jest.spyOn(process, 'cwd').mockReturnValue('/home/')
     jest.spyOn(tl, 'getInput').mockReturnValue('--arguments')
     const doctl = new Runner()
 
@@ -34,7 +33,7 @@ describe('DODoctl', () => {
 
     expect(which).toHaveBeenCalledWith("doctl", true)
     expect(line).toHaveBeenCalledWith('--arguments')
-    expect(exec).toHaveBeenCalledWith({ "cwd": "/home/marceloavf/develop/digitalocean-tools-vsts", "env": { 'base_env': 'test' }, "errStream": undefined, "failOnStdErr": false, "ignoreReturnCode": false, "outStream": undefined, "silent": false, "windowsVerbatimArguments": undefined })
+    expect(exec).toHaveBeenCalledWith({ "cwd": "/home/", "env": { 'base_env': 'test' }, "errStream": undefined, "failOnStdErr": false, "ignoreReturnCode": false, "outStream": undefined, "silent": false, "windowsVerbatimArguments": undefined })
   })
   test('should init successfully and use accessToken', async () => {
     const arg = jest.fn()
@@ -45,7 +44,7 @@ describe('DODoctl', () => {
       exec,
       arg
     }
-
+    jest.spyOn(process, 'cwd').mockReturnValue('/home/')
     jest.spyOn(tl, 'getVariable').mockReturnValue('baseToken')
     jest.spyOn(tl, 'getInput').mockReturnValue('--arguments')
     const doctl = new Runner()
@@ -58,7 +57,7 @@ describe('DODoctl', () => {
     expect(arg).toHaveBeenCalledWith('--access-token baseToken')
     expect(which).toHaveBeenCalledWith("doctl", true)
     expect(line).toHaveBeenCalledWith('--arguments')
-    expect(exec).toHaveBeenCalledWith({ "cwd": "/home/marceloavf/develop/digitalocean-tools-vsts", "env": { 'base_env': 'test' }, "errStream": undefined, "failOnStdErr": false, "ignoreReturnCode": false, "outStream": undefined, "silent": false, "windowsVerbatimArguments": undefined })
+    expect(exec).toHaveBeenCalledWith({ "cwd": "/home/", "env": { 'base_env': 'test' }, "errStream": undefined, "failOnStdErr": false, "ignoreReturnCode": false, "outStream": undefined, "silent": false, "windowsVerbatimArguments": undefined })
   })
   test('should throw an error if result is one', async () => {
     const arg = jest.fn()
