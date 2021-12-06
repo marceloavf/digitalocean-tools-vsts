@@ -24,8 +24,7 @@
   },
   "include": [
     "./Common/**/*.ts",
-    "./Tasks/**/*.ts",
-    "./Tests/**/*.ts"
+    "./Tasks/**/*.ts"
   ],
   "exclude": [
     "node_modules",
