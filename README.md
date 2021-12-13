@@ -24,6 +24,8 @@ DigitalOcean Tools
 - 🔹 &nbsp; [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-upload) Upload file(s) and folder(s) content to DigitalOcean Spaces Bucket.
 - 🔹 &nbsp; [**DigitalOcean Spaces Delete:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-delete) Delete file(s) from DigitalOcean Spaces Bucket.
 - 🔹 &nbsp; [**DigitalOcean Spaces Download:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-download) Download file(s) from DigitalOcean Spaces Bucket.
+- 🔹 &nbsp; [**DigitalOcean Doctl Installer:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-doctl-installer) Download and install Doctl.
+- 🔹 &nbsp; [**DigitalOcean Doctl:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-doctl) Runs Doctl command(s).
 
 ## 📟 &nbsp; Install the extension to your account
 

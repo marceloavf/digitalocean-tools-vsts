@@ -6,8 +6,11 @@ DigitalOcean Tools provide the ability to upload and delete objects from Digital
 
 ## Tasks included
 
-- [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Upload) Upload file(s) and folder(s) content to DigitalOcean Spaces Bucket.
-- [**DigitalOcean Spaces Delete:**](https://github.com/marceloavf/digitalocean-tools-vsts/wiki/DigitalOcean-Spaces-Delete) Delete file(s) from DigitalOcean Spaces Bucket.
+- [**DigitalOcean Spaces Upload:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-upload) Upload file(s) and folder(s) content to DigitalOcean Spaces Bucket.
+- [**DigitalOcean Spaces Delete:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-delete) Delete file(s) from DigitalOcean Spaces Bucket.
+- [**DigitalOcean Spaces Download:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-spaces-download) Download file(s) from DigitalOcean Spaces Bucket.
+- [**DigitalOcean Doctl Installer:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-doctl-installer) Download and install Doctl.
+- [**DigitalOcean Doctl:**](https://github.com/marceloavf/digitalocean-tools-vsts/blob/master/Extension/OVERVIEW.md#digitalocean-doctl) Runs Doctl command(s).
 
 ## DigitalOcean Spaces Upload
 
@@ -53,6 +56,15 @@ Advanced Options:
 - **Overwrite:** Enable to replace existing files in target folder. An error is thrown if it tries to replace existing files with overwrite disabled.
 - **Concurrency limit:** Specify how many files to download simultaneously.
 - **Retry failed limit:** Specify how many times to retry a failed download.
+
+## DigitalOcean Doctl Installer
+
+No inputs need to be provided in this task, it will install the latest version avaiable of Doctl.
+
+## DigitalOcean Doctl
+
+- **Arguments:** Arguments passed to the doctl script. Either ordinal parameters or named parameters.
+- **Working Directory:** The working folder that the cli will be run against. Root is assumed when empty.
 
 ## Install the extension to your account
 
