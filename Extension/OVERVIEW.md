@@ -59,7 +59,7 @@ Advanced Options:
 
 ## DigitalOcean Doctl Installer
 
-No inputs need to be provided in this task, it will install the latest version avaiable of Doctl.
+No inputs needed to be provided in this task, it will install the latest version avaiable of Doctl.
 
 ## DigitalOcean Doctl
 
