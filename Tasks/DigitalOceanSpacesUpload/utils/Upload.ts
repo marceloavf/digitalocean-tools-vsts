@@ -1,14 +1,14 @@
-import AWS from 'aws-sdk'
 import * as fs from 'fs'
 import { isEmpty } from 'lodash'
-import tl from '../tl'
 import { Spaces } from '@Common/Spaces'
-import { Parameters } from './Parameters'
-import { findFiles, getMimeTypes } from './utils'
+import AWS from 'aws-sdk'
 import { normalizeKeyPathDestination } from '@Common/utils/filterFiles'
 import prettyBytes = require('pretty-bytes')
-const { default: PQueue } = require('p-queue')
-const pRetry = require('p-retry')
+import PQueue from 'p-queue'
+import pRetry from 'p-retry'
+import tl from '../tl'
+import { findFiles, getMimeTypes } from './utils'
+import { Parameters } from './Parameters'
 
 interface UploadFileParameters {
   filePath: string

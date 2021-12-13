@@ -1,0 +1,49 @@
+{
+  "projectName": "digitalocean-tools-vsts",
+  "projectOwner": "marceloavf",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "marceloavf",
+      "name": "Marcelo Formentão",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5435657?v=4",
+      "profile": "https://www.linkedin.com/in/marceloavf/",
+      "contributions": [
+        "question",
+        "code",
+        "content",
+        "design",
+        "doc",
+        "ideas",
+        "infra"
+      ]
+    },
+    {
+      "login": "usrme",
+      "name": "usrme",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5902545?v=4",
+      "profile": "https://usrme.xyz/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "TrueBrain",
+      "name": "Patric Stout",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1663690?v=4",
+      "profile": "https://github.com/TrueBrain",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

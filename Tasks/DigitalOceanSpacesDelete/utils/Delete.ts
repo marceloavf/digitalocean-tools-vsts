@@ -1,12 +1,12 @@
 import AWS from 'aws-sdk'
-import tl from '../tl'
 import { Spaces } from '@Common/Spaces'
 import {
   filterFilesOnList,
   searchFilesOnBucket,
 } from '@Common/utils/filterFiles'
-import { Parameters } from './Parameters'
+import tl from '../tl'
 import { getDeletableSemanticVersion } from './filterSemanticVersion'
+import { Parameters } from './Parameters'
 
 export class Delete extends Spaces<Parameters> {
   constructor(params: Parameters) {

@@ -1,6 +1,6 @@
+import * as path from 'path'
 import AWS from 'aws-sdk'
 import { isEmpty } from 'lodash'
-import * as path from 'path'
 import matcher from 'matcher'
 
 interface FilterFilesOnList {

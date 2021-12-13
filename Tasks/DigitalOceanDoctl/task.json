@@ -1,0 +1,53 @@
+{
+  "id": "06f78d7e-c262-47fa-9422-3d4f2d50875e",
+  "name": "DigitalOceanDoctl",
+  "friendlyName": "DigitalOcean Doctl",
+  "instanceNameFormat": "DigitalOcean Doctl $(Arguments)",
+  "description": "Executes Doctl",
+  "author": "Marcelo Formentão",
+  "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "demands": ["doctl"],
+  "minimumAgentVersion": "1.91.0",
+  "inputs": [
+    {
+      "name": "arguments",
+      "type": "string",
+      "label": "Arguments",
+      "defaultValue": "",
+      "required": false,
+      "helpMarkDown": "Arguments passed to the doctl script. Either ordinal parameters or named parameters."
+    },
+    {
+      "name": "pathToRun",
+      "type": "filePath",
+      "label": "Working Directory",
+      "required": false
+    }
+  ],
+  "execution": {
+    "Node10": {
+      "target": "index.js",
+      "argumentFormat": ""
+    }
+  },
+  "messages": {
+    "NotFound": "Couldn't locate Doctl",
+    "ExecutionFailed": "Doctl failed with exit code %d",
+    "DoctlFailed": "Doctl failed with error %s",
+    "TaskCompleted": "All specified files deleted from Space completed"
+  }
+}

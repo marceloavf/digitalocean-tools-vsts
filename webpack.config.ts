@@ -1,22 +1,32 @@
 import * as path from 'path'
+import * as fs from 'fs'
 import * as webpack from 'webpack'
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
-const ReplaceInFileWebpackPlugin = require('replace-in-file-webpack-plugin')
 
 const config: webpack.Configuration = {
   mode: 'production',
   context: __dirname,
+  node: {
+    '__dirname': false
+  },
   target: 'node',
+  externals: {
+    'azure-pipelines-task-lib': 'commonjs2 azure-pipelines-task-lib',
+    'azure-pipelines-task-lib/task': 'commonjs2 azure-pipelines-task-lib/task',
+    'azure-pipelines-task-lib/toolrunner': 'commonjs2 azure-pipelines-task-lib/toolrunner',
+    'azure-pipelines-tool-lib': 'commonjs2 azure-pipelines-tool-lib',
+    'azure-pipelines-tool-lib/tool': 'commonjs2 azure-pipelines-tool-lib/tool',
+  },
   devtool: 'inline-source-map',
-  node: { __dirname: false },
-  entry: {
-    DigitalOceanSpacesDelete: './Tasks/DigitalOceanSpacesDelete/index.ts',
-    DigitalOceanSpacesDownload: './Tasks/DigitalOceanSpacesDownload/index.ts',
-    DigitalOceanSpacesUpload: './Tasks/DigitalOceanSpacesUpload/index.ts',
+  entry: () => {
+    const source = path.resolve(__dirname, './Tasks')
+    return fs.readdirSync(source, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => ({ [dirent.name]: path.resolve(__dirname, './Tasks', dirent.name, 'index.ts') }))
+      .reduce((acc, curr) => ({ ...curr, ...acc }), {})
   },
   resolve: {
     extensions: ['.ts', '.js', '.json', '.resjson'],
@@ -28,8 +38,6 @@ const config: webpack.Configuration = {
       {
         test: /\.ts?$/,
         loader: 'ts-loader',
-        enforce: 'pre',
-        exclude: /node_modules/,
         options: {
           transpileOnly: true,
           configFile: 'tsconfig.json',
@@ -62,62 +70,7 @@ const config: webpack.Configuration = {
     new ForkTsCheckerWebpackPlugin(),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['*.js'],
-    }),
-    /**
-     * Solves problem related to "RangeError: Maximum call stack size exceeded" with node_modules/azure-pipelines-task-lib/internal.js
-     */
-    new CopyPlugin({
-      patterns: [
-        {
-          from: path.resolve(
-            './node_modules/azure-pipelines-task-lib/lib.json'
-          ),
-          to: path.resolve('./Tasks/DigitalOceanSpacesDelete/'),
-          force: true,
-        },
-        {
-          from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
-          to: path.resolve('./Tasks/DigitalOceanSpacesDelete/'),
-          force: true,
-        },
-        {
-          from: path.resolve(
-            './node_modules/azure-pipelines-task-lib/lib.json'
-          ),
-          to: path.resolve('./Tasks/DigitalOceanSpacesDownload/'),
-          force: true,
-        },
-        {
-          from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
-          to: path.resolve('./Tasks/DigitalOceanSpacesDownload/'),
-          force: true,
-        },
-        {
-          from: path.resolve(
-            './node_modules/azure-pipelines-task-lib/lib.json'
-          ),
-          to: path.resolve('./Tasks/DigitalOceanSpacesUpload/'),
-          force: true,
-        },
-        {
-          from: path.resolve('./node_modules/azure-pipelines-task-lib/Strings'),
-          to: path.resolve('./Tasks/DigitalOceanSpacesUpload/'),
-          force: true,
-        },
-      ],
-    }),
-    new ReplaceInFileWebpackPlugin([
-      {
-        dir: path.join(__dirname, 'Tasks'),
-        test: /\index.js$/,
-        rules: [
-          {
-            search: /__webpack_require__\(.*\)\(resourceFile\)/,
-            replace: 'require(resourceFile)',
-          },
-        ],
-      },
-    ]),
+    })
   ],
 }
 

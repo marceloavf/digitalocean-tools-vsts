@@ -1,6 +1,6 @@
-import { Download } from '@DOSDownload/utils/Download.ts'
 import { PassThrough } from 'stream'
 import { EventEmitter } from 'events'
+import { Download } from '@DOSDownload/utils/Download'
 const AWS = require('aws-sdk')
 const mockFs = require('mock-fs')
 
@@ -48,8 +48,7 @@ describe('DOSDelete', () => {
       return dataStream
     }
     setTimeout(() => {
-      self.emit('httpDownloadProgress', { loaded: 1337, total: 2337 })
-      self.emit('httpDownloadProgress', { loaded: 2337, total: 2337 })
+      self.emit('httpHeaders', 200, { 'content-length': '2337' })
     }, 0)
     return self
   }
@@ -65,7 +64,7 @@ describe('DOSDelete', () => {
   })
 
   test('should download files successfully', async () => {
-    expect.assertions(2)
+    expect.assertions(4)
     const listFiles = baseListFiles()
 
     baseMockFs()
@@ -88,6 +87,8 @@ describe('DOSDelete', () => {
       [{ Bucket: 'test', Key: 'virtualpath/fixtures/file-v1.0.1.txt' }],
       [{ Bucket: 'test', Key: 'virtualpath/fixtures/file2-v1.3.1.json' }],
     ])
+    expect(spyLog.mock.calls.sort()).toMatchSnapshot()
+    expect(spyLog).toHaveBeenCalledTimes(10)
   })
 
   test('should fail on read stream error', async () => {

@@ -17,12 +17,14 @@
       "@DOSUpload/*": ["Tasks/DigitalOceanSpacesUpload/*"],
       "@DOSDelete/*": ["Tasks/DigitalOceanSpacesDelete/*"],
       "@DOSDownload/*": ["Tasks/DigitalOceanSpacesDownload/*"],
+      "@DOSDoctlInstaller/*": ["Tasks/DigitalOceanDoctlInstaller/*"],
+      "@DOSDoctl/*": ["Tasks/DigitalOceanDoctl/*"],
       "@Common/*": ["Common/Node/*"]
     }
   },
   "include": [
-    "./Tasks/**/*.ts",
-    "./Tests/**/*.ts"
+    "./Common/**/*.ts",
+    "./Tasks/**/*.ts"
   ],
   "exclude": [
     "node_modules",

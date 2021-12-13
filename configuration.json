@@ -10,7 +10,9 @@
             "TaskIds": {
                 "DigitalOceanSpacesUpload": "1c33b552-39e4-4d45-8c4e-ea4f7ef7c9da",
                 "DigitalOceanSpacesDelete": "3920b643-85fc-4448-9758-3dcd5b4a703b",
-                "DigitalOceanSpacesDownload": "13835508-44e9-4dfc-9323-4f8edf89c857"
+                "DigitalOceanSpacesDownload": "13835508-44e9-4dfc-9323-4f8edf89c857",
+                "DigitalOceanDoctlInstaller": "e73f937c-f445-43c6-b92e-9ca10d4c94ca",
+                "DigitalOceanDoctl": "dd23b25a-4f73-44e8-930b-070cebab19b5"
             }
         },
         {
@@ -21,7 +23,9 @@
             "TaskIds": {
                 "DigitalOceanSpacesUpload": "7ccd0fd9-2c5b-4463-8ee2-a0102ff0a774",
                 "DigitalOceanSpacesDelete": "51857331-597a-4e02-8e5a-fbdea3f5d8f4",
-                "DigitalOceanSpacesDownload": "3f85a8a4-d11b-4c84-b7ce-48ed9cead8b4"
+                "DigitalOceanSpacesDownload": "3f85a8a4-d11b-4c84-b7ce-48ed9cead8b4",
+                "DigitalOceanDoctlInstaller": "5b2f1913-1281-4cfc-85ae-67fb5fac4b27",
+                "DigitalOceanDoctl": "eb09b389-81ef-473e-aa1d-cc084b51bef2"
             }
         }
     ]

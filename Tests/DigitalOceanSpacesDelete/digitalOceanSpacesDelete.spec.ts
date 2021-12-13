@@ -1,7 +1,7 @@
-import start from '@DOSDelete/digitalOceanSpacesDelete.ts'
-import tl from '@DOSDelete/tl.ts'
-import { Delete } from '@DOSDelete/utils/Delete.ts'
-import { Parameters } from '@DOSDelete/utils/Parameters.ts'
+import start from '@DOSDelete/digitalOceanSpacesDelete'
+import tl from '@DOSDelete/tl'
+import { Delete } from '@DOSDelete/utils/Delete'
+import { Parameters } from '@DOSDelete/utils/Parameters'
 
 jest.mock('@DOSDelete/utils/Parameters.ts')
 jest.mock('@DOSDelete/tl.ts')

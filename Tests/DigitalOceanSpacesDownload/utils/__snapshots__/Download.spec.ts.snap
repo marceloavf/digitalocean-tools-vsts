@@ -1,5 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DOSDelete should download files successfully 1`] = `
+Array [
+  Array [
+    "All downloads completed",
+  ],
+  Array [
+    "Completed download of virtualpath/fixtures/file-v1.0.1.txt to virtualpath/fixtures/output/virtualpath/fixtures/file-v1.0.1.txt",
+  ],
+  Array [
+    "Completed download of virtualpath/fixtures/file2-v1.3.1.json to virtualpath/fixtures/output/virtualpath/fixtures/file2-v1.3.1.json",
+  ],
+  Array [
+    "Download progress is 4 B of 0 B - Infinity%",
+  ],
+  Array [
+    "Download progress is 4 B of 0 B - Infinity%",
+  ],
+  Array [
+    "Downloading files from root to virtualpath/fixtures/output in bucket test",
+  ],
+  Array [
+    "Filtering files using '[ '**' ]' pattern",
+  ],
+  Array [
+    "Matched file virtualpath/fixtures/file-v1.0.1.txt",
+  ],
+  Array [
+    "Matched file virtualpath/fixtures/file2-v1.3.1.json",
+  ],
+  Array [
+    "Searching 'root' prefix for files to delete",
+  ],
+]
+`;
+
 exports[`DOSDelete should fail on read stream error 1`] = `[Error: returned error,returned error]`;
 
 exports[`DOSDelete should fail on read stream error 2`] = `

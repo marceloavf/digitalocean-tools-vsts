@@ -1,17 +1,17 @@
-import AWS from 'aws-sdk'
 import { existsSync, createWriteStream } from 'fs'
+import path = require('path')
 import { isEmpty } from 'lodash'
-import tl from '../tl'
 import { Spaces } from '@Common/Spaces'
 import {
   filterFilesOnList,
   searchFilesOnBucket,
 } from '@Common/utils/filterFiles'
-import { Parameters } from './Parameters'
+import AWS from 'aws-sdk'
 import prettyBytes = require('pretty-bytes')
-import path = require('path')
-const { default: PQueue } = require('p-queue')
-const pRetry = require('p-retry')
+import PQueue from 'p-queue'
+import pRetry from 'p-retry'
+import tl from '../tl'
+import { Parameters } from './Parameters'
 
 export class Download extends Spaces<Parameters> {
   constructor(params: Parameters) {
@@ -129,26 +129,35 @@ export class Download extends Spaces<Parameters> {
     targetPath: string
   ): Promise<AWS.S3.GetObjectOutput> {
     return new Promise((resolve, reject) => {
+      let totalBytes = 0
+      let bytesLoaded = 0
       this.validateAndCreateFolderPath(targetPath)
 
       const request = this.s3Connection.getObject(baseParameters)
 
-      request.on('httpDownloadProgress', (progress) => {
+      request.on('httpHeaders', function (status, headers) {
+        totalBytes = parseInt(headers['content-length'])
+      })
+
+      const fileWriteStream = createWriteStream(targetPath)
+      const objectStream = request.createReadStream()
+
+      objectStream.on('data', function (chunk) {
+        bytesLoaded += chunk.length
         console.log(
           tl.loc(
             'FileDownloadProgress',
-            prettyBytes(progress.loaded),
-            prettyBytes(progress.total),
-            Math.floor((progress.loaded / progress.total) * 100).toFixed(1)
+            prettyBytes(bytesLoaded),
+            prettyBytes(totalBytes),
+            Math.floor((bytesLoaded / totalBytes) * 100).toFixed(1)
           )
         )
       })
-      const fileWriteStream = createWriteStream(targetPath)
-      const objectStream = request.createReadStream()
 
       // info: https://dev.to/cdanielsen/testing-streams-a-primer-3n6e
       objectStream
         .on('error', reject)
+        // TODO: Maybe use write instead of pipe for memory efficiency https://gist.github.com/J-Cake/78ce059972595823243526e022e327e4
         .pipe(fileWriteStream)
         .on('finish', resolve)
         .on('error', reject)

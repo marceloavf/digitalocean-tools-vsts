@@ -1,6 +1,6 @@
 import { sharedParameters } from '../../dry/utils/parametersTest'
-import { Parameters } from '@DOSDownload/utils/Parameters.ts'
-import tl from '@DOSDownload/tl.ts'
+import { Parameters } from '@DOSDownload/utils/Parameters'
+import tl from '@DOSDownload/tl'
 
 describe('Parameters', () => {
   test('should set and return correctly', () => {

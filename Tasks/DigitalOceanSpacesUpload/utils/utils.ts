@@ -1,5 +1,5 @@
-import tl from '../tl'
 import * as path from 'path'
+import tl from '../tl'
 import knownMimeTypes from './knownMimeTypes'
 
 interface FilesParameters {

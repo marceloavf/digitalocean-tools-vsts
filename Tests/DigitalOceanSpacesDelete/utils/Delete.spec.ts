@@ -1,4 +1,4 @@
-import { Delete } from '@DOSDelete/utils/Delete.ts'
+import { Delete } from '@DOSDelete/utils/Delete'
 const AWS = require('aws-sdk')
 
 const spyLog = jest.spyOn(console, 'log')

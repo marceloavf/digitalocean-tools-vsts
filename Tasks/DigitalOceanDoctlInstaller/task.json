@@ -1,0 +1,35 @@
+{
+  "id": "5b2f1913-1281-4cfc-85ae-67fb5fac4b27",
+  "name": "DigitalOceanDoctlInstaller",
+  "friendlyName": "DigitalOcean Doctl Installer",
+  "instanceNameFormat": "DigitalOcean Doctl Installer",
+  "description": "Installs latest version of Doctl",
+  "author": "Marcelo Formentão",
+  "helpMarkDown": "[More Information](https://github.com/marceloavf/digitalocean-tools-vsts) (Version #{Version}#).",
+  "category": "Utility",
+  "visibility": [
+    "Build",
+    "Release"
+  ],
+  "version": {
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "runsOn": [
+    "Agent",
+    "DeploymentGroup"
+  ],
+  "satisfies": ["doctl"],
+  "minimumAgentVersion": "1.91.0",
+  "execution": {
+    "Node10": {
+      "target": "index.js",
+      "argumentFormat": ""
+    }
+  },
+  "messages": {
+    "InstallerFailed": "Installer failed",
+    "TaskCompleted": "Doctl successfully installed"
+  }
+}
