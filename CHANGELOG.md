@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v1.0.0...v2.0.0) (2021-12-13)
+
+
+### Features
+
+* add doctl ([#37](https://github.com/marceloavf/digitalocean-tools-vsts/issues/37)) ([3add6cf](https://github.com/marceloavf/digitalocean-tools-vsts/commit/3add6cffaa3e570e3c512e369071765a61bf323e))
+
+
+### BREAKING CHANGES
+
+* Many packages have been updated to major versions
+
 # [1.0.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v0.5.0...v1.0.0) (2020-11-07)
 
 
