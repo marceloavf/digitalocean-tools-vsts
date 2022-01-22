@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v2.0.0...v2.0.1) (2022-01-22)
+
+
+### Bug Fixes
+
+* node-fetch security upgrade ([d9e4574](https://github.com/marceloavf/digitalocean-tools-vsts/commit/d9e4574a4d99b0e1494cebfa81ecf6ce52551d9c))
+
 # [2.0.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v1.0.0...v2.0.0) (2021-12-13)
 
 
