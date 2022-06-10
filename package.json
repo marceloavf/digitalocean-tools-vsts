@@ -63,7 +63,7 @@
     "lerna": "^4.0.0",
     "mock-fs": "^5.0.0",
     "prettier": "^2.5.0",
-    "semantic-release": "^18.0.1",
+    "semantic-release": "^19.0.3",
     "tfx-cli": "^0.9.3",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.6",
