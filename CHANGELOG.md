@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v2.0.1...v3.0.0) (2024-11-12)
+
+
+### Bug Fixes
+
+* update node version in task to 16 ([#65](https://github.com/marceloavf/digitalocean-tools-vsts/issues/65)) ([d6d71e0](https://github.com/marceloavf/digitalocean-tools-vsts/commit/d6d71e01ba64dbeb6e7097fe471a6c321e0243b1))
+
+
+### BREAKING CHANGES
+
+* increase node version from v10 to v16
+
 ## [2.0.1](https://github.com/marceloavf/digitalocean-tools-vsts/compare/v2.0.0...v2.0.1) (2022-01-22)
 
 

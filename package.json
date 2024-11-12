@@ -1,6 +1,6 @@
 {
   "name": "digitalocean-tools-vsts",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "DigitalOcean task for the Azure DevOps system",
   "author": "Marcelo Formentão <marceloavf3@hotmail.com>",
   "license": "MIT",
